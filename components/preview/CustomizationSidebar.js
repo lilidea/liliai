@@ -14,6 +14,21 @@ export default function CustomizationSidebar({
     const { siteData, updateSiteData } = useSite();
     const [isGenerating, setIsGenerating] = useState(false);
 
+    // Render placeholder if no section selected
+    if (!activeSection) {
+        return (
+            <div className={`fixed top-16 right-0 h-[calc(100vh-4rem)] w-96 bg-white shadow-2xl z-[30] transform transition-transform duration-300 border-l border-neutral-100 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                 <div className="h-full flex flex-col items-center justify-center p-8 text-center text-neutral-400">
+                    <div className="w-16 h-16 bg-neutral-100 rounded-full flex items-center justify-center mb-4 animate-pulse">
+                        <Edit3 size={32} className="text-neutral-300"/>
+                    </div>
+                    <h3 className="font-bold text-neutral-900 mb-2">Bölüm Seçin</h3>
+                    <p className="text-sm">Düzenlemek istediğiniz alanın üzerine tıklayın.</p>
+                 </div>
+            </div>
+        );
+    }
+
     // Dynamic field mapping based on category
     // This is a simplified version. Ideally, components would expose their schema.
     const renderFields = () => {
@@ -85,7 +100,7 @@ export default function CustomizationSidebar({
     };
 
     return (
-        <div className={`fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-[60] transform transition-transform duration-300 border-l border-neutral-100 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`fixed top-16 right-0 h-[calc(100vh-4rem)] w-96 bg-white shadow-2xl z-[30] transform transition-transform duration-300 border-l border-neutral-100 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
             <div className="h-full flex flex-col">
                 {/* Header */}
                 <div className="p-6 border-b border-neutral-100 flex items-center justify-between bg-neutral-50/50">

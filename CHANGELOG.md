@@ -28,6 +28,9 @@
 - **Decoupled UI Styling:** Separated the Wizard's interface styling from the user's selected site colors to ensure tool stability.
 - **Hydration Fixes:** Resolved Next.js hydration mismatch errors in `layout.js`.
 - **Splash Screen:** Added a polished loading transition with the Liliai logo.
+- **Preview UX Fixes:**
+  - Adjusted Sidebar positioning to sit correctly below the top navigation bar.
+  - Added "Empty State" guidance to the sidebar to help users start editing.
 
 ### 📦 Deployment
 - Ready for **Vercel** deployment.
