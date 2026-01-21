@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SiteYapıcım - Liliai Website Builder
 
-## Getting Started
+**Liliai** için geliştirilen, son kullanıcıların kendi web sitelerini adım adım tasarlayıp içeriklerini oluşturabilecekleri modern bir Website Builder (Sihirbaz) uygulaması.
 
-First, run the development server:
+## 🚀 Özellikler
+
+*   **Adım Adım Sihirbaz:** Sektör seçimi, renk paleti, font ve tasarım şablonları.
+*   **İçerik Stüdyosu 2.0:** Yapay zeka destekli içerik üretimi (Metin & Görsel) ve detaylı düzenleme paneli.
+*   **Etkileşimli Önizleme:** Canlı düzenleme (Live Edit) modu ve anlık güncellemeler.
+*   **Profesyonel Yayınlama Akışı:** Müşteri bilgilerini ve proje detaylarını toplayan gelişmiş form.
+*   **Tamamen Yerelleştirilmiş:** %100 Türkçe arayüz.
+
+## 🎨 Marka Kimliği
+
+Proje, Liliai kurumsal kimliğini yansıtır:
+*   **Ana Renk:** `#E69419` (Turuncu)
+*   **İkincil Renk:** `#0073FF` (Mavi)
+
+## 🛠 Kurulum ve Çalıştırma
 
 ```bash
+# Bağımlılıkları yükle
+npm install
+
+# Geliştirme sunucusunu başlat
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ☁️ Vercel Dağıtımı (Deployment)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Bu proje Next.js ile geliştirilmiştir ve Vercel üzerinde çalışmaya hazırdır.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1.  GitHub reposunu Vercel'e bağlayın.
+2.  Tüm ayarlar otomatik algılanacaktır (Framework Preset: Next.js).
+3.  **Deploy** butonuna basın.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Developed by **Liliai Tech Team**
