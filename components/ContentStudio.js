@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import { Textarea } from '@/components/Textarea';
-import { Sparkles, Monitor, FileText, Type, Image as ImageIcon, ChevronRight, Check } from 'lucide-react';
+import { Bot, Monitor, FileText, Type, Image as ImageIcon, ChevronRight, Check } from 'lucide-react';
 import { useSite } from '@/app/context/SiteContext';
 
 export default function ContentStudio() {
@@ -20,6 +20,8 @@ export default function ContentStudio() {
                 aboutText: `${siteData.companyName} hakkında profesyonel tanıtım yazısı.`,
                 heroTitle: `${siteData.companyName} ile Geleceği İnşaa Edin`
             });
+        } else if (type === 'logo') {
+             updateSiteData({ logoUrl: `https://placehold.co/400x400/E69419/white?text=${encodeURIComponent(siteData.companyName.substring(0,2).toUpperCase())}` });
         } else if (type === 'text') {
              updateSiteData({ [`content_${page}`]: `${page} sayfası için özel olarak hazırlanan detaylı içerik metni.` });
         } else if (type === 'image') {
@@ -80,7 +82,7 @@ export default function ContentStudio() {
                         <div className="space-y-6 animate-in fade-in duration-300">
                              <div className="bg-neutral-50 p-6 rounded-2xl border border-neutral-100">
                                 <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                                    <Sparkles className="text-[#E69419]" size={20}/> AI İçerik Üreticisi
+                                    <Bot className="text-[#E69419]" size={20}/> AI İçerik Üreticisi
                                 </h3>
                                 <p className="text-sm text-neutral-500 mb-4">
                                     Firma isminize ({siteData.companyName}) dayalı olarak genel site başlıklarını ve metinlerini otomatik oluşturun.
@@ -89,11 +91,37 @@ export default function ContentStudio() {
                                     onClick={() => handleGenerate('general')}
                                     className="w-full bg-black hover:bg-neutral-800 text-white"
                                 >
-                                    <Sparkles size={16} className="mr-2"/> Tümünü Oluştur
+                                    <Bot size={16} className="mr-2"/> Tümünü Oluştur
                                 </Button>
                              </div>
 
                              <div className="space-y-4">
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-neutral-700">Logo</label>
+                                    <div className="flex gap-4 items-start">
+                                        <div className="w-24 h-24 rounded-xl border border-neutral-200 overflow-hidden bg-neutral-50 flex items-center justify-center shrink-0">
+                                            {siteData.logoUrl ? (
+                                                <img src={siteData.logoUrl} className="w-full h-full object-cover" />
+                                            ) : (
+                                                <div className="text-neutral-300 text-xs text-center p-2">Logo Yok</div>
+                                            )}
+                                        </div>
+                                        <div className="flex-1">
+                                            <p className="text-xs text-neutral-500 mb-2">Markanız için yapay zeka ile otomatik logo oluşturun.</p>
+                                            <Button 
+                                                variant="outline" 
+                                                size="sm" 
+                                                onClick={() => handleGenerate('logo')}
+                                                className="w-full"
+                                            >
+                                                <Bot size={14} className="mr-2 text-[#E69419]"/> Logo Oluştur
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="h-px bg-neutral-100 my-2"></div>
+
                                 <div className="space-y-2">
                                     <label className="text-sm font-bold text-neutral-700">Hero (Ana) Başlık</label>
                                     <Input 
@@ -126,7 +154,7 @@ export default function ContentStudio() {
                                     variant="outline"
                                     className="h-auto py-4 flex flex-col gap-2 border-dashed border-2 hover:border-[#E69419] hover:bg-[#E69419]/5"
                                 >
-                                    <Type size={24} className="text-[#E69419]"/>
+                                    <Bot size={24} className="text-[#E69419]"/>
                                     <span>Metin Üret</span>
                                 </Button>
                                 <Button 
@@ -140,6 +168,24 @@ export default function ContentStudio() {
                              </div>
 
                              <div className="space-y-4 mt-6">
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-neutral-700">Sayfa Başlığı</label>
+                                    <Input 
+                                        value={siteData[`title_${activeSection}`] || ''} 
+                                        onChange={(e) => updateSiteData({ [`title_${activeSection}`]: e.target.value })}
+                                        placeholder={`${activeSection} - ${siteData.companyName}`}
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-neutral-700">Anahtar Kelimeler (Keywords)</label>
+                                    <Input 
+                                        value={siteData[`keywords_${activeSection}`] || ''} 
+                                        onChange={(e) => updateSiteData({ [`keywords_${activeSection}`]: e.target.value })}
+                                        placeholder="kurumsal, hizmetler, iletişim..."
+                                    />
+                                </div>
+
                                 <div className="space-y-2">
                                     <label className="text-sm font-bold text-neutral-700">Sayfa Metni</label>
                                     <Textarea 

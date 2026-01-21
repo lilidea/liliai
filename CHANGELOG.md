@@ -8,9 +8,11 @@
   - **Live Customization Sidebar:** Edit text and images for any section directly from the preview.
   - **Publish Modal:** A professional "Bizle Paylaş" (Share with Us) form capturing Company Name, Budget, Timeline, and Contact Info.
   
-- **Content Studio 2.0 (İçerik Stüdyosu):**
-  - **Master-Detail Layout:** Completely redesigned from a card grid to a sidebar-based navigation for easier content management.
-  - **AI Content Generation:** "Metin Üret" and "Görsel Üret" buttons to auto-fill content.
+- **Content Studio 2.1 (İçerik Stüdyosu Güncellemeleri):**
+  - **Master-Detail Layout:** Completely redesigned from a card grid to a sidebar-based navigation.
+  - **Logo Generation:** Users can now generate a logo using AI directly from the "General Info" tab.
+  - **Page SEO Details:** Added specific inputs for "Page Title" and "Keywords" for better SEO management.
+  - **Updated Icons:** Replaced generic sparkle icons with modern "Bot" icons for AI actions.
 
 ### 🎨 Branding & Design (Marka ve Tasarım)
 - **Liliai Brand Identity:**
