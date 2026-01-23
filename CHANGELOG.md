@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.1.0] - 2026-01-23
+
+### 📚 Component Library Expansion (Bileşen Kütüphanesi Genişletildi)
+- **New Showcase Page (`/tum-bilesenler`):**
+  - **Sticky Sidebar:** Easy navigation between component categories.
+  - **Live Preview:** All components rendered sequentially with category grouping.
+  - **Header3 Fix:** Resolved display issues for transparent/absolute headers in showcase.
+
+- **New UI Components (Yeni Bileşenler):**
+  - **About:** `About3` (Stats Split), `About4` (Minimal Center).
+  - **Services:** `Services2` (Border Grid), `Services3` (Horizontal List).
+  - **Team:** `Team2` (Circle Avatars), `Team3` (Featured Profile).
+  - **Projects:** `Projects2` (Masonry Grid), `Projects3` (Horizontal Slider).
+  - **Blog:** `Blog2` (Grid), `Blog3` (Featured + Sidebar).
+  - **FAQ:** `FAQ2` (Box Grid), `FAQ3` (Clean List).
+  - **Contact:** `Contact2` (Background Form), `Contact3` (Split Map).
+
 ## [1.0.0] - 2026-01-21
 
 ### 🚀 New Features (Yeni Özellikler)
