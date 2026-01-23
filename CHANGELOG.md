@@ -17,6 +17,12 @@
   - **FAQ:** `FAQ2` (Box Grid), `FAQ3` (Clean List).
   - **Contact:** `Contact2` (Background Form), `Contact3` (Split Map).
 
+- **New Business Components (İş Bileşenleri):**
+  - **Pricing:** `Pricing1` (Cards), `Pricing2` (Table), `Pricing3` (Toggle).
+  - **Testimonials:** `Testimonials1` (Grid), `Testimonials2` (Slider).
+  - **Stats:** `Stats1` (Row), `Stats2` (Split Visual).
+  - **CTA:** `Cta1` (Center), `Cta2` (Split).
+
 ## [1.0.0] - 2026-01-21
 
 ### 🚀 New Features (Yeni Özellikler)
