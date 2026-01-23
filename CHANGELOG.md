@@ -21,7 +21,19 @@
   - **Pricing:** `Pricing1` (Cards), `Pricing2` (Table), `Pricing3` (Toggle).
   - **Testimonials:** `Testimonials1` (Grid), `Testimonials2` (Slider).
   - **Stats:** `Stats1` (Row), `Stats2` (Split Visual).
+  - **Stats:** `Stats1` (Row), `Stats2` (Split Visual).
   - **CTA:** `Cta1` (Center), `Cta2` (Split).
+
+- **Page Templates (Hazır Şablonlar):**
+  - **Startup:** SaaS oriented landing page with modern dark/light contrast.
+  - **Corporate:** Professional business template.
+  - **Portfolio:** Minimalist creative portfolio.
+  - **Gallery:** New `/sablonlar` page with "Wizard-style" card design.
+
+- **UI/UX Improvements:**
+  - **Custom AI Imagery:** Generated unique Hero images for each template.
+  - **Footer Links:** Added quick access links to Templates and Components in the main footer.
+  - **Branding:** Unified logo usage (`/app_icon.png`) across headers and footers.
 
 ## [1.0.0] - 2026-01-21
 

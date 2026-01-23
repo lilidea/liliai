@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState } from "react";
 
-const SiteContext = createContext();
+export const SiteContext = createContext();
 
 export function SiteProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);

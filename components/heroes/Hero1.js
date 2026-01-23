@@ -30,8 +30,12 @@ const Hero1 = () => {
           </div>
         </div>
         <div className="md:w-1/2 flex justify-center">
-          <div className="w-full max-w-lg aspect-square bg-gray-200 rounded-2xl animate-pulse flex items-center justify-center text-gray-400">
-             (Görsel Alanı)
+          <div className="w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl relative">
+             <img 
+               src={siteData.heroImage || "https://source.unsplash.com/random/800x800/?business"} 
+               className="w-full h-full object-cover"
+               alt="Hero Visual"
+             />
           </div>
         </div>
       </div>

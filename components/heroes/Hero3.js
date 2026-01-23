@@ -59,12 +59,12 @@ const Hero3 = () => {
 
          <div className="relative hidden md:block">
             <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition duration-500">
-               <div className="aspect-[4/5] bg-neutral-900 flex items-center justify-center text-white">
-                  {/* Placeholder for modern image */}
-                  <div className="text-center p-12">
-                     <div className="text-9xl mb-4">🎨</div>
-                     <p className="font-bold opacity-50">Modern Art</p>
-                  </div>
+               <div className="aspect-[4/5] bg-neutral-900 flex items-center justify-center text-white overflow-hidden">
+                  <img 
+                    src={siteData.heroImage || "https://source.unsplash.com/random/800x1000/?abstract"}
+                    className="w-full h-full object-cover"
+                    alt="Hero Art"
+                  />
                </div>
             </div>
             

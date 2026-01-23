@@ -279,7 +279,17 @@ export default function Home() {
       </div>
       
       {/* Copyright Footer */}
-      <footer className="mt-8 text-neutral-400 text-sm font-medium flex items-center gap-2">
+      <footer className="mt-8 text-neutral-400 text-sm font-medium flex flex-col md:flex-row items-center gap-6">
+         <div className="flex items-center gap-4">
+            <a href="/sablonlar" className="hover:text-black transition flex items-center gap-1 font-bold text-[#E69419]">
+               <Layout size={14} /> Şablonlar
+            </a>
+            <span className="w-1 h-1 rounded-full bg-neutral-300"></span>
+            <a href="/tum-bilesenler" className="hover:text-black transition flex items-center gap-1 font-bold text-[#0073FF]">
+               <Sparkles size={14} /> Bileşenler
+            </a>
+         </div>
+         <span className="hidden md:inline text-neutral-300">|</span>
          <a href="https://lilidea.com" target="_blank" className="text-neutral-600 hover:text-black transition flex items-center gap-2">
             <img src="/app_icon.png" alt="liliai icon" className="w-5 h-5" /> 
             Lilidea tarafından geliştirildi
