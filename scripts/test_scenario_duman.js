@@ -1,25 +1,30 @@
 
-import { model } from '@/lib/gemini';
-import { NextResponse } from 'next/server';
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-export async function POST(req) {
-  try {
-    const { companyName, sector, aboutText, pages } = await req.json();
+async function testScenario() {
+    console.log("Starting Scenario Test: Duman Kafe...");
+    
+    // Manual setup because we are running outside Next.js context
+    const apiKey = process.env.GEMINI_API_KEY;
+    if(!apiKey) { console.error("No API Key"); return; }
 
-    // Safety checks
-    const safeCompany = companyName || "Şirketim";
-    const safeSector = sector || "Genel";
-    const safeDesc = aboutText || "Hizmet veriyoruz.";
-    const safePages = Array.isArray(pages) && pages.length > 0 ? pages.join(', ') : "Hakkımızda, Hizmetler, İletişim";
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+    // Inputs
+    const companyName = "Duman Kafe";
+    const sector = "food_cafe"; // Kafe & Coffee Shop
+    const aboutText = "Kadıköy moda sahilinde, 3. dalga kahveci. Ev yapımı tatlılar ve sakin çalışma ortamı.";
+    const pages = ["Hakkımızda", "Menü", "Galeri", "İletişim"];
 
     const prompt = `
       You are an expert web content writer and designer.
       Generate website content for a business with the following details:
       
-      Company Name: ${safeCompany}
-      Sector: ${safeSector}
-      Description: ${safeDesc}
-      Pages: ${safePages}
+      Company Name: ${companyName}
+      Sector: ${sector}
+      Description: ${aboutText}
+      Pages: ${pages.join(', ')}
 
       Return ONLY a JSON object with the following structure (no markdown, no extra text):
       {
@@ -62,29 +67,28 @@ export async function POST(req) {
         }
       }
       
-      Ensure the tone is professional, engaging, and appropriate for the ${safeSector} industry.
+      Ensure the tone is professional, engaging, and appropriate for the ${sector} industry.
       The language MUST be TURKISH.
     `;
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    let text = response.text();
-    
-    // Cleanup code blocks if present
-    text = text.replace(/```json/g, '').replace(/```/g, '').trim();
-
-    // Ensure it's valid JSON
-    let data;
     try {
-        data = JSON.parse(text);
-    } catch (e) {
-        console.error("JSON Parse Error:", e, "Received text:", text);
-        return NextResponse.json({ success: false, error: 'Invalid JSON format from AI', details: text }, { status: 500 });
-    }
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        let text = response.text();
+        
+        // Cleanup
+        text = text.replace(/```json/g, '').replace(/```/g, '').trim();
+        
+        console.log("\n--- AI OUTPUT ---");
+        console.log(text);
+        console.log("-----------------\n");
+        
+        JSON.parse(text); // Verify JSON validity
+        console.log("✅ JSON Structure is VALID");
 
-    return NextResponse.json({ success: true, data });
-  } catch (error) {
-    console.error('Gemini API Error:', error);
-    return NextResponse.json({ success: false, error: error.message || 'Content generation failed' }, { status: 500 });
-  }
+    } catch (e) {
+        console.error("FAILED:", e);
+    }
 }
+
+testScenario();

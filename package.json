@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
+    "clsx": "^2.1.1",
     "lucide-react": "^0.562.0",
     "next": "16.1.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-tsparticles": "^2.12.2",
+    "tailwind-merge": "^3.4.0",
     "tsparticles-slim": "^2.12.0"
   },
   "devDependencies": {

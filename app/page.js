@@ -12,6 +12,7 @@ import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import { Textarea } from '@/components/Textarea';
 import SplashScreen from '@/components/SplashScreen';
+import { SECTORS, getSectorDefaults } from '@/utils/sectorMappings'; // Import Sector Mappings
 
 export default function Home() {
   const { siteData, updateSiteData, updateSelection, isLoading, triggerLoading } = useSite();
@@ -60,12 +61,38 @@ export default function Home() {
      );
   };
 
+   // Page Filtering Logic
+   const filteredPages = useMemo(() => {
+        const COMMON = ['Hakkımızda', 'Hizmetler', 'İletişim', 'Blog', 'SSS', 'Referanslar', 'Kariyer', 'Yasal Uyarılar'];
+        const ALL = [
+            ...COMMON, 
+            'Ekibimiz', 'Galeri', 'Projeler', 'Menü', 'Ürünler', 
+            'Fiyat Listesi', 'Randevu', 'Kampanyalar', 'Sertifikalar', 
+            'Tedaviler', 'Eğitimler', 'Uzmanlık Alanları'
+        ];
+
+        const s = siteData.sector || '';
+        let hidden = [];
+        
+        if (s.startsWith('food_')) hidden = ['Tedaviler', 'Randevu', 'Projeler', 'Sertifikalar', 'Uzmanlık Alanları', 'Eğitimler'];
+        else if (s.startsWith('health_')) hidden = ['Menü', 'Projeler', 'Ürünler']; 
+        else if (s.startsWith('const_')) hidden = ['Menü', 'Tedaviler', 'Randevu', 'Eğitimler', 'Fiyat Listesi'];
+        else if (s.startsWith('beauty_')) hidden = ['Menü', 'Projeler', 'Uzmanlık Alanları'];
+        else if (s.startsWith('tech_')) hidden = ['Menü', 'Tedaviler', 'Randevu'];
+        else if (s.startsWith('retail_')) hidden = ['Tedaviler', 'Randevu', 'Projeler', 'Menü', 'Uzmanlık Alanları'];
+        else if (s.startsWith('auto_')) hidden = ['Menü', 'Tedaviler', 'Eğitimler', 'Uzmanlık Alanları'];
+        else if (s.startsWith('pro_')) hidden = ['Menü', 'Tedaviler', 'Ürünler', 'Fiyat Listesi'];
+        else if (s.startsWith('edu_')) hidden = ['Menü', 'Tedaviler', 'Ürünler'];
+        else if (s.startsWith('event_')) hidden = ['Tedaviler', 'Uzmanlık Alanları'];
+
+        return ALL.filter(p => !hidden.includes(p));
+   }, [siteData.sector]);
+
   const steps = [
     { id: 1, title: "Bilgiler", icon: <Type size={20}/> },
     { id: 2, title: "Renk", icon: <Palette size={20}/> },
     { id: 3, title: "Sayfalar", icon: <FileText size={20}/> },
-    { id: 4, title: "Tasarım", icon: <Layout size={20}/> },
-    { id: 5, title: "İçerik", icon: <Sparkles size={20}/> },
+    { id: 4, title: "AI Tasarım", icon: <Sparkles size={20}/> }, // Renamed and Icon changed
   ];
 
   return (
@@ -121,6 +148,29 @@ export default function Home() {
                     placeholder="Örn: liliai"
                   />
                 </div>
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-bold uppercase tracking-wide text-neutral-500">Sektör</label>
+                  <select
+                    name="sector"
+                    value={siteData.sector}
+                    onChange={(e) => {
+                        handleChange(e);
+                        // Auto-select pages when sector changes
+                        const defaults = getSectorDefaults(e.target.value);
+                        if(defaults) {
+                            updateSiteData({ pages: defaults.defaultPages });
+                        }
+                    }}
+                    className="w-full p-4 bg-neutral-50 border-2 border-neutral-100 rounded-xl focus:border-[#E69419] focus:ring-0 outline-none transition-all font-medium text-lg"
+                  >
+                    <option value="">Sektör Seçiniz...</option>
+                    {SECTORS.map(s => (
+                        <option key={s.id} value={s.id}>{s.label}</option>
+                    ))}
+                  </select>
+                </div>
+
                 <div className="space-y-2">
                   <label className="text-sm font-bold uppercase tracking-wide text-neutral-500">İşletme Tanımı</label>
                   <Textarea 
@@ -201,8 +251,8 @@ export default function Home() {
                  <p className="text-neutral-500">Sitenizde hangi sayfalar olsun?</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                 {['Hakkımızda', 'Hizmetler', 'Projeler', 'Blog', 'İletişim', 'SSS', 'Referanslar', 'Ekibimiz', 'Kariyer'].map((page) => (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                 {filteredPages.map((page) => (
                     <div 
                       key={page}
                       onClick={() => {
@@ -243,38 +293,131 @@ export default function Home() {
             </div>
         )}
 
-        {/* Step 4: Design Studio (New Component) */}
-        {step === 4 && <DesignStudio />}
+        {/* Step 4: AI Design Generation (Replaces Design & Content Studio) */}
+        {step === 4 && (
+            <div className="flex flex-col items-center justify-center text-center h-full animate-in fade-in duration-700">
+               <div className="mb-8 relative">
+                  <div className="absolute inset-0 bg-[#E69419] blur-2xl opacity-20 animate-pulse"></div>
+                  <Sparkles size={64} className="text-[#E69419] relative z-10 animate-bounce" />
+               </div>
+               
+               <h2 className="text-4xl font-black tracking-tighter mb-4">Yapay Zeka Tasarlıyor</h2>
+               <p className="text-lg text-neutral-500 max-w-md mx-auto mb-8">
+                  Sektörünüze ({SECTORS.find(s => s.id === siteData.sector)?.label || 'Genel'}) en uygun tasarım şablonları seçiliyor ve içerikleriniz oluşturuluyor...
+               </p>
 
-        {/* Step 5: Content Studio (New Component) */}
-        {step === 5 && <ContentStudio />}
+               <div className="w-64 h-2 bg-neutral-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-[#E69419] animate-[loading_2s_ease-in-out_infinite] w-1/2"></div>
+               </div>
+            </div>
+        )}
 
-        {/* Navigation Actions */}
+        {/* Removed Step 5 Manual Content Studio */}
+
         <div className="flex justify-between mt-8 border-t border-neutral-100 pt-8">
            <Button 
              onClick={prevStep}
-             disabled={step === 1}
+             disabled={step === 1 || step === 4} // Disable back on AI step
              variant="ghost"
              className={`${step === 1 ? 'opacity-0 pointer-events-none' : ''}`}
            >
              <ArrowLeft size={20} /> Geri
            </Button>
 
-           {step < 5 ? (
+           {step < 3 ? (
+              <Button 
+                onClick={async () => {
+                    if (step === 2) {
+                        // User is moving to Step 3 (Pages). Trigger AI Suggestion.
+                        triggerLoading(2500); // Give it a bit more time visual
+                        try {
+                            const response = await fetch('/api/suggest-pages', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    companyName: siteData.companyName,
+                                    sector: siteData.sector,
+                                    aboutText: siteData.aboutText
+                                })
+                            });
+                            
+                            if(response.ok) {
+                                const data = await response.json();
+                                if(data.pages && Array.isArray(data.pages)) {
+                                     updateSiteData({ pages: data.pages });
+                                }
+                            }
+                        } catch (e) {
+                            console.error("Page suggestion failed:", e);
+                        }
+                        
+                        // Move next
+                        handleStepChange(step + 1);
+                    } else {
+                        nextStep();
+                    }
+                }}
+                variant="primary"
+                disabled={step === 1 && !siteData.sector}
+              >
+                Devam Et <ArrowRight size={20} />
+              </Button>
+           ) : step === 3 ? (
              <Button 
-               onClick={nextStep}
+               onClick={() => {
+                   setStep(4);
+                   // AI Generation Process
+                   (async () => {
+                        try {
+                            const defaults = getSectorDefaults(siteData.sector);
+                            
+                            // 1. Apply Design Defaults Immediately
+                            Object.entries(defaults.design).forEach(([section, componentId]) => {
+                                updateSelection(section, componentId);
+                            });
+
+                            // 2. Call API for Content
+                            const response = await fetch('/api/generate', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    companyName: siteData.companyName,
+                                    sector: siteData.sector,
+                                    aboutText: siteData.aboutText,
+                                    pages: siteData.pages
+                                })
+                            });
+
+                            if (!response.ok) {
+                                const errData = await response.json();
+                                throw new Error(errData.error || 'Generation failed');
+                            }
+
+                            const result = await response.json();
+                            
+                            // 3. Merge AI Content with Defaults
+                            // We use defaults.content as a fallback if AI fails partial keys, 
+                            // but here we prioritize AI result
+                            const finalContent = { ...defaults.content, ...result.data };
+                            
+                            updateSiteData({ generatedContent: finalContent });
+
+                        } catch (error) {
+                            console.error("AI Generation Error:", error);
+                            // Fallback to manual defaults if API fails
+                            const defaults = getSectorDefaults(siteData.sector);
+                            updateSiteData({ generatedContent: defaults.content });
+                        } finally {
+                            // 4. Finish
+                            handleGenerate();
+                        }
+                   })();
+               }}
                variant="primary"
              >
-               Devam Et <ArrowRight size={20} />
+               Siteyi Oluştur! <Sparkles size={20} />
              </Button>
-           ) : (
-             <Button 
-               onClick={handleGenerate}
-               variant="primary"
-             >
-               Siteyi Oluştur! <Monitor size={20} />
-             </Button>
-           )}
+           ) : null}
         </div>
       </div>
       
@@ -284,10 +427,7 @@ export default function Home() {
             <a href="/sablonlar" className="hover:text-black transition flex items-center gap-1 font-bold text-[#E69419]">
                <Layout size={14} /> Şablonlar
             </a>
-            <span className="w-1 h-1 rounded-full bg-neutral-300"></span>
-            <a href="/tum-bilesenler" className="hover:text-black transition flex items-center gap-1 font-bold text-[#0073FF]">
-               <Sparkles size={14} /> Bileşenler
-            </a>
+
          </div>
          <span className="hidden md:inline text-neutral-300">|</span>
          <a href="https://lilidea.com" target="_blank" className="text-neutral-600 hover:text-black transition flex items-center gap-2">

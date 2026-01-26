@@ -2,20 +2,34 @@
 import React from 'react';
 import { useSite } from '@/app/context/SiteContext';
 import { ArrowRight, Info } from 'lucide-react';
+import { getRandomImage } from '@/utils/imageManager';
 
 const Hero1 = () => {
   const { siteData } = useSite();
-  const { companyName, aboutText, primaryColor } = siteData;
+  const { companyName, aboutText, primaryColor, generatedContent, sector } = siteData;
+  const content = generatedContent?.hero || {};
+
+  // Prioritize header image from data (Templates), otherwise random (Wizard)
+  const [heroImage, setHeroImage] = React.useState(siteData.heroImage);
+
+  React.useEffect(() => {
+      if (siteData.heroImage) {
+          setHeroImage(siteData.heroImage);
+      } else {
+          // Client-side only random generation to prevent hydration mismatch
+          setHeroImage(getRandomImage(sector, 'hero'));
+      }
+  }, [siteData.heroImage, sector]);
 
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 mb-10 md:mb-0">
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 text-gray-900">
-            İşiniz İçin <span style={{ color: primaryColor }}>En İyisi</span>
+             {content.title || (<span>İşiniz İçin <span style={{ color: primaryColor }}>En İyisi</span></span>)}
           </h1>
           <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-            {aboutText || "Firmanızın vizyonunu dijital dünyaya taşıyoruz. Modern tasarım ve güçlü altyapı ile rakiplerinizin önüne geçin."}
+            {content.subtitle || aboutText || "Firmanızın vizyonunu dijital dünyaya taşıyoruz. Modern tasarım ve güçlü altyapı ile rakiplerinizin önüne geçin."}
           </p>
           <div className="flex gap-4">
             <button 
@@ -32,7 +46,7 @@ const Hero1 = () => {
         <div className="md:w-1/2 flex justify-center">
           <div className="w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl relative">
              <img 
-               src={siteData.heroImage || "https://source.unsplash.com/random/800x800/?business"} 
+               src={heroImage} 
                className="w-full h-full object-cover"
                alt="Hero Visual"
              />

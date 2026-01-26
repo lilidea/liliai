@@ -5,9 +5,10 @@ import { ArrowRight, Box, Layers, Zap, Shield, BarChart, Globe } from 'lucide-re
 
 const Services1 = () => {
   const { siteData } = useSite();
-  const { primaryColor } = siteData;
+  const { primaryColor, generatedContent } = siteData;
+  const content = generatedContent?.services || {};
 
-  const services = [
+  const defaultServices = [
     { title: "Dijital Dönüşüm", icon: <Globe size={24}/>, desc: "İş süreçlerinizi dijitalleştirerek verimliliğinizi artırıyoruz." },
     { title: "Kreatif Tasarım", icon: <Layers size={24}/>, desc: "Markanız için akılda kalıcı ve etkileyici tasarımlar hazırlıyoruz." },
     { title: "Yazılım Çözümleri", icon: <Box size={24}/>, desc: "İhtiyacınıza özel, ölçeklenebilir yazılım mimarileri geliştiriyoruz." },
@@ -16,11 +17,13 @@ const Services1 = () => {
     { title: "Yüksek Performans", icon: <Zap size={24}/>, desc: "Sistemlerinizin maksimum performansta çalışmasını sağlıyoruz." },
   ];
 
+  const services = content.items || defaultServices;
+
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 space-y-4">
-           <h2 className="text-4xl font-black text-gray-900 tracking-tight">Hizmetlerimiz</h2>
+           <h2 className="text-4xl font-black text-gray-900 tracking-tight">{content.title || "Hizmetlerimiz"}</h2>
            <p className="text-gray-500 max-w-2xl mx-auto">Sizin için sunduğumuz profesyonel çözümlerle işinizi bir üst seviyeye taşıyın.</p>
         </div>
 

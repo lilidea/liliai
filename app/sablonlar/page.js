@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import { Rocket, Briefcase, Palette } from 'lucide-react';
+import { Rocket, Briefcase, Palette, Scale, Dumbbell } from 'lucide-react';
 
 export default function TemplatesPage() {
   const templates = [
@@ -28,6 +28,22 @@ export default function TemplatesPage() {
       icon: Palette,
       color: "bg-gradient-to-br from-[#E69419] to-orange-400",
       href: "/sablonlar/portfolyo"
+    },
+    {
+      id: "law",
+      title: "Hukuk & Danışmanlık",
+      desc: "Güven veren, ciddi ve kurumsal yapı. Avukatlar ve danışmanlar için ideal.",
+      icon: Scale,
+      color: "bg-gradient-to-br from-indigo-900 to-slate-800",
+      href: "/sablonlar/law"
+    },
+    {
+      id: "gym",
+      title: "Spor & Fitness",
+      desc: "Dinamik, enerjik ve harekete geçiren tasarım. Spor salonları ve stüdyolar için.",
+      icon: Dumbbell,
+      color: "bg-gradient-to-br from-red-600 to-orange-600",
+      href: "/sablonlar/gym"
     }
   ];
 

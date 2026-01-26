@@ -7,6 +7,7 @@ const components = {
   header2: dynamic(() => import("./headers/Header2")),
   header3: dynamic(() => import("./headers/Header3")), // Glassmorphism
   header4: dynamic(() => import("./headers/Header4")), // Corporate
+  header5: dynamic(() => import("./headers/Header5")), // Modern SaaS (Shadcn Style)
   hero1: dynamic(() => import("./heroes/Hero1")),
   hero2: dynamic(() => import("./heroes/Hero2")),
   hero3: dynamic(() => import("./heroes/Hero3")), // Abstract Shapes
@@ -45,6 +46,12 @@ const components = {
   footer1: dynamic(() => import("./footers/Footer1")),
   footer2: dynamic(() => import("./footers/Footer2")),
   footer3: dynamic(() => import("./footers/Footer3")),
+  // New Components
+  menu1: dynamic(() => import("./menu/Menu1")),
+  gallery1: dynamic(() => import("./gallery/Gallery1")),
+  productgrid1: dynamic(() => import("./products/ProductGrid1")),
+  legal1: dynamic(() => import("./legal/Legal1")),
+  appointment1: dynamic(() => import("./appointment/Appointment1")),
 };
 
 export const getComponent = (category, id) => {

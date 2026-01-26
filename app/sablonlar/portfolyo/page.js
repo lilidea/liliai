@@ -10,7 +10,11 @@ import Footer3 from '@/components/footers/Footer3';
 
 import { SiteContext } from '@/app/context/SiteContext';
 
+import { getImagesForSector } from '@/utils/imageManager';
+
 export default function PortfolioTemplate() {
+  const visuals = getImagesForSector('beauty_hair'); // Using aesthetic visuals
+
   // Mock Data for Portfolio Template
   const portfolioData = {
     companyName: "Alex Design",
@@ -18,7 +22,13 @@ export default function PortfolioTemplate() {
     primaryColor: "#000000", // Black
     secondaryColor: "#333333", // Dark Gray
     pages: ["İşler", "Hakkımda", "Günlük", "İletişim"],
-    heroImage: "/images/portfolio_hero.png"
+    heroImage: visuals.hero[0],
+    generatedContent: {
+        hero: { title: "Yaratıcılığın İzinde", subtitle: "Görsel hikaye anlatıcılığı ve marka kimliği tasarımı." },
+        projects: { title: "Seçilmiş İşler", description: "En son projelerimden bir seçki." }
+    },
+    selectedComponents: { header: 'header2', hero: 'hero3', about: 'about4', projects: 'projects2', blog: 'blog2', contact: 'contact2', footer: 'footer3' },
+    sector: 'beauty_hair'
   };
 
   const contextValue = {

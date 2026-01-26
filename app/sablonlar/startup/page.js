@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import Header3 from '@/components/headers/Header3';
+import Header5 from '@/components/headers/Header5';
 import Hero2 from '@/components/heroes/Hero2';
 import Stats1 from '@/components/stats/Stats1';
 import Services3 from '@/components/services/Services3';
@@ -11,7 +11,11 @@ import Footer1 from '@/components/footers/Footer1';
 
 import { SiteContext } from '@/app/context/SiteContext';
 
+import { getImagesForSector } from '@/utils/imageManager';
+
 export default function StartupTemplate() {
+  const visuals = getImagesForSector('tech_software');
+
   // Mock Data for Startup Template
   const startupData = {
     companyName: "Nova SaaS",
@@ -19,7 +23,14 @@ export default function StartupTemplate() {
     primaryColor: "#6366f1", // Indigo
     secondaryColor: "#4f46e5",
     pages: ["Ürün", "Çözümler", "Fiyatlandırma", "Giriş Yap"],
-    heroImage: "/images/startup_hero.png"
+    heroImage: visuals.hero[0],
+    generatedContent: {
+        hero: { title: "Daha Akıllı Kararlar Alın", subtitle: "Verilerinizi anlamlandıran AI platformu." },
+        services: { title: "Özellikler", description: "İhtiyacınız olan tüm araçlar tek bir yerde." },
+        pricing: { title: "Esnek Planlar", description: "Büyümenize ayak uyduran fiyatlandırma." }
+    },
+    selectedComponents: { header: 'header5', hero: 'hero2', stats: 'stats1', services: 'services3', pricing: 'pricing3', testimonials: 'testimonials2', cta: 'cta2', footer: 'footer1' },
+    sector: 'tech_software'
   };
 
   // Mock Context Value
@@ -33,7 +44,7 @@ export default function StartupTemplate() {
     <SiteContext.Provider value={contextValue}>
       <div className="font-sans text-gray-900 bg-white">
         <div className="relative">
-           <Header3 />
+           <Header5 />
            <div className="pt-0">
               <Hero2 />
            </div>

@@ -35,7 +35,19 @@ export default function PreviewPage() {
     'Projeler': 'projects',
     'Blog': 'blog',
     'SSS': 'faq',
-    'Ekibimiz': 'team'
+    'Ekibimiz': 'team',
+    // New Mappings
+    'Menü': 'menu',
+    'Ürünler': 'productgrid',
+    'Kampanyalar': 'productgrid',
+    'Fiyat Listesi': 'productgrid',
+    'Galeri': 'gallery',
+    'Projeler': 'gallery', // Reuse gallery for projects grid if needed, or keep separate
+    'Yasal Uyarılar': 'legal',
+    'Sertifikalar': 'legal',
+    'Uzmanlık Alanları': 'legal',
+    'Randevu': 'appointment',
+    'Tedaviler': 'services' // Fallback to services for now
   };
 
   // 1. Header

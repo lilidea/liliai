@@ -10,7 +10,11 @@ import Footer2 from '@/components/footers/Footer2';
 
 import { SiteContext } from '@/app/context/SiteContext';
 
+import { getImagesForSector } from '@/utils/imageManager';
+
 export default function CorporateTemplate() {
+  const visuals = getImagesForSector('const_company');
+
   // Mock Data for Corporate Template
   const corporateData = {
     companyName: "Nexus Holding",
@@ -18,7 +22,14 @@ export default function CorporateTemplate() {
     primaryColor: "#0f172a", // Slate 900
     secondaryColor: "#334155", // Slate 700
     pages: ["Kurumsal", "Faaliyet Alanları", "Yatırımcı İlişkileri", "İletişim"],
-    heroImage: "/images/corporate_hero.png"
+    heroImage: visuals.hero[0],
+    generatedContent: {
+        hero: { title: "Geleceği İnşa Ediyoruz", subtitle: "Sürdürülebilir projeler ve güvenilir ortaklıklar." },
+        about: { title: "Vizyonumuz", description: "Dünya standartlarında hizmet anlayışı." },
+        services: { title: "Faaliyet Alanlarımız", description: "Enerjiden lojistiğe geniş yelpaze." }
+    },
+    selectedComponents: { header: 'header4', hero: 'hero1', about: 'about3', services: 'services2', team: 'team2', contact: 'contact3', footer: 'footer2' },
+    sector: 'const_company'
   };
 
   const contextValue = {

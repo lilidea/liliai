@@ -5,13 +5,14 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 export default function Contact1() {
   const { siteData } = useSite();
-  const { primaryColor, companyName } = siteData;
+  const { primaryColor, companyName, generatedContent } = siteData;
+  const content = generatedContent?.contact || {};
 
   return (
     <section className="py-20 px-6 bg-white" id="contact">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 text-neutral-900">İletişime Geçin</h2>
+          <h2 className="text-4xl font-bold mb-4 text-neutral-900">{content.title || "İletişime Geçin"}</h2>
           <p className="text-xl text-neutral-500 max-w-2xl mx-auto">
             {companyName} ile projenizi hayata geçirmeye hazır mısınız?
           </p>
@@ -29,7 +30,7 @@ export default function Contact1() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-neutral-900 mb-1">E-posta</h3>
-                <p className="text-neutral-500">info@{companyName.toLowerCase().replace(/\s+/g, '')}.com</p>
+                <p className="text-neutral-500">{content.email || `info@${companyName.toLowerCase().replace(/\s+/g, '')}.com`}</p>
                 <p className="text-neutral-500">destek@{companyName.toLowerCase().replace(/\s+/g, '')}.com</p>
               </div>
             </div>
@@ -43,8 +44,7 @@ export default function Contact1() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-neutral-900 mb-1">Telefon</h3>
-                <p className="text-neutral-500">+90 (212) 555 01 23</p>
-                <p className="text-neutral-500">+90 (532) 555 01 23</p>
+                <p className="text-neutral-500">{content.phone || "+90 (212) 555 01 23"}</p>
               </div>
             </div>
 
@@ -57,8 +57,7 @@ export default function Contact1() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-neutral-900 mb-1">Adres</h3>
-                <p className="text-neutral-500">Levent Mahallesi, Teknoloji Caddesi</p>
-                <p className="text-neutral-500">No: 42, Levent / İstanbul</p>
+                <p className="text-neutral-500">{content.address || "Dinamik Adres, Türkiye"}</p>
               </div>
             </div>
           </div>
