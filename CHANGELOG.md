@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.2.0] - 2026-01-28
+
+### 🗄️ Database Migration (Veritabanı Taşıma)
+- **SQLite -> MySQL Migration:**
+  - Migrated the application database from local SQLite (`dev.db`) to a remote MySQL server (`lilideapanel_sitebuilder`).
+  - Updated `prisma/schema.prisma` provider to `mysql`.
+  - Configured `DATABASE_URL` in `.env` with new credentials.
+  - Successfully pushed the existing schema to the new empty database.
+  - Verified connection with a test script.
+
 ## [1.1.0] - 2026-01-23
 
 ### 📚 Component Library Expansion (Bileşen Kütüphanesi Genişletildi)

@@ -37,7 +37,7 @@ Mevcut hazır bileşenler:
 ## 6. Notlar ve Geliştirme Hedefleri
 - [x] Favicon `app_icon.png` olarak güncellendi.
 - [x] Tasarım Stüdyosu (Header -> Hero -> Footer) akışı birleştirildi.
-- [ ] Yeni "About" varyasyonları eklenecek.
+- [x] Yeni "About" varyasyonları eklenecek.
 - [ ] Dinamik renk temaları (Corporate, Pastel, Dark Mode) eklenebilir.
 
 ---

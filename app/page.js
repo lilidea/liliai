@@ -71,20 +71,19 @@ export default function Home() {
             'Tedaviler', 'Eğitimler', 'Uzmanlık Alanları'
         ];
 
-        const s = siteData.sector || '';
+        const s = (siteData.sector || '').toLowerCase();
         let hidden = [];
         
-        if (s.startsWith('food_')) hidden = ['Tedaviler', 'Randevu', 'Projeler', 'Sertifikalar', 'Uzmanlık Alanları', 'Eğitimler'];
-        else if (s.startsWith('health_')) hidden = ['Menü', 'Projeler', 'Ürünler']; 
-        else if (s.startsWith('const_')) hidden = ['Menü', 'Tedaviler', 'Randevu', 'Eğitimler', 'Fiyat Listesi'];
-        else if (s.startsWith('beauty_')) hidden = ['Menü', 'Projeler', 'Uzmanlık Alanları'];
-        else if (s.startsWith('tech_')) hidden = ['Menü', 'Tedaviler', 'Randevu'];
-        else if (s.startsWith('retail_')) hidden = ['Tedaviler', 'Randevu', 'Projeler', 'Menü', 'Uzmanlık Alanları'];
-        else if (s.startsWith('auto_')) hidden = ['Menü', 'Tedaviler', 'Eğitimler', 'Uzmanlık Alanları'];
-        else if (s.startsWith('pro_')) hidden = ['Menü', 'Tedaviler', 'Ürünler', 'Fiyat Listesi'];
-        else if (s.startsWith('edu_')) hidden = ['Menü', 'Tedaviler', 'Ürünler'];
-        else if (s.startsWith('event_')) hidden = ['Tedaviler', 'Uzmanlık Alanları'];
-
+        // Simple keyword matching since it's free text now
+        if (s.includes('restoran') || s.includes('cafe') || s.includes('kafe') || s.includes('yemek')) {
+             hidden = ['Tedaviler', 'Randevu', 'Projeler', 'Sertifikalar', 'Uzmanlık Alanları', 'Eğitimler'];
+        } else if (s.includes('sağlık') || s.includes('doktor') || s.includes('klinik') || s.includes('hastane')) {
+             hidden = ['Menü', 'Projeler', 'Ürünler']; 
+        } else if (s.includes('inşaat') || s.includes('mimarlık')) {
+             hidden = ['Menü', 'Tedaviler', 'Randevu', 'Eğitimler', 'Fiyat Listesi'];
+        }
+        // ... (Keep generic fallback)
+        
         return ALL.filter(p => !hidden.includes(p));
    }, [siteData.sector]);
 
@@ -151,24 +150,13 @@ export default function Home() {
                 
                 <div className="space-y-2">
                   <label className="text-sm font-bold uppercase tracking-wide text-neutral-500">Sektör</label>
-                  <select
-                    name="sector"
+                  <Input 
+                    type="text" 
+                    name="sector" 
                     value={siteData.sector}
-                    onChange={(e) => {
-                        handleChange(e);
-                        // Auto-select pages when sector changes
-                        const defaults = getSectorDefaults(e.target.value);
-                        if(defaults) {
-                            updateSiteData({ pages: defaults.defaultPages });
-                        }
-                    }}
-                    className="w-full p-4 bg-neutral-50 border-2 border-neutral-100 rounded-xl focus:border-[#E69419] focus:ring-0 outline-none transition-all font-medium text-lg"
-                  >
-                    <option value="">Sektör Seçiniz...</option>
-                    {SECTORS.map(s => (
-                        <option key={s.id} value={s.id}>{s.label}</option>
-                    ))}
-                  </select>
+                    onChange={handleChange}
+                    placeholder="Örn: Mimarlık Ofisi, Güzellik Merkezi..."
+                  />
                 </div>
 
                 <div className="space-y-2">

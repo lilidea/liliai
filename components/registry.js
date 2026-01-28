@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 
 // Registry mapping
 // We use dynamic imports to keep the initial bundle size small as the library grows
-const components = {
+export const registry = {
   header1: dynamic(() => import("./headers/Header1")),
   header2: dynamic(() => import("./headers/Header2")),
   header3: dynamic(() => import("./headers/Header3")), // Glassmorphism
@@ -56,18 +56,18 @@ const components = {
 
 export const getComponent = (category, id) => {
   // If category is provided (legacy or specific access)
-  if (components[category] && components[category][id]) {
-     return components[category][id];
+  if (registry[category] && registry[category][id]) {
+     return registry[category][id];
   }
   
   // Direct access (flat structure for new components)
-  if (components[id]) {
-      return components[id];
+  if (registry[id]) {
+      return registry[id];
   }
   
   // Fallback for flat structure passed as category/id mismatch
-  if (components[category]) {
-      return components[category];
+  if (registry[category]) {
+      return registry[category];
   }
 
   console.warn(`Component not found: ${id} (Category: ${category})`);
@@ -75,6 +75,6 @@ export const getComponent = (category, id) => {
 };
 
 export const getAvailableComponents = (category) => {
-  if (!category) return Object.keys(components);
-  return Object.keys(components).filter(key => key.startsWith(category));
+  if (!category) return Object.keys(registry);
+  return Object.keys(registry).filter(key => key.startsWith(category));
 };

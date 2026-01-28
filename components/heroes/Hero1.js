@@ -24,21 +24,39 @@ const Hero1 = () => {
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 mb-10 md:mb-0">
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 text-gray-900">
-             {content.title || (<span>İşiniz İçin <span style={{ color: primaryColor }}>En İyisi</span></span>)}
+        <div className="md:w-1/2 mb-10 md:mb-0 animate-in fade-in slide-in-from-left-8 duration-700">
+          <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6 text-gray-900">
+             {content.title || (
+                 <span>
+                    İşiniz İçin <br/>
+                    <span 
+                        className="bg-clip-text text-transparent bg-gradient-to-r" 
+                        style={{ backgroundImage: `linear-gradient(to right, ${primaryColor}, ${siteData.secondaryColor || primaryColor})` }}
+                    >
+                        En İyisi
+                    </span>
+                 </span>
+             )}
           </h1>
-          <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+          <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg">
             {content.subtitle || aboutText || "Firmanızın vizyonunu dijital dünyaya taşıyoruz. Modern tasarım ve güçlü altyapı ile rakiplerinizin önüne geçin."}
           </p>
           <div className="flex gap-4">
             <button 
-              className="px-8 py-3 rounded-lg text-white font-semibold shadow-lg hover:opacity-90 transition flex items-center gap-2"
-              style={{ backgroundColor: primaryColor }}
+              className="px-8 py-4 rounded-xl text-white font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-2"
+              style={{ 
+                  background: `linear-gradient(135deg, ${primaryColor}, ${siteData.secondaryColor || primaryColor})` 
+              }}
             >
               Hemen Başla <ArrowRight size={20} />
             </button>
-            <button className="px-8 py-3 rounded-lg bg-white text-gray-800 font-semibold border border-gray-200 hover:bg-gray-50 transition flex items-center gap-2">
+            <button 
+                className="px-8 py-4 rounded-xl font-bold border-2 transition-all duration-300 hover:bg-gray-50 flex items-center gap-2"
+                style={{ 
+                    borderColor: siteData.secondaryColor || '#e5e7eb',
+                    color: siteData.secondaryColor || '#374151'
+                }}
+            >
               <Info size={20} /> Daha Fazla
             </button>
           </div>

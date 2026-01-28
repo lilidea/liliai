@@ -1,6 +1,7 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Outfit, Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { SiteProvider } from "./context/SiteContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,6 +13,34 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Primary Professional Font
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: 'swap',
+});
+
+// Modern/Startup Font
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  display: 'swap',
+});
+
+// Friendly/Saas Font
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
+  subsets: ["latin"],
+  display: 'swap',
+});
+
+// Elegant/Luxury Font
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  display: 'swap',
+});
+
 export const metadata = {
   title: "liliai | AI Website Builder",
   description: "Web sitenizi saniyeler içinde oluşturun.",
@@ -20,16 +49,23 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+import { checkSecurity } from "@/lib/security";
+
+export default async function RootLayout({ children }) {
+  // 🔥 FIREWALL ACTIVE
+  await checkSecurity();
+
   return (
     <html lang="tr" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${outfit.variable} ${plusJakarta.variable} ${playfair.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        <SiteProvider>
-          {children}
-        </SiteProvider>
+        <ThemeProvider>
+          <SiteProvider>
+            {children}
+          </SiteProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

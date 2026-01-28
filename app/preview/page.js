@@ -65,10 +65,10 @@ export default function PreviewPage() {
   };
 
   return (
-    <div className={`min-h-screen bg-white font-sans transition-all duration-500 ${isEditMode ? 'pl-0 pr-96' : ''}`}>
+    <div className={`min-h-screen bg-white font-sans transition-all duration-500 ${isEditMode ? 'pr-[400px]' : ''}`}>
       
       {/* Top Navigation Bar */}
-      <div className="fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur-md border-b border-neutral-200 z-40 flex items-center justify-between px-6">
+      <div className="fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur-md border-b border-neutral-200 z-[60] flex items-center justify-between px-6">
         <div className="flex items-center gap-4">
             <button 
                 onClick={() => router.push('/')}

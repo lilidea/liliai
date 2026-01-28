@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model IpTracking {
+  ip        String   @id
+  count     Int      @default(0)
+  isBlocked Boolean  @default(false)
+  lastSeen  DateTime @default(now())
+  logs      AccessLog[]
+}
+
+model AccessLog {
+  id        Int      @id @default(autoincrement())
+  ip        String
+  ipRef     IpTracking @relation(fields: [ip], references: [ip])
+  action    String
+  details   String?
+  status    String   // 'SUCCESS' | 'BLOCKED'
+  path      String?  // [NEW] Accessed URL
+  method    String?  // [NEW] GET, POST, etc.
+  userAgent String?  // [NEW] Browser/Device info
+  timestamp DateTime @default(now())
+}
+
+model Template {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  category    String
+  content     String
+  thumbnail   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SiteSettings {
+  id              Int      @id @default(autoincrement())
+  title           String   @default("My Website")
+  description     String?
+  logo            String?
+  email           String?
+  phone           String?
+  address         String?
+  facebook        String?
+  twitter         String?
+  instagram       String?
+  primaryColor    String   @default("#E69419")
+  secondaryColor  String   @default("#0073FF")
+  aiStyle         String?  // e.g. "Modern", "Classic", "Minimalist"
+  maintenanceMode Boolean  @default(false)
+  updatedAt       DateTime @updatedAt
+}

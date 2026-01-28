@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
 :root {
+  /* Default/Fallback values - overridden by JS ThemeContext */
+  --primary: #E69419;
+  --secondary: #0073FF;
+  --accent: #000000;
   --background: #ffffff;
+  --text: #171717;
   --foreground: #171717;
+}
+
+[data-theme='dark'] {
+  --background: #0A0A0A;
+  --foreground: #FAFAFA;
 }
 
 @theme inline {
