@@ -8,7 +8,12 @@
   - Right panel: Live, scrollable full-page preview of selected components.
 - **Mobile Responsive (Mobil):**
   - Added "Selection" vs "Preview" toggle buttons for better mobile experience.
+- **Mobile Responsive (Mobil):**
+  - Added "Selection" vs "Preview" toggle buttons for better mobile experience.
   - optimized for smaller screens.
+- **Layout Fixes:**
+  - Resolved overflow and scrolling issues in Desktop preview panel.
+  - Fixed scaling behavior to prevent content from overflowing boundaries.
 
 ### 🔢 Usage Limits (Kullanım Limitleri)
 - **3-Site Limit:**
