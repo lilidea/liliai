@@ -125,7 +125,7 @@ export const getImagesForSector = (sectorId) => {
     if (!sectorId) return SECTOR_IMAGES.default;
 
     const prefix = sectorId.split('_')[0]; // food, health, const, etc.
-    
+
     // Specific Mapping Overrides
     if (sectorId === 'pro_law') return SECTOR_IMAGES.law;
     if (sectorId === 'event_gym') return SECTOR_IMAGES.gym;
@@ -134,6 +134,27 @@ export const getImagesForSector = (sectorId) => {
 };
 
 export const getRandomImage = (sectorId, type = 'hero') => {
-    const images = getImagesForSector(sectorId)[type];
+    const sectorImages = getImagesForSector(sectorId);
+
+    // Try requested type
+    let images = sectorImages[type];
+
+    // Fallback 1: 'hero'
+    if (!images || images.length === 0) {
+        images = sectorImages['hero'];
+    }
+
+    // Fallback 2: 'gallery'
+    if (!images || images.length === 0) {
+        images = sectorImages['gallery'];
+    }
+
+    // Fallback 3: Default Hero
+    if (!images || images.length === 0) {
+        images = SECTOR_IMAGES.default.hero;
+    }
+
+    if (!images) return ""; // Should not happen given fallbacks
+
     return images[Math.floor(Math.random() * images.length)];
 };

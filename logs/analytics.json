@@ -1,0 +1,64 @@
+[
+  {
+    "timestamp": "2026-01-29T17:05:14.999Z",
+    "id": "1769706224634",
+    "companyName": "Duman kafe",
+    "sector": "kafe",
+    "selectedComponents": {
+      "header": "header7",
+      "hero": "hero3",
+      "footer": "footer2",
+      "about": "about3",
+      "services": "services1",
+      "legal": "legal1",
+      "team": "team1",
+      "pricing": "pricing1",
+      "blog": "blog1"
+    },
+    "generatedContent": {
+      "hero": {
+        "title": "Duman Kafe: Keyif Dolu Anların Adresi!",
+        "subtitle": "Sıcak atmosferi ve lezzetli menüsüyle Duman Kafe'de unutulmaz bir deneyim yaşayın."
+      },
+      "about": {
+        "title": "Hakkımızda",
+        "text": "Duman Kafe olarak, misafirlerimize sıcak ve samimi bir ortamda kaliteli hizmet sunmayı hedefliyoruz. En taze malzemelerle hazırlanan lezzetlerimiz ve özenle seçilmiş kahve çekirdeklerimizle damak zevkinize hitap ediyoruz. İlk günkü heyecanımızla, her zaman daha iyisini sunmak için çalışıyoruz. Amacımız, Duman Kafe'yi sadece bir kafe değil, aynı zamanda keyifli sohbetlerin yapıldığı, dostlukların pekiştiği ve unutulmaz anıların biriktirildiği bir mekan haline getirmektir. Sizleri de Duman Kafe ailesine katılmaya davet ediyoruz."
+      },
+      "services": {
+        "title": "Hizmetlerimiz",
+        "items": [
+          {
+            "title": "Zengin Kahve Çeşitleri",
+            "desc": "Dünya'nın dört bir yanından özenle seçilmiş kahve çekirdeklerimizle hazırlanan eşsiz lezzetler."
+          },
+          {
+            "title": "Lezzetli Atıştırmalıklar ve Tatlılar",
+            "desc": "El yapımı pastalar, taptaze sandviçler ve daha birçok lezzetli atıştırmalık ile gününüze tat katın."
+          },
+          {
+            "title": "Geniş Menü Seçenekleri",
+            "desc": "Her damak zevkine uygun sıcak ve soğuk içecekler, ana yemekler ve salatalarımızla doyasıya lezzetin tadını çıkarın."
+          },
+          {
+            "title": "Ücretsiz Wi-Fi",
+            "desc": "Çalışırken veya sevdiklerinizle iletişimde kalırken kesintisiz internet erişimi."
+          },
+          {
+            "title": "Açık ve Kapalı Alan",
+            "desc": "Her türlü hava koşulunda keyifli vakit geçirebileceğiniz ferah mekanımız."
+          }
+        ]
+      },
+      "contact": {
+        "title": "İletişim",
+        "address": "Örnek Mahallesi, Kafe Sokak No:1 Duman Şehir/Türkiye",
+        "phone": "0212 123 45 67",
+        "email": "info@dumankafe.com"
+      }
+    },
+    "stats": {
+      "componentCount": 9,
+      "pageCount": 6
+    }
+  }
+]

@@ -4,7 +4,10 @@ import { Input } from '@/components/Input';
 import { Textarea } from '@/components/Textarea';
 import { Button } from '@/components/Button';
 
+import { useSite } from '@/app/context/SiteContext';
+
 export default function PublishModal({ isOpen, onClose }) {
+    const { siteData } = useSite(); // Hook integration
     const [step, setStep] = useState(1); // 1: Form, 2: Success
     const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '', budget: '', timeline: '', notes: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,16 +17,44 @@ export default function PublishModal({ isOpen, onClose }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate API call
-        await new Promise(r => setTimeout(r, 2000));
-        setIsSubmitting(false);
-        setStep(2);
+
+        try {
+            // Get siteData from context (passed as prop or imported here if component is wrapped)
+            // Ideally PublishModal should receive siteData as prop or use hook inside.
+            // Assuming useSite hook is available or siteData passed.
+            // Let's use the hook since it's cleaner if allowed inside modal.
+            // BUT: PublishModal is used inside PreviewPage which has provider.
+
+            const payload = {
+                formData,
+                siteData: siteData // Use real siteData from hook
+            };
+
+            const res = await fetch('/api/proposals', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!res.ok) {
+                const errorData = await res.json().catch(() => ({}));
+                const detailMsg = errorData.details ? `\nDetay: ${errorData.details}` : '';
+                throw new Error((errorData.error || 'Submission failed') + detailMsg);
+            }
+
+            setStep(2);
+        } catch (error) {
+            console.error('Publish Error:', error);
+            alert(`Bir hata oluştu: ${error.message}`);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
             {/* Backdrop */}
-            <div 
+            <div
                 className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
                 onClick={onClose}
             ></div>
@@ -47,20 +78,20 @@ export default function PublishModal({ isOpen, onClose }) {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-1">
                                     <label className="text-xs font-bold text-neutral-400 uppercase">Firma Adı</label>
-                                    <Input 
+                                    <Input
                                         required
                                         placeholder="Şirketiniz"
                                         value={formData.company}
-                                        onChange={e => setFormData({...formData, company: e.target.value})}
+                                        onChange={e => setFormData({ ...formData, company: e.target.value })}
                                     />
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-xs font-bold text-neutral-400 uppercase">Ad Soyad</label>
-                                    <Input 
+                                    <Input
                                         required
                                         placeholder="Adınız"
                                         value={formData.name}
-                                        onChange={e => setFormData({...formData, name: e.target.value})}
+                                        onChange={e => setFormData({ ...formData, name: e.target.value })}
                                     />
                                 </div>
                             </div>
@@ -69,22 +100,22 @@ export default function PublishModal({ isOpen, onClose }) {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-1">
                                     <label className="text-xs font-bold text-neutral-400 uppercase">E-posta</label>
-                                    <Input 
+                                    <Input
                                         required
                                         type="email"
                                         placeholder="mail@site.com"
                                         value={formData.email}
-                                        onChange={e => setFormData({...formData, email: e.target.value})}
+                                        onChange={e => setFormData({ ...formData, email: e.target.value })}
                                     />
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-xs font-bold text-neutral-400 uppercase">Telefon</label>
-                                    <Input 
+                                    <Input
                                         required
                                         type="tel"
                                         placeholder="05XX..."
                                         value={formData.phone}
-                                        onChange={e => setFormData({...formData, phone: e.target.value})}
+                                        onChange={e => setFormData({ ...formData, phone: e.target.value })}
                                     />
                                 </div>
                             </div>
@@ -93,10 +124,10 @@ export default function PublishModal({ isOpen, onClose }) {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-1">
                                     <label className="text-xs font-bold text-neutral-400 uppercase">Bütçe Aralığı</label>
-                                    <select 
+                                    <select
                                         className="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-4 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#E69419]/20 focus:border-[#E69419] appearance-none"
                                         value={formData.budget}
-                                        onChange={e => setFormData({...formData, budget: e.target.value})}
+                                        onChange={e => setFormData({ ...formData, budget: e.target.value })}
                                     >
                                         <option value="">Seçiniz...</option>
                                         <option value="low">10.000₺ - 30.000₺</option>
@@ -106,10 +137,10 @@ export default function PublishModal({ isOpen, onClose }) {
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-xs font-bold text-neutral-400 uppercase">Süreç</label>
-                                    <select 
+                                    <select
                                         className="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-4 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#E69419]/20 focus:border-[#E69419] appearance-none"
                                         value={formData.timeline}
-                                        onChange={e => setFormData({...formData, timeline: e.target.value})}
+                                        onChange={e => setFormData({ ...formData, timeline: e.target.value })}
                                     >
                                         <option value="">Seçiniz...</option>
                                         <option value="asap">Hemen Başlayalım</option>
@@ -121,16 +152,16 @@ export default function PublishModal({ isOpen, onClose }) {
 
                             <div className="space-y-1">
                                 <label className="text-xs font-bold text-neutral-400 uppercase">Notlarınız</label>
-                                <Textarea 
+                                <Textarea
                                     placeholder="Proje hakkında eklemek istedikleriniz..."
                                     rows={2}
                                     value={formData.notes}
-                                    onChange={e => setFormData({...formData, notes: e.target.value})}
+                                    onChange={e => setFormData({ ...formData, notes: e.target.value })}
                                 />
                             </div>
 
-                            <Button 
-                                type="submit" 
+                            <Button
+                                type="submit"
                                 className="w-full py-4 text-base bg-[#E69419] hover:bg-[#d68510] text-white border-none mt-2 shadow-xl shadow-orange-500/20"
                                 disabled={isSubmitting}
                             >
@@ -149,7 +180,7 @@ export default function PublishModal({ isOpen, onClose }) {
                                 Talebiniz başarıyla alındı. Ekibimiz tasarımı inceleyip en kısa sürede sizinle iletişime geçecek.
                             </p>
                         </div>
-                        <Button 
+                        <Button
                             onClick={onClose}
                             variant="outline"
                             className="w-full"
@@ -158,9 +189,9 @@ export default function PublishModal({ isOpen, onClose }) {
                         </Button>
                     </div>
                 )}
-                
-                <button 
-                    onClick={onClose} 
+
+                <button
+                    onClick={onClose}
                     className="absolute top-4 right-4 p-2 text-neutral-400 hover:text-neutral-900 transition-colors"
                 >
                     <X size={24} />

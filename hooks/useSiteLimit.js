@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from 'react';
 
 const STORAGE_KEY = 'liliai_sites';
 const MAX_SITES = 3;
-const RESET_HOURS = 24;
 
 export function useSiteLimit() {
   const [sites, setSites] = useState([]);
@@ -13,28 +12,24 @@ export function useSiteLimit() {
   // Load from localStorage on mount
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    
+
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored);
-        // Filter out sites older than RESET_HOURS
-        const now = Date.now();
-        const validSites = parsed.filter(site => {
-          const age = (now - site.createdAt) / (1000 * 60 * 60);
-          return age < RESET_HOURS;
-        });
-        setSites(validSites);
-        // Update storage if we filtered some out
-        if (validSites.length !== parsed.length) {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(validSites));
-        }
+        setSites(parsed);
       }
     } catch (e) {
-      console.error('Error loading site limit data:', e);
+      console.error('Error loading site data:', e);
     }
     setIsLoaded(true);
   }, []);
+
+  // Save to storage whenever sites change
+  useEffect(() => {
+    if (!isLoaded) return;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(sites));
+  }, [sites, isLoaded]);
 
   // Check if user can create more sites
   const canCreateSite = useCallback(() => {
@@ -46,53 +41,39 @@ export function useSiteLimit() {
     return Math.max(0, MAX_SITES - sites.length);
   }, [sites]);
 
-  // Record a new site creation
+  // Record a new site creation or update an existing one
   const recordSiteCreation = useCallback((siteData = {}) => {
     if (typeof window === 'undefined') return false;
-    
-    if (!canCreateSite()) {
-      return false;
-    }
 
-    const newSite = {
-      createdAt: Date.now(),
-      sector: siteData.sector || 'unknown',
-      companyName: siteData.companyName || 'Adsız'
+    const id = siteData.id || Date.now().toString();
+    const existingIndex = sites.findIndex(s => s.id === id);
+
+    const siteInfo = {
+      id,
+      lastModified: Date.now(),
+      createdAt: existingIndex >= 0 ? sites[existingIndex].createdAt : Date.now(),
+      sector: siteData.sector || 'Genel',
+      companyName: siteData.companyName || 'Adsız',
+      data: siteData.fullData || null // We can store a snapshot if needed, but Context handles main data
     };
 
-    const updatedSites = [...sites, newSite];
-    setSites(updatedSites);
-    
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedSites));
-    } catch (e) {
-      console.error('Error saving site limit data:', e);
+    if (existingIndex >= 0) {
+      // Update existing
+      const updated = [...sites];
+      updated[existingIndex] = siteInfo;
+      setSites(updated);
+    } else {
+      // Create new
+      if (!canCreateSite()) return false;
+      setSites(prev => [...prev, siteInfo]);
     }
-    
-    return true;
-  }, [sites, canCreateSite]);
 
-  // Get time until reset (oldest site expires)
-  const getTimeUntilReset = useCallback(() => {
-    if (sites.length === 0) return null;
-    
-    const oldest = Math.min(...sites.map(s => s.createdAt));
-    const resetTime = oldest + (RESET_HOURS * 60 * 60 * 1000);
-    const remaining = resetTime - Date.now();
-    
-    if (remaining <= 0) return null;
-    
-    const hours = Math.floor(remaining / (1000 * 60 * 60));
-    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-    
-    return { hours, minutes, totalMs: remaining };
+    return id;
   }, [sites]);
 
-  // Reset all sites (for testing or admin)
-  const resetLimit = useCallback(() => {
-    if (typeof window === 'undefined') return;
-    setSites([]);
-    localStorage.removeItem(STORAGE_KEY);
+  // Delete a site
+  const deleteSite = useCallback((id) => {
+    setSites(prev => prev.filter(s => s.id !== id));
   }, []);
 
   return {
@@ -101,8 +82,7 @@ export function useSiteLimit() {
     canCreateSite: canCreateSite(),
     remainingCount: getRemainingCount(),
     recordSiteCreation,
-    getTimeUntilReset,
-    resetLimit,
+    deleteSite,
     maxSites: MAX_SITES
   };
 }

@@ -60,6 +60,7 @@ export default async function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${outfit.variable} ${plusJakarta.variable} ${playfair.variable} antialiased`}
         suppressHydrationWarning={true}
+        style={{ zoom: '0.9' }}
       >
         <ThemeProvider>
           <SiteProvider>

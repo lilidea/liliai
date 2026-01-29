@@ -5,11 +5,11 @@ import { LayoutTemplate, Plus, Trash2, Edit, Check, Sparkles, Loader2, RefreshCw
 export default function TemplatesPage() {
     const [templates, setTemplates] = useState([]);
     const [loading, setLoading] = useState(true);
-    
+
     // UI States
     const [showWizard, setShowWizard] = useState(false);
     const [wizardStep, setWizardStep] = useState('PROMPT'); // PROMPT -> GENERATING -> PREVIEW
-    
+
     // Data States
     const [category, setCategory] = useState('Startup');
     const [generatedTemplate, setGeneratedTemplate] = useState(null);
@@ -21,7 +21,12 @@ export default function TemplatesPage() {
         try {
             const res = await fetch('/api/admin/templates');
             const data = await res.json();
-            setTemplates(data);
+            if (Array.isArray(data)) {
+                setTemplates(data);
+            } else {
+                console.error("Templates API returned non-array data:", data);
+                setTemplates([]);
+            }
         } catch (e) {
             console.error(e);
         } finally {
@@ -49,7 +54,7 @@ export default function TemplatesPage() {
                 body: JSON.stringify({ prompt, category })
             });
             const data = await res.json();
-            
+
             if (res.ok) {
                 setGeneratedTemplate(data);
                 setWizardStep('PREVIEW');
@@ -67,7 +72,7 @@ export default function TemplatesPage() {
 
     const handleUpdate = async () => {
         if (!editingTemplate) return;
-        
+
         try {
             await fetch('/api/admin/templates', {
                 method: 'PUT',
@@ -83,13 +88,13 @@ export default function TemplatesPage() {
 
     const handleSave = async () => {
         if (!generatedTemplate) return;
-        
+
         await fetch('/api/admin/templates', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(generatedTemplate)
         });
-        
+
         setShowWizard(false);
         setGeneratedTemplate(null);
         setPrompt('');
@@ -98,7 +103,7 @@ export default function TemplatesPage() {
     };
 
     return (
-        <div className="p-8 max-w-7xl mx-auto h-full flex flex-col">
+        <div className="p-8 w-full mx-auto h-full flex flex-col">
             <header className="mb-8 flex justify-between items-end">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -106,7 +111,7 @@ export default function TemplatesPage() {
                     </h1>
                     <p className="text-gray-500 text-sm">AI destekli stüdyo ile hayalinizdeki siteyi saniyeler içinde tasarlayın.</p>
                 </div>
-                <button 
+                <button
                     onClick={() => setShowWizard(true)}
                     className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#E69419] to-[#d48612] hover:shadow-lg hover:shadow-orange-200 text-white rounded-xl font-bold transition-all group"
                 >
@@ -134,32 +139,32 @@ export default function TemplatesPage() {
                                     {t.category}
                                 </div>
                             </div>
-                            
+
                             <div className="p-5">
                                 <h3 className="font-bold text-gray-900 mb-1 line-clamp-1">{t.name}</h3>
                                 <p className="text-xs text-gray-500 line-clamp-2 min-h-[2.5em]">{t.description || 'Açıklama yok.'}</p>
-                                
+
                                 <div className="mt-5 flex gap-2 pt-4 border-t border-gray-50">
-                                    <button 
+                                    <button
                                         onClick={() => setEditingTemplate(t)}
                                         className="flex-1 py-2 bg-blue-50 text-[#0073FF] text-xs font-bold rounded-lg hover:bg-blue-100 transition flex items-center justify-center gap-2">
                                         <Edit size={14} /> Düzenle
                                     </button>
-                                     <button 
+                                    <button
                                         onClick={() => handleDelete(t.id)}
                                         className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition"
-                                     >
+                                    >
                                         <Trash2 size={16} />
                                     </button>
                                 </div>
                             </div>
                         </div>
                     ))}
-                    
+
                     {templates.length === 0 && (
                         <div className="col-span-full py-20 text-center text-gray-400 border-2 border-dashed border-gray-200 rounded-3xl bg-gray-50/50">
                             <Sparkles size={48} className="mx-auto mb-4 text-[#E69419] opacity-50" />
-                            <p>Henüz bir şablon yok. <br/> sağ üstteki <b>AI ile Oluştur</b> butonuna basarak sihrini konuştur!</p>
+                            <p>Henüz bir şablon yok. <br /> sağ üstteki <b>AI ile Oluştur</b> butonuna basarak sihrini konuştur!</p>
                         </div>
                     )}
                 </div>
@@ -179,22 +184,22 @@ export default function TemplatesPage() {
                                 <X size={20} />
                             </button>
                         </div>
-                        
+
                         <div className="p-8 overflow-y-auto custom-scrollbar space-y-4">
                             <div>
                                 <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Şablon Adı</label>
-                                <input 
+                                <input
                                     className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
                                     value={editingTemplate.name}
-                                    onChange={e => setEditingTemplate({...editingTemplate, name: e.target.value})}
+                                    onChange={e => setEditingTemplate({ ...editingTemplate, name: e.target.value })}
                                 />
                             </div>
-                             <div>
+                            <div>
                                 <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Kategori</label>
-                                <select 
+                                <select
                                     className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
                                     value={editingTemplate.category}
-                                    onChange={e => setEditingTemplate({...editingTemplate, category: e.target.value})}
+                                    onChange={e => setEditingTemplate({ ...editingTemplate, category: e.target.value })}
                                 >
                                     {['Startup', 'Kurumsal', 'E-Ticaret', 'Portfolyo', 'Restoran', 'Blog', 'Law', 'Gym'].map(cat => (
                                         <option key={cat} value={cat}>{cat}</option>
@@ -203,36 +208,36 @@ export default function TemplatesPage() {
                             </div>
                             <div>
                                 <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Açıklama</label>
-                                <textarea 
+                                <textarea
                                     className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
                                     rows="2"
                                     value={editingTemplate.description || ''}
-                                    onChange={e => setEditingTemplate({...editingTemplate, description: e.target.value})}
+                                    onChange={e => setEditingTemplate({ ...editingTemplate, description: e.target.value })}
                                 />
                             </div>
-                            
+
                             <div>
                                 <label className="block text-xs font-bold text-gray-700 uppercase mb-1 flex justify-between">
                                     <span>JSON İçerik</span>
                                     <span className="text-[10px] text-gray-400 font-normal">Dikkatli düzenleyin</span>
                                 </label>
-                                <textarea 
+                                <textarea
                                     className="w-full px-4 py-3 bg-gray-900 text-green-400 font-mono text-xs rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
                                     rows="10"
                                     value={editingTemplate.content}
-                                    onChange={e => setEditingTemplate({...editingTemplate, content: e.target.value})}
+                                    onChange={e => setEditingTemplate({ ...editingTemplate, content: e.target.value })}
                                 />
                             </div>
                         </div>
 
                         <div className="p-6 border-t border-gray-100 bg-gray-50 flex justify-end gap-3">
-                            <button 
+                            <button
                                 onClick={() => setEditingTemplate(null)}
                                 className="px-6 py-3 text-gray-500 hover:text-gray-900 font-bold transition"
                             >
                                 İptal
                             </button>
-                            <button 
+                            <button
                                 onClick={handleUpdate}
                                 className="px-6 py-3 bg-[#0073FF] hover:bg-blue-600 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-200 flex items-center gap-2"
                             >
@@ -266,24 +271,24 @@ export default function TemplatesPage() {
 
                         {/* Content */}
                         <div className="p-8 overflow-y-auto custom-scrollbar">
-                            
+
                             {wizardStep === 'PROMPT' && (
                                 <div className="space-y-6 animate-in slide-in-from-right-4 duration-300">
                                     <div>
                                         <label className="block text-sm font-bold text-gray-700 mb-2">Nasıl bir site istiyorsunuz?</label>
-                                        <textarea 
+                                        <textarea
                                             value={prompt}
                                             onChange={(e) => setPrompt(e.target.value)}
                                             placeholder="Örn: Minimalist ve modern bir mimarlık ofisi sitesi. Ana renkler siyah ve beyaz olsun. Büyük görseller kullanılsın..."
                                             className="w-full h-32 p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E69419] focus:bg-white transition-all resize-none text-sm placeholder:text-gray-400"
                                         />
                                     </div>
-                                    
+
                                     <div>
                                         <label className="block text-sm font-bold text-gray-700 mb-2">Kategori</label>
                                         <div className="grid grid-cols-3 gap-3">
                                             {['Startup', 'Kurumsal', 'E-Ticaret', 'Portfolyo', 'Restoran', 'Blog'].map(cat => (
-                                                <button 
+                                                <button
                                                     key={cat}
                                                     onClick={() => setCategory(cat)}
                                                     className={`py-3 rounded-xl text-sm font-medium transition-all ${category === cat ? 'bg-gray-900 text-white shadow-lg' : 'bg-gray-50 text-gray-600 hover:bg-gray-100'}`}
@@ -332,13 +337,13 @@ export default function TemplatesPage() {
                                     </div>
                                 </div>
                             )}
-                            
+
                         </div>
 
                         {/* Footer */}
                         <div className="p-6 border-t border-gray-100 bg-gray-50 flex justify-end gap-3">
                             {wizardStep === 'PROMPT' && (
-                                <button 
+                                <button
                                     onClick={handleGenerate}
                                     disabled={!prompt}
                                     className="px-6 py-3 bg-[#E69419] hover:bg-[#d48612] text-white font-bold rounded-xl transition-all shadow-lg shadow-orange-200 disabled:opacity-50 disabled:shadow-none flex items-center gap-2"
@@ -347,16 +352,16 @@ export default function TemplatesPage() {
                                     Oluştur
                                 </button>
                             )}
-                            
+
                             {wizardStep === 'PREVIEW' && (
                                 <>
-                                    <button 
+                                    <button
                                         onClick={() => setWizardStep('PROMPT')}
                                         className="px-6 py-3 text-gray-500 hover:text-gray-900 font-bold transition"
                                     >
                                         Geri Dön
                                     </button>
-                                    <button 
+                                    <button
                                         onClick={handleSave}
                                         className="px-6 py-3 bg-[#0073FF] hover:bg-blue-600 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-200 flex items-center gap-2"
                                     >

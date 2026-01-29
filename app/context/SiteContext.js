@@ -6,31 +6,33 @@ export const SiteContext = createContext();
 
 export function SiteProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // Default Initial State
   const defaultState = {
+    id: null,
     companyName: "",
-    sector: "", // New: Sector selection
+    sector: "",
     aboutText: "",
-    primaryColor: "#E69419", // Corporate Orange
-    secondaryColor: "#0073FF", // Corporate Blue
+    primaryColor: "#E69419",
+    secondaryColor: "#0073FF",
     accentColor: "#000000",
-    designStyle: "modern", // modern, corporate, minimal
+    designStyle: "modern",
+    fontStyle: "Inter",
     pages: [],
     selectedComponents: {
       header: "header1",
       hero: "hero1",
       footer: "footer1",
     },
-    generatedContent: {}, // New: Stores AI/Template generated text
+    generatedContent: {},
   };
 
   const [siteData, setSiteData] = useState(defaultState);
 
-  // Load from localStorage on mount
+  // Load from localStorage on mount (Active session)
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("siteData");
+      const saved = localStorage.getItem("activeSiteData");
       if (saved) {
         try {
           setSiteData(JSON.parse(saved));
@@ -41,10 +43,10 @@ export function SiteProvider({ children }) {
     }
   }, []);
 
-  // Save to localStorage on change
+  // Save to localStorage on change (Active session)
   useEffect(() => {
     if (typeof window !== "undefined") {
-        localStorage.setItem("siteData", JSON.stringify(siteData));
+      localStorage.setItem("activeSiteData", JSON.stringify(siteData));
     }
   }, [siteData]);
 
@@ -55,6 +57,14 @@ export function SiteProvider({ children }) {
 
   const updateSiteData = (newData) => {
     setSiteData((prev) => ({ ...prev, ...newData }));
+  };
+
+  const resetSiteData = () => {
+    setSiteData({ ...defaultState, id: Date.now().toString() });
+  };
+
+  const loadSiteData = (data) => {
+    setSiteData(data);
   };
 
   const updateSelection = (section, componentId) => {
@@ -68,7 +78,7 @@ export function SiteProvider({ children }) {
   };
 
   return (
-    <SiteContext.Provider value={{ siteData, updateSiteData, updateSelection, isLoading, triggerLoading }}>
+    <SiteContext.Provider value={{ siteData, updateSiteData, updateSelection, isLoading, triggerLoading, resetSiteData, loadSiteData }}>
       {children}
     </SiteContext.Provider>
   );

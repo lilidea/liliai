@@ -4,87 +4,104 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req) {
   try {
-    const { companyName, sector, aboutText, pages } = await req.json();
+    const body = await req.json();
+    const { type, companyName, sector, aboutText, pages } = body;
 
-    // Safety checks
     const safeCompany = companyName || "Şirketim";
     const safeSector = sector || "Genel";
     const safeDesc = aboutText || "Hizmet veriyoruz.";
     const safePages = Array.isArray(pages) && pages.length > 0 ? pages.join(', ') : "Hakkımızda, Hizmetler, İletişim";
 
+    // Handle Rewrite Request
+    if (type === 'rewrite') {
+      const { text, tone = 'professional' } = body;
+      const prompt = `Aşağıdaki Türkçe metni daha ${tone === 'professional' ? 'profesyonel ve kurumsal' : 'samimi ve sıcak'} bir dille yeniden yaz. Sadece yeniden yazılmış metni döndür:\n\n${text}`;
+      const result = await model.generateContent(prompt);
+      return NextResponse.json({ success: true, data: result.response.text().trim() });
+    }
+
+    // Handle Image Suggestions Request
+    if (type === 'suggest_images') {
+      const prompt = `"${safeSector}" sektöründeki "${safeCompany}" firması için bir web sitesinde kullanılabilecek 5 tane Unsplash anahtar kelimesi (İngilizce) öner. Sadece JSON array formatında döndür. Örn: ["modern office", "business meeting"]`;
+      const result = await model.generateContent(prompt);
+      const resText = result.response.text().replace(/```json/g, '').replace(/```/g, '').trim();
+      return NextResponse.json({ success: true, data: JSON.parse(resText) });
+    }
+
+    // Handle Full Site Generation (Smart Selection + Content + Branding)
+    if (type === 'full_site') {
+      const prompt = `
+        Sen profesyonel bir web tasarımcısı ve içerik yazarıısın. 
+        Aşağıdaki firma için komple bir web sitesi yapısı oluştur:
+        Firma Adı: ${safeCompany}
+        Sektör: ${safeSector}
+        Açıklama: ${safeDesc}
+        Sayfalar: ${safePages}
+
+        Sistemimizde her kategori için 10'ar tane tasarım varyasyonu (1'den 10'a kadar) bulunmaktadır. 
+        Sektöre ve firma tarzına en uygun varyasyonları seç.
+
+        JSON formatında şu yapıda dön (Sadece JSON):
+        {
+          "branding": {
+            "primaryColor": "Hex kodu (Örn: #E69419)",
+            "secondaryColor": "Hex kodu",
+            "fontStyle": "modern | corporate | minimal | creative"
+          },
+          "selections": {
+            "header": "headerX", (X: 1-10)
+            "hero": "heroX",
+            "about": "aboutX",
+            "services": "servicesX",
+            "projects": "projectsX",
+            "blog": "blogX",
+            "faq": "faqX",
+            "team": "teamX",
+            "pricing": "pricingX",
+            "testimonials": "testimonialsX",
+            "stats": "statsX",
+            "cta": "ctaX",
+            "footer": "footerX"
+          },
+          "content": {
+            "heroTitle": "Etkileyici bir başlık",
+            "heroSubtitle": "Kısa bir alt başlık",
+            "aboutText": "2 paragraflık profesyonel hakkımızda yazısı",
+            "pages": {
+               "SayfaAdı": { "title": "Sayfa Başlığı", "content": "Detaylı sayfa içeriği" }
+            }
+          }
+        }
+      `;
+      const result = await model.generateContent(prompt);
+      const resText = result.response.text().replace(/```json/g, '').replace(/```/g, '').trim();
+      return NextResponse.json({ success: true, data: JSON.parse(resText) });
+    }
+
+    // Legacy/Individual Content Generation Logic
     const prompt = `
       You are an expert web content writer and designer.
       Generate website content for a business with the following details:
-      
       Company Name: ${safeCompany}
       Sector: ${safeSector}
       Description: ${safeDesc}
       Pages: ${safePages}
 
-      Return ONLY a JSON object with the following structure (no markdown, no extra text):
+      Return ONLY a JSON object with the following structure:
       {
-        "hero": {
-          "title": "A catchy, short hero headline based on the company name",
-          "subtitle": "A persuasive subheadline (max 20 words)"
-        },
-        "about": {
-          "title": "Hakkımızda",
-          "text": "A professional 2-paragraph description of the company contextually relevant to the sector."
-        },
-        "services": {
-            "title": "Hizmetlerimiz",
-            "items": [
-                { "title": "Service 1", "desc": "Short description" },
-                { "title": "Service 2", "desc": "Short description" },
-                { "title": "Service 3", "desc": "Short description" }
-            ]
-        },
-        "menu": {
-            "title": "Menümüz",
-            "items": [
-                { "category": "Kategori 1", "items": [{ "name": "Ürün 1", "price": "100 TL", "desc": "Açıklama" }] },
-                { "category": "Kategori 2", "items": [{ "name": "Ürün 2", "price": "250 TL", "desc": "Açıklama" }] }
-            ]
-        },
-        "products": [
-             { "name": "Ürün 1", "price": "500 TL", "tag": "Yeni" },
-             { "name": "Ürün 2", "price": "750 TL", "tag": "Popüler" }
-        ],
-        "gallery": {
-             "title": "Galeri",
-             "description": "Görsellerimiz."
-        },
-         "contact": {
-            "title": "İletişim",
-            "address": "İstanbul, Türkiye",
-            "phone": "+90 555 123 45 67",
-            "email": "info@example.com"
-        }
+        "hero": { "title": "...", "subtitle": "..." },
+        "about": { "title": "Hakkımızda", "text": "..." },
+        "services": { "title": "Hizmetlerimiz", "items": [{ "title": "...", "desc": "..." }] },
+        "contact": { "title": "İletişim", "address": "...", "phone": "...", "email": "..." }
       }
-      
-      Ensure the tone is professional, engaging, and appropriate for the ${safeSector} industry.
-      The language MUST be TURKISH.
+      Language: TURKISH.
     `;
 
     const result = await model.generateContent(prompt);
-    const response = await result.response;
-    let text = response.text();
-    
-    // Cleanup code blocks if present
-    text = text.replace(/```json/g, '').replace(/```/g, '').trim();
-
-    // Ensure it's valid JSON
-    let data;
-    try {
-        data = JSON.parse(text);
-    } catch (e) {
-        console.error("JSON Parse Error:", e, "Received text:", text);
-        return NextResponse.json({ success: false, error: 'Invalid JSON format from AI', details: text }, { status: 500 });
-    }
-
-    return NextResponse.json({ success: true, data });
+    const text = result.response.text().replace(/```json/g, '').replace(/```/g, '').trim();
+    return NextResponse.json({ success: true, data: JSON.parse(text) });
   } catch (error) {
-    console.error('Gemini API Error:', error);
-    return NextResponse.json({ success: false, error: error.message || 'Content generation failed' }, { status: 500 });
+    console.error('AI API Error:', error);
+    return NextResponse.json({ success: false, error: error.message || 'Generation failed' }, { status: 500 });
   }
 }

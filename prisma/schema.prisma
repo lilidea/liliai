@@ -59,3 +59,18 @@ model SiteSettings {
   maintenanceMode Boolean  @default(false)
   updatedAt       DateTime @updatedAt
 }
+
+model Proposal {
+  id          Int      @id @default(autoincrement())
+  companyName String
+  contactName String
+  email       String
+  phone       String
+  budget      String?
+  timeline    String?
+  notes       String?
+  siteData    String   // Stores the full site configuration (JSON String)
+  status      String   @default("PENDING") // PENDING, REVIEWED, CONTACTED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

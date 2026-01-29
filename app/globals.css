@@ -139,3 +139,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
+
+/* Fix for Design Studio Preview where absolute might be stripped or conflicting */
+.absolute {
+  position: absolute !important;
+}

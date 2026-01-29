@@ -46,8 +46,8 @@ export default function DesignStudio() {
 
     // Toggle category expansion
     const toggleCategory = (category) => {
-        setExpandedCategories(prev => 
-            prev.includes(category) 
+        setExpandedCategories(prev =>
+            prev.includes(category)
                 ? prev.filter(c => c !== category)
                 : [...prev, category]
         );
@@ -75,7 +75,7 @@ export default function DesignStudio() {
                 const options = getAvailableComponents(category);
                 const isExpanded = expandedCategories.includes(category);
                 const selectedOption = siteData.selectedComponents[category];
-                
+
                 return (
                     <div key={category} className="bg-white rounded-xl border border-neutral-200 overflow-hidden">
                         {/* Category Header */}
@@ -99,7 +99,7 @@ export default function DesignStudio() {
                                 <ChevronRight size={18} className="text-neutral-400" />
                             )}
                         </button>
-                        
+
                         {/* Options */}
                         {isExpanded && options.length > 0 && (
                             <div className="border-t border-neutral-100 p-2 space-y-1">
@@ -109,11 +109,10 @@ export default function DesignStudio() {
                                         <button
                                             key={opt}
                                             onClick={() => handleSelect(category, opt)}
-                                            className={`w-full px-3 py-2.5 rounded-lg text-left text-sm font-medium flex items-center justify-between transition-all ${
-                                                isSelected 
-                                                    ? 'bg-[#E69419] text-white shadow-md' 
-                                                    : 'bg-neutral-50 text-neutral-600 hover:bg-neutral-100'
-                                            }`}
+                                            className={`w-full px-3 py-2.5 rounded-lg text-left text-sm font-medium flex items-center justify-between transition-all ${isSelected
+                                                ? 'bg-[#E69419] text-white shadow-md'
+                                                : 'bg-neutral-50 text-neutral-600 hover:bg-neutral-100'
+                                                }`}
                                         >
                                             <span className="capitalize">{opt.replace(/(\d+)/, ' $1')}</span>
                                             {isSelected && <Check size={16} />}
@@ -122,7 +121,7 @@ export default function DesignStudio() {
                                 })}
                             </div>
                         )}
-                        
+
                         {/* No options message */}
                         {isExpanded && options.length === 0 && (
                             <div className="border-t border-neutral-100 p-4 text-center text-neutral-400 text-sm">
@@ -137,7 +136,7 @@ export default function DesignStudio() {
 
     // Preview Panel Component
     const PreviewPanel = () => (
-        <div className="h-full bg-neutral-100 rounded-xl overflow-hidden flex flex-col border border-neutral-200">
+        <div className="bg-neutral-100 rounded-xl flex flex-col border border-neutral-200 min-h-[800px]">
             {/* Mini Browser Header */}
             <div className="h-9 bg-white border-b border-neutral-200 flex items-center px-4 gap-2 shrink-0">
                 <div className="flex gap-1.5">
@@ -152,47 +151,45 @@ export default function DesignStudio() {
                     </div>
                 </div>
             </div>
-            
+
             {/* Preview Content */}
-            <div className="flex-1 bg-neutral-50 relative overflow-hidden group">
-                <div className="absolute inset-0 overflow-y-auto custom-scrollbar">
-                    <div className="min-h-full">
-                        {selectedComponents.length === 0 ? (
-                            <div className="h-full flex flex-col items-center justify-center text-neutral-400 text-center p-8 mt-20">
-                                <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-white border border-neutral-200 flex items-center justify-center shadow-sm">
-                                    <Eye size={32} className="text-neutral-300" />
-                                </div>
-                                <h3 className="text-lg font-bold text-neutral-900 mb-1">Görünüm Hazır Değil</h3>
-                                <p className="text-sm text-neutral-500 max-w-xs">Sol menüden bileşenleri seçmeye başlayarak sitenizi oluşturun.</p>
+            <div className="flex-1 bg-neutral-50 relative group">
+                <div className="w-full p-2">
+                    {selectedComponents.length === 0 ? (
+                        <div className="py-20 flex flex-col items-center justify-center text-neutral-400 text-center p-8">
+                            <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-white border border-neutral-200 flex items-center justify-center shadow-sm">
+                                <Eye size={32} className="text-neutral-300" />
                             </div>
-                        ) : (
-                            <div className="animate-in fade-in duration-500">
-                                {/* Wrap scaled content in a container that handles exact sizing */}
-                                <div className="origin-top-left" style={{ 
-                                    transform: 'scale(0.65)', 
-                                    width: '153.8%', // 100 / 0.65
-                                    height: '153.8%',
-                                    transformOrigin: '0 0'
-                                }}>
-                                    {selectedComponents.map(({ category, component }) => {
-                                        const Component = getComponent(null, component);
-                                        if (!Component) return null;
-                                        return (
-                                            <div key={category} className="relative hover:ring-2 hover:ring-blue-400 transition-all cursor-default">
-                                                {/* Component Label Overlay on Hover */}
-                                                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                                                    <span className="bg-blue-500 text-white text-[10px] uppercase font-bold px-2 py-1 rounded shadow-sm">
-                                                        {displayNames[category]}
-                                                    </span>
-                                                </div>
-                                                {React.createElement(Component)}
+                            <h3 className="text-lg font-bold text-neutral-900 mb-1">Görünüm Hazır Değil</h3>
+                            <p className="text-sm text-neutral-500 max-w-xs">Sol menüden bileşenleri seçmeye başlayarak sitenizi oluşturun.</p>
+                        </div>
+                    ) : (
+                        <div className="animate-in fade-in duration-500">
+                            {/* Wrap scaled content in a container that handles exact sizing */}
+                            <div className="origin-top-left transition-all duration-300" style={{
+                                transform: 'scale(0.65)',
+                                width: '153.8%', // 100 / 0.65
+                                height: 'auto',
+                                transformOrigin: '0 0'
+                            }}>
+                                {selectedComponents.map(({ category, component }) => {
+                                    const Component = getComponent(null, component);
+                                    if (!Component) return null;
+                                    return (
+                                        <div key={category} className="relative hover:ring-2 hover:ring-blue-400 transition-all cursor-default">
+                                            {/* Component Label Overlay on Hover */}
+                                            <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                                <span className="bg-blue-500 text-white text-[10px] uppercase font-bold px-2 py-1 rounded shadow-sm">
+                                                    {displayNames[category]}
+                                                </span>
                                             </div>
-                                        );
-                                    })}
-                                </div>
+                                            {React.createElement(Component)}
+                                        </div>
+                                    );
+                                })}
                             </div>
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
@@ -212,22 +209,20 @@ export default function DesignStudio() {
             <div className="md:hidden flex gap-2 mb-4 shrink-0 bg-neutral-100 p-1 rounded-xl">
                 <button
                     onClick={() => setMobileView('selection')}
-                    className={`flex-1 py-2.5 rounded-lg font-bold text-xs flex items-center justify-center gap-2 transition-all ${
-                        mobileView === 'selection'
-                            ? 'bg-white text-neutral-900 shadow-sm ring-1 ring-black/5'
-                            : 'text-neutral-500 hover:text-neutral-700'
-                    }`}
+                    className={`flex-1 py-2.5 rounded-lg font-bold text-xs flex items-center justify-center gap-2 transition-all ${mobileView === 'selection'
+                        ? 'bg-white text-neutral-900 shadow-sm ring-1 ring-black/5'
+                        : 'text-neutral-500 hover:text-neutral-700'
+                        }`}
                 >
                     <List size={16} />
                     Bileşen Seçimi
                 </button>
                 <button
                     onClick={() => setMobileView('preview')}
-                    className={`flex-1 py-2.5 rounded-lg font-bold text-xs flex items-center justify-center gap-2 transition-all ${
-                        mobileView === 'preview'
-                            ? 'bg-white text-neutral-900 shadow-sm ring-1 ring-black/5'
-                            : 'text-neutral-500 hover:text-neutral-700'
-                    }`}
+                    className={`flex-1 py-2.5 rounded-lg font-bold text-xs flex items-center justify-center gap-2 transition-all ${mobileView === 'preview'
+                        ? 'bg-white text-neutral-900 shadow-sm ring-1 ring-black/5'
+                        : 'text-neutral-500 hover:text-neutral-700'
+                        }`}
                 >
                     <Eye size={16} />
                     Canlı Önizleme
@@ -238,32 +233,34 @@ export default function DesignStudio() {
             </div>
 
             {/* Desktop: Split View */}
-            <div className={`hidden md:flex flex-1 gap-6 min-h-0 items-start h-[600px] lg:h-[700px]`}>
-                {/* Left: Selection Panel */}
-                <div className="w-[320px] shrink-0 flex flex-col h-full bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden">
-                    <div className="p-4 border-b border-neutral-100 bg-neutral-50/50 flex justify-between items-center">
-                         <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider">Bileşen Menüsü</span>
-                         <span className="text-xs bg-neutral-200 text-neutral-600 px-2 py-0.5 rounded-full">{categories.length} Bölüm</span>
+            <div className={`hidden md:flex gap-6 min-h-[800px] items-start`}>
+                {/* Left: Selection Panel - Sticky to keep it visible while scrolling long preview */}
+                <div className="w-[320px] shrink-0 flex flex-col bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden sticky top-24">
+                    <div className="p-4 border-b border-neutral-100 bg-neutral-50/50 flex justify-between items-center shrink-0">
+                        <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider">Bileşen Menüsü</span>
+                        <span className="text-xs bg-neutral-200 text-neutral-600 px-2 py-0.5 rounded-full">{categories.length} Bölüm</span>
                     </div>
-                    <div className="flex-1 min-h-0 overflow-y-auto">
+                    <div className="max-h-[70vh] overflow-y-auto custom-scrollbar">
                         <SelectionPanel />
                     </div>
                 </div>
-                
-                {/* Right: Preview Panel */}
-                <div className="flex-1 flex flex-col h-full min-h-0 bg-white rounded-2xl shadow-xl shadow-neutral-200/50 ring-1 ring-neutral-200 overflow-hidden">
+
+                {/* Right: Preview Panel - No fixed height, shows everything */}
+                <div className="flex-1 flex flex-col bg-white rounded-2xl shadow-xl shadow-neutral-200/50 ring-1 ring-neutral-200 overflow-hidden min-h-[800px]">
                     <PreviewPanel />
                 </div>
             </div>
 
             {/* Mobile: Single View */}
-            <div className="md:hidden flex-1 min-h-0 bg-white rounded-xl border border-neutral-200 overflow-hidden">
+            <div className="md:hidden flex-1 min-h-[500px] max-h-[70vh] bg-white rounded-xl border border-neutral-200 overflow-hidden flex flex-col">
                 {mobileView === 'selection' ? (
-                    <div className="h-full overflow-y-auto">
-                         <SelectionPanel />
+                    <div className="flex-1 overflow-y-auto custom-scrollbar">
+                        <SelectionPanel />
                     </div>
                 ) : (
-                    <PreviewPanel />
+                    <div className="flex-1 overflow-hidden">
+                        <PreviewPanel />
+                    </div>
                 )}
             </div>
         </div>

@@ -87,8 +87,8 @@ export default function ApiTester() {
     };
 
     return (
-        <div className="h-full flex flex-col p-6 max-w-7xl mx-auto text-gray-900">
-             <header className="mb-6 flex items-center justify-between">
+        <div className="h-full flex flex-col p-6 w-full mx-auto text-gray-900">
+            <header className="mb-6 flex items-center justify-between">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                         <Terminal size={24} className="text-[#E69419]" />
@@ -97,26 +97,26 @@ export default function ApiTester() {
                     <p className="text-gray-500 text-sm">Uç noktaları test et, hata ayıkla ve yanıtları incele.</p>
                 </div>
                 <div className="flex gap-2">
-                    <button 
-                        onClick={() => loadTemplate('chat')} 
+                    <button
+                        onClick={() => loadTemplate('chat')}
                         className="px-3 py-1.5 text-xs font-bold bg-white border border-gray-200 rounded-lg hover:bg-gray-50 flex items-center gap-2 transition"
                     >
                         <Bookmark size={14} className="text-blue-500" /> Sohbet Şablonu
                     </button>
-                    <button 
-                        onClick={() => loadTemplate('generate')} 
+                    <button
+                        onClick={() => loadTemplate('generate')}
                         className="px-3 py-1.5 text-xs font-bold bg-white border border-gray-200 rounded-lg hover:bg-gray-50 flex items-center gap-2 transition"
                     >
                         <Bookmark size={14} className="text-[#0073FF]" /> Üretim Şablonu
                     </button>
                 </div>
-             </header>
+            </header>
 
-             <div className="flex-1 flex gap-6 min-h-0">
-                 
-                 {/* Left: History & Controls */}
-                 <div className="w-64 flex flex-col gap-4">
-                     <div className="bg-white rounded-xl border border-gray-200 shadow-sm flex-1 flex flex-col overflow-hidden">
+            <div className="flex-1 flex gap-6 min-h-0">
+
+                {/* Left: History & Controls */}
+                <div className="w-64 flex flex-col gap-4">
+                    <div className="bg-white rounded-xl border border-gray-200 shadow-sm flex-1 flex flex-col overflow-hidden">
                         <div className="p-3 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
                             <h3 className="text-xs font-bold uppercase text-gray-500 flex items-center gap-2">
                                 <Clock size={12} /> Geçmiş
@@ -149,69 +149,69 @@ export default function ApiTester() {
                                 </div>
                             )}
                         </div>
-                     </div>
-                 </div>
+                    </div>
+                </div>
 
-                 {/* Center: Editor */}
-                 <div className="flex-1 flex flex-col gap-4">
-                     {/* URL Bar */}
-                     <div className="flex items-center gap-2 bg-white p-2 rounded-xl border border-gray-200 shadow-sm">
-                         <span className="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-bold font-mono">POST</span>
-                         <input 
-                            type="text" 
+                {/* Center: Editor */}
+                <div className="flex-1 flex flex-col gap-4">
+                    {/* URL Bar */}
+                    <div className="flex items-center gap-2 bg-white p-2 rounded-xl border border-gray-200 shadow-sm">
+                        <span className="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-bold font-mono">POST</span>
+                        <input
+                            type="text"
                             value={endpoint}
                             onChange={(e) => setEndpoint(e.target.value)}
                             className="flex-1 text-sm font-mono text-gray-700 outline-none"
                             placeholder="/api/..."
-                         />
-                         <button 
+                        />
+                        <button
                             onClick={handleSend}
                             disabled={status === 'loading'}
                             className="bg-[#0073FF] hover:bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition disabled:opacity-50"
-                         >
+                        >
                             {status === 'loading' ? <span className="animate-spin">⟳</span> : <Play size={16} fill="white" />}
                             Gönder
-                         </button>
-                     </div>
+                        </button>
+                    </div>
 
-                     <div className="flex-1 grid grid-cols-2 gap-4 min-h-[600px]">
+                    <div className="flex-1 grid grid-cols-2 gap-4 min-h-[600px]">
                         {/* Request Body */}
                         <div className="flex flex-col gap-2">
-                             <label className="text-xs font-bold uppercase text-gray-500 pl-1">Body (JSON)</label>
-                             <textarea 
+                            <label className="text-xs font-bold uppercase text-gray-500 pl-1">Body (JSON)</label>
+                            <textarea
                                 value={payload}
                                 onChange={(e) => setPayload(e.target.value)}
                                 className="flex-1 bg-white border border-gray-200 rounded-xl p-4 font-mono text-xs text-gray-700 focus:border-[#0073FF] focus:ring-2 focus:ring-blue-100 outline-none resize-none shadow-sm min-h-[400px]"
                                 spellCheck="false"
-                             />
+                            />
                         </div>
 
                         {/* Response */}
                         <div className="flex flex-col gap-2">
-                             <div className="flex justify-between items-center px-1">
-                                 <label className="text-xs font-bold uppercase text-gray-500">Yanıt</label>
-                                 {status !== 'idle' && (
-                                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${status === 'error' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'}`}>
-                                         {status.toUpperCase()}
-                                     </span>
-                                 )}
-                             </div>
-                             <div className="flex-1 bg-gray-900 border border-gray-800 rounded-xl p-4 relative overflow-auto custom-scrollbar group">
-                                 {response ? (
-                                     <pre className="font-mono text-xs text-green-400 whitespace-pre-wrap">
-                                         {JSON.stringify(response, null, 2)}
-                                     </pre>
-                                 ) : (
-                                     <div className="absolute inset-0 flex items-center justify-center text-gray-700 font-mono text-xs">
+                            <div className="flex justify-between items-center px-1">
+                                <label className="text-xs font-bold uppercase text-gray-500">Yanıt</label>
+                                {status !== 'idle' && (
+                                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${status === 'error' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'}`}>
+                                        {status.toUpperCase()}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="flex-1 bg-gray-900 border border-gray-800 rounded-xl p-4 relative overflow-auto custom-scrollbar group">
+                                {response ? (
+                                    <pre className="font-mono text-xs text-green-400 whitespace-pre-wrap">
+                                        {JSON.stringify(response, null, 2)}
+                                    </pre>
+                                ) : (
+                                    <div className="absolute inset-0 flex items-center justify-center text-gray-700 font-mono text-xs">
                                          // Yanıt bekleniyor...
-                                     </div>
-                                 )}
-                             </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                     </div>
-                 </div>
+                    </div>
+                </div>
 
-             </div>
+            </div>
         </div>
     );
 }

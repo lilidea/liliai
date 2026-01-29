@@ -51,7 +51,7 @@ export default function ImagesPage() {
     };
 
     return (
-        <div className="p-8 max-w-7xl mx-auto h-full flex flex-col">
+        <div className="p-8 w-full mx-auto h-full flex flex-col">
             <header className="mb-8 flex justify-between items-center">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -60,13 +60,13 @@ export default function ImagesPage() {
                     <p className="text-gray-500 text-sm">Varlık yönetimi ve hazır görseller.</p>
                 </div>
                 <div className="flex gap-2">
-                    <button 
+                    <button
                         onClick={() => setTab('local')}
                         className={`px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2 transition ${tab === 'local' ? 'bg-[#0073FF] text-white shadow-md' : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'}`}
                     >
                         <Server size={14} /> Yüklü Dosyalar
                     </button>
-                    <button 
+                    <button
                         onClick={() => setTab('remote')}
                         className={`px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2 transition ${tab === 'remote' ? 'bg-[#0073FF] text-white shadow-md' : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'}`}
                     >
@@ -76,11 +76,11 @@ export default function ImagesPage() {
             </header>
 
             <div className="flex-1 overflow-y-auto min-h-0 bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                
+
                 {tab === 'local' && (
                     loading ? (
                         <div className="grid grid-cols-4 gap-4">
-                            {[1,2,3,4].map(i => <div key={i} className="aspect-square bg-gray-100 rounded-xl animate-pulse"/>)}
+                            {[1, 2, 3, 4].map(i => <div key={i} className="aspect-square bg-gray-100 rounded-xl animate-pulse" />)}
                         </div>
                     ) : (
                         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
@@ -116,7 +116,7 @@ export default function ImagesPage() {
                                         <div key={i} className="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
                                             <img src={url} className="w-full aspect-video object-cover" />
                                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                                <button 
+                                                <button
                                                     onClick={() => copyPath(url)}
                                                     className="px-3 py-1.5 bg-white rounded-lg text-xs font-bold text-gray-900 border border-white hover:bg-gray-100 transition flex items-center gap-2"
                                                 >

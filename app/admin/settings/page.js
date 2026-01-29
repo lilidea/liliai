@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { 
-    LayoutTemplate, Palette, FileText, Sparkles, 
+import {
+    LayoutTemplate, Palette, FileText, Sparkles,
     Save, Loader2, ArrowRight, ArrowLeft, Globe, Shield
 } from 'lucide-react';
 
@@ -9,7 +9,7 @@ export default function SettingsWizard() {
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [step, setStep] = useState(1);
-    
+
     // Form State
     const [formData, setFormData] = useState({
         title: '',
@@ -74,13 +74,13 @@ export default function SettingsWizard() {
     if (loading) return <div className="p-10 flex text-gray-500 gap-2"><Loader2 className="animate-spin" /> Yükleniyor...</div>;
 
     return (
-        <div className="p-8 max-w-6xl mx-auto h-full flex flex-col">
+        <div className="p-8 w-full mx-auto h-full flex flex-col">
             {/* Header */}
             <div className="mb-8 flex items-end justify-between">
                 <div>
-                     <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                         <div className="p-2 bg-[#E69419]/10 rounded-xl text-[#E69419]">
-                             <LayoutTemplate size={24} />
+                            <LayoutTemplate size={24} />
                         </div>
                         Site Yönetimi
                     </h1>
@@ -89,14 +89,13 @@ export default function SettingsWizard() {
                 <div className="flex gap-2">
                     {/* Tab Indicators */}
                     {TABS.map(t => (
-                        <button 
+                        <button
                             key={t.id}
                             onClick={() => setStep(t.id)}
-                            className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-                                step === t.id 
-                                    ? 'bg-[#E69419] text-white shadow-md shadow-orange-200' 
+                            className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${step === t.id
+                                    ? 'bg-[#E69419] text-white shadow-md shadow-orange-200'
                                     : 'bg-white text-gray-400 border border-gray-100 hover:bg-gray-50'
-                            }`}
+                                }`}
                         >
                             {t.title}
                         </button>
@@ -111,11 +110,10 @@ export default function SettingsWizard() {
                         <button
                             key={t.id}
                             onClick={() => setStep(t.id)}
-                            className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 flex items-center gap-3 ${
-                                step === t.id 
-                                    ? 'bg-[#0073FF] text-white border-[#0073FF] shadow-xl scale-105' 
+                            className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 flex items-center gap-3 ${step === t.id
+                                    ? 'bg-[#0073FF] text-white border-[#0073FF] shadow-xl scale-105'
                                     : 'bg-white text-gray-500 border-gray-100 hover:bg-gray-50'
-                            }`}
+                                }`}
                         >
                             <div className={`p-2 rounded-lg ${step === t.id ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-400'}`}>
                                 <t.icon size={18} />
@@ -146,38 +144,38 @@ export default function SettingsWizard() {
                                 <div className="grid grid-cols-2 gap-6">
                                     <div className="col-span-2">
                                         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Site Başlığı</label>
-                                        <input 
+                                        <input
                                             className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E69419] outline-none transition"
                                             value={formData.title || ''}
-                                            onChange={e => setFormData({...formData, title: e.target.value})}
+                                            onChange={e => setFormData({ ...formData, title: e.target.value })}
                                             placeholder="Örn: Benim Harika Sitem"
                                         />
                                     </div>
                                     <div className="col-span-2">
                                         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Açıklama</label>
-                                        <textarea 
+                                        <textarea
                                             className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E69419] outline-none transition resize-none"
                                             rows="3"
                                             value={formData.description || ''}
-                                            onChange={e => setFormData({...formData, description: e.target.value})}
+                                            onChange={e => setFormData({ ...formData, description: e.target.value })}
                                             placeholder="Sitenizi kısaca anlatın..."
                                         />
                                     </div>
                                     <div>
                                         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">E-Posta</label>
-                                        <input 
+                                        <input
                                             className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E69419] outline-none transition"
                                             value={formData.email || ''}
-                                            onChange={e => setFormData({...formData, email: e.target.value})}
+                                            onChange={e => setFormData({ ...formData, email: e.target.value })}
                                             placeholder="iletisim@site.com"
                                         />
                                     </div>
                                     <div>
                                         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Telefon</label>
-                                        <input 
+                                        <input
                                             className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E69419] outline-none transition"
                                             value={formData.phone || ''}
-                                            onChange={e => setFormData({...formData, phone: e.target.value})}
+                                            onChange={e => setFormData({ ...formData, phone: e.target.value })}
                                             placeholder="+90..."
                                         />
                                     </div>
@@ -193,11 +191,11 @@ export default function SettingsWizard() {
                                     <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100 text-center">
                                         <div className="w-16 h-16 rounded-full mx-auto mb-4 border-4 border-white shadow-md" style={{ backgroundColor: formData.primaryColor }}></div>
                                         <label className="block text-sm font-bold text-gray-900 mb-2">Ana Renk (Primary)</label>
-                                        <input 
-                                            type="color" 
+                                        <input
+                                            type="color"
                                             className="w-full h-10 cursor-pointer rounded-lg"
                                             value={formData.primaryColor || '#E69419'}
-                                            onChange={e => setFormData({...formData, primaryColor: e.target.value})}
+                                            onChange={e => setFormData({ ...formData, primaryColor: e.target.value })}
                                         />
                                         <p className="text-xs text-gray-400 mt-2 font-mono uppercase">{formData.primaryColor}</p>
                                     </div>
@@ -206,11 +204,11 @@ export default function SettingsWizard() {
                                     <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100 text-center">
                                         <div className="w-16 h-16 rounded-full mx-auto mb-4 border-4 border-white shadow-md" style={{ backgroundColor: formData.secondaryColor }}></div>
                                         <label className="block text-sm font-bold text-gray-900 mb-2">İkincil Renk (Secondary)</label>
-                                        <input 
-                                            type="color" 
+                                        <input
+                                            type="color"
                                             className="w-full h-10 cursor-pointer rounded-lg"
                                             value={formData.secondaryColor || '#0073FF'}
-                                            onChange={e => setFormData({...formData, secondaryColor: e.target.value})}
+                                            onChange={e => setFormData({ ...formData, secondaryColor: e.target.value })}
                                         />
                                         <p className="text-xs text-gray-400 mt-2 font-mono uppercase">{formData.secondaryColor}</p>
                                     </div>
@@ -253,7 +251,7 @@ export default function SettingsWizard() {
                                         <Shield size={24} />
                                     </div>
                                     <div className="flex-1">
-                                         <div className="flex justify-between items-start">
+                                        <div className="flex justify-between items-start">
                                             <div>
                                                 <h3 className={`font-bold transition-colors ${formData.maintenanceMode ? 'text-[#E69419]' : 'text-gray-900'}`}>Bakım Modu</h3>
                                                 <p className={`text-xs mt-1 mb-3 max-w-sm transition-colors ${formData.maintenanceMode ? 'text-[#E69419]/80' : 'text-gray-500'}`}>
@@ -261,11 +259,11 @@ export default function SettingsWizard() {
                                                 </p>
                                             </div>
                                             <label className="flex items-center gap-2 cursor-pointer relative">
-                                                <input 
-                                                    type="checkbox" 
+                                                <input
+                                                    type="checkbox"
                                                     className="sr-only peer"
                                                     checked={formData.maintenanceMode}
-                                                    onChange={e => setFormData({...formData, maintenanceMode: e.target.checked})}
+                                                    onChange={e => setFormData({ ...formData, maintenanceMode: e.target.checked })}
                                                 />
                                                 <div className={`w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all ${formData.maintenanceMode ? 'peer-checked:bg-[#E69419]' : ''}`}></div>
                                             </label>
@@ -284,12 +282,11 @@ export default function SettingsWizard() {
                                         {['Modern', 'Minimalist', 'Kurumsal'].map((style) => (
                                             <button
                                                 key={style}
-                                                onClick={() => setFormData({...formData, aiStyle: style})}
-                                                className={`p-4 rounded-xl border text-center transition-all ${
-                                                    formData.aiStyle === style 
-                                                        ? 'border-[#E69419] bg-[#E69419]/5 text-[#E69419] ring-2 ring-[#E69419]/20' 
+                                                onClick={() => setFormData({ ...formData, aiStyle: style })}
+                                                className={`p-4 rounded-xl border text-center transition-all ${formData.aiStyle === style
+                                                        ? 'border-[#E69419] bg-[#E69419]/5 text-[#E69419] ring-2 ring-[#E69419]/20'
                                                         : 'border-gray-200 hover:border-gray-300 text-gray-600'
-                                                }`}
+                                                    }`}
                                             >
                                                 <Sparkles size={20} className={`mx-auto mb-2 ${formData.aiStyle === style ? 'text-[#E69419]' : 'text-gray-400'}`} />
                                                 <div className="font-bold text-sm">{style}</div>
@@ -299,7 +296,7 @@ export default function SettingsWizard() {
                                 </div>
                                 <div>
                                     <label className="block text-xs font-bold text-gray-500 uppercase mb-1">AI Ek Notları</label>
-                                    <textarea 
+                                    <textarea
                                         className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E69419] outline-none transition resize-none"
                                         rows="4"
                                         placeholder="Yapay zekanın sitenizi oluştururken dikkat etmesini istediğiniz özel notlar..."
@@ -311,7 +308,7 @@ export default function SettingsWizard() {
                         {/* Footer / Navigation */}
                         <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
                             {step > 1 ? (
-                                <button 
+                                <button
                                     onClick={() => setStep(step - 1)}
                                     className="px-4 py-2 text-gray-500 hover:bg-gray-50 font-bold rounded-xl transition flex items-center gap-2 text-xs"
                                 >
@@ -321,14 +318,14 @@ export default function SettingsWizard() {
 
                             <div className="flex gap-3">
                                 {step < 4 ? (
-                                    <button 
+                                    <button
                                         onClick={() => setStep(step + 1)}
                                         className="px-6 py-3 bg-[#0073FF] hover:bg-blue-600 text-white font-bold rounded-xl transition flex items-center gap-2 text-sm shadow-lg shadow-blue-100"
                                     >
                                         Sonraki <ArrowRight size={16} />
                                     </button>
                                 ) : (
-                                    <button 
+                                    <button
                                         onClick={handleSave}
                                         disabled={saving}
                                         className="px-8 py-3 bg-[#0073FF] hover:bg-blue-600 text-white font-bold rounded-xl transition flex items-center gap-2 text-sm shadow-xl shadow-blue-200 disabled:opacity-50"

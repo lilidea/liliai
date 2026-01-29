@@ -31,12 +31,12 @@ export default function SecurityPage() {
     }, []);
 
     // Filter logs
-    const filteredLogs = (stats.logs || []).filter(log => 
+    const filteredLogs = (stats.logs || []).filter(log =>
         log.ip.includes(filter) || (log.details && log.details.toLowerCase().includes(filter.toLowerCase()))
     );
 
     return (
-        <div className="p-8 max-w-7xl mx-auto h-full flex flex-col">
+        <div className="p-8 w-full mx-auto h-full flex flex-col">
             <header className="mb-8 flex justify-between items-end">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -54,21 +54,21 @@ export default function SecurityPage() {
             {/* Stats Overview */}
             <div className="grid grid-cols-4 gap-4 mb-8">
                 <div className="p-4 bg-white rounded-xl border border-gray-200 shadow-sm flex items-center gap-3">
-                    <div className="p-2 bg-blue-50 text-[#0073FF] rounded-lg"><Globe size={20}/></div>
+                    <div className="p-2 bg-blue-50 text-[#0073FF] rounded-lg"><Globe size={20} /></div>
                     <div>
                         <div className="text-2xl font-bold text-gray-900">{stats.stats?.totalIPs || 0}</div>
                         <div className="text-[10px] uppercase font-bold text-gray-400">Tekil IP</div>
                     </div>
                 </div>
                 <div className="p-4 bg-white rounded-xl border border-gray-200 shadow-sm flex items-center gap-3">
-                    <div className="p-2 bg-red-50 text-red-600 rounded-lg"><Lock size={20}/></div>
+                    <div className="p-2 bg-red-50 text-red-600 rounded-lg"><Lock size={20} /></div>
                     <div>
                         <div className="text-2xl font-bold text-gray-900">{stats.stats?.blockedIPs || 0}</div>
                         <div className="text-[10px] uppercase font-bold text-gray-400">Engellenen</div>
                     </div>
                 </div>
                 <div className="p-4 bg-white rounded-xl border border-gray-200 shadow-sm flex items-center gap-3">
-                    <div className="p-2 bg-orange-50 text-[#E69419] rounded-lg"><Activity size={20}/></div>
+                    <div className="p-2 bg-orange-50 text-[#E69419] rounded-lg"><Activity size={20} /></div>
                     <div>
                         <div className="text-2xl font-bold text-gray-900">{stats.stats?.totalGenerations || 0}</div>
                         <div className="text-[10px] uppercase font-bold text-gray-400">Toplam İşlem</div>
@@ -81,8 +81,8 @@ export default function SecurityPage() {
                 <div className="p-4 border-b border-gray-100 flex items-center gap-4">
                     <div className="relative flex-1 max-w-sm">
                         <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             value={filter}
                             onChange={(e) => setFilter(e.target.value)}
                             placeholder="IP veya işlem ara..."
@@ -104,7 +104,7 @@ export default function SecurityPage() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
-                             {filteredLogs.map((log, i) => (
+                            {filteredLogs.map((log, i) => (
                                 <tr key={i} className="hover:bg-gray-50/50 transition-colors">
                                     <td className="px-6 py-3 font-mono text-gray-600 text-xs">
                                         {log.ip}
@@ -122,30 +122,30 @@ export default function SecurityPage() {
                                     </td>
                                     <td className="px-6 py-3">
                                         {log.status === 'BLOCKED' ? (
-                                           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-50 text-red-600 text-[10px] font-bold border border-red-100">
-                                               <Lock size={8} /> ENGELLİ
-                                           </span>
-                                       ) : (
-                                           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-50 text-green-600 text-[10px] font-bold border border-green-100">
-                                               AKTİF
-                                           </span>
-                                       )}
+                                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-50 text-red-600 text-[10px] font-bold border border-red-100">
+                                                <Lock size={8} /> ENGELLİ
+                                            </span>
+                                        ) : (
+                                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-50 text-green-600 text-[10px] font-bold border border-green-100">
+                                                AKTİF
+                                            </span>
+                                        )}
                                     </td>
                                     <td className="px-6 py-3">
-                                         {/* Placeholder for future specific ban action */}
-                                         <button className="text-[10px] font-bold text-gray-400 hover:text-red-500 transition">
-                                             Engelle
-                                         </button>
+                                        {/* Placeholder for future specific ban action */}
+                                        <button className="text-[10px] font-bold text-gray-400 hover:text-red-500 transition">
+                                            Engelle
+                                        </button>
                                     </td>
                                 </tr>
-                             ))}
-                             {filteredLogs.length === 0 && (
-                                 <tr>
-                                     <td colSpan="6" className="p-8 text-center text-gray-400 text-sm">
-                                         Kayıt bulunamadı.
-                                     </td>
-                                 </tr>
-                             )}
+                            ))}
+                            {filteredLogs.length === 0 && (
+                                <tr>
+                                    <td colSpan="6" className="p-8 text-center text-gray-400 text-sm">
+                                        Kayıt bulunamadı.
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>
