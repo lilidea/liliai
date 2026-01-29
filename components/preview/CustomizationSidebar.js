@@ -172,14 +172,14 @@ export default function CustomizationSidebar({ isOpen, onClose, activeSection, a
 
   return (
     <div className={`
-      fixed top-0 right-0 h-full w-[400px] bg-white/80 backdrop-blur-xl border-l border-white/20 shadow-2xl z-50 transform transition-transform duration-500 ease-in-out flex flex-col
+      fixed top-0 right-0 h-full w-full md:w-[400px] bg-white/95 md:bg-white/80 backdrop-blur-xl border-l border-white/20 shadow-2xl z-[70] transform transition-transform duration-500 ease-in-out flex flex-col
       ${isOpen ? 'translate-x-0' : 'translate-x-full'}
     `}>
       
       {/* Header */}
-      <div className="h-16 flex items-center justify-between px-6 border-b border-black/5 shrink-0 bg-white/50">
+      <div className="h-14 md:h-16 flex items-center justify-between px-4 md:px-6 border-b border-black/5 shrink-0 bg-white/50">
         <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg border border-white/50">
+            <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl overflow-hidden shadow-lg border border-white/50">
                 <img src="/app_icon.png" className="w-full h-full object-cover" alt="Liliai" />
             </div>
             <div>
@@ -190,8 +190,13 @@ export default function CustomizationSidebar({ isOpen, onClose, activeSection, a
                 </div>
             </div>
         </div>
-        <button onClick={onClose} className="p-2 hover:bg-black/5 rounded-full transition-colors">
-            <ChevronRight size={20} className="text-neutral-500" />
+        <button 
+          onClick={onClose} 
+          className="p-2 hover:bg-black/5 rounded-full transition-colors md:block"
+        >
+            {/* X icon on mobile, ChevronRight on desktop */}
+            <X size={22} className="text-neutral-600 md:hidden" />
+            <ChevronRight size={20} className="text-neutral-500 hidden md:block" />
         </button>
       </div>
 

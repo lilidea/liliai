@@ -46,7 +46,7 @@ export default function Home() {
 
   // Calculate progress percentage
   const progress = useMemo(() => {
-      return ((step - 1) / 4) * 100;
+      return ((step - 1) / 5) * 100;
   }, [step]);
 
   // Preview component wrapper
@@ -91,7 +91,8 @@ export default function Home() {
     { id: 1, title: "Bilgiler", icon: <Type size={20}/> },
     { id: 2, title: "Renk", icon: <Palette size={20}/> },
     { id: 3, title: "Sayfalar", icon: <FileText size={20}/> },
-    { id: 4, title: "AI Tasarım", icon: <Sparkles size={20}/> }, // Renamed and Icon changed
+    { id: 4, title: "Tasarım", icon: <Layout size={20}/> }, // New Step
+    { id: 5, title: "AI İçerik", icon: <Sparkles size={20}/> }, // Renamed
   ];
 
   return (
@@ -101,8 +102,8 @@ export default function Home() {
        <div className="fixed inset-0 bg-white/20 backdrop-blur-[1px] -z-10 pointer-events-none"></div>
       
       {/* Progress Bar (Modern Pills) */}
-      <div className="w-full max-w-4xl mb-10 z-10 flex items-center justify-center">
-         <div className="bg-white/40 backdrop-blur-md border border-white/50 p-2 rounded-full flex items-center gap-2 shadow-sm">
+      <div className="w-full max-w-5xl mb-10 z-10 flex items-center justify-center">
+         <div className="bg-white/40 backdrop-blur-md border border-white/50 p-2 rounded-full flex items-center gap-2 shadow-sm flex-wrap justify-center">
           {steps.map((s) => {
             const isActive = step === s.id;
             const isCompleted = step > s.id;
@@ -127,7 +128,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="bg-white/80 backdrop-blur-xl border border-neutral-200 w-full max-w-3xl rounded-3xl p-8 md:p-12 shadow-2xl relative z-10 min-h-[500px] flex flex-col text-neutral-900">
+      <div className="bg-white/80 backdrop-blur-xl border border-neutral-200 w-full max-w-6xl rounded-3xl p-6 md:p-12 shadow-2xl relative z-10 min-h-[60vh] md:min-h-[500px] flex flex-col text-neutral-900">
         
         {/* Step 1: Info */}
         {step === 1 && (
@@ -233,13 +234,13 @@ export default function Home() {
 
         {/* Step 3: Page Selection NEW */}
         {step === 3 && (
-            <div className="space-y-6 animate-in fade-in slide-in-from-right-8 duration-500 flex-1">
-              <div className="text-center mb-6">
-                 <h2 className="text-3xl font-black tracking-tighter text-neutral-900">Site Haritası</h2>
-                 <p className="text-neutral-500">Sitenizde hangi sayfalar olsun?</p>
+            <div className="space-y-4 md:space-y-6 animate-in fade-in slide-in-from-right-8 duration-500 flex-1">
+              <div className="text-center mb-4 md:mb-6">
+                 <h2 className="text-2xl md:text-3xl font-black tracking-tighter text-neutral-900">Site Haritası</h2>
+                 <p className="text-neutral-500 text-sm md:text-base">Sitenizde hangi sayfalar olsun?</p>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 max-w-4xl mx-auto">
                  {filteredPages.map((page) => (
                     <div 
                       key={page}
@@ -253,27 +254,27 @@ export default function Home() {
                          }
                          updateSiteData({ pages: newPages });
                       }}
-                      className={`p-4 rounded-xl border-2 cursor-pointer flex items-center justify-between transition-all ${
+                      className={`p-3 md:p-4 rounded-xl border-2 cursor-pointer flex items-center justify-between transition-all ${
                         (siteData.pages || []).includes(page) 
-                          ? 'border-[#E69419] bg-neutral-50 shadow-md' 
-                          : 'border-neutral-100 hover:border-neutral-200'
+                          ? 'border-[#E69419] bg-orange-50 shadow-md' 
+                          : 'border-neutral-100 hover:border-neutral-200 bg-white'
                       }`}
                     >
-                       <div className="flex items-center gap-3">
-                          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
+                       <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
+                          <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${
                               (siteData.pages || []).includes(page) ? 'bg-[#E69419] text-white' : 'bg-neutral-100 text-neutral-400'
                           }`}
                           >
-                              <FileText size={14} />
+                              <FileText size={12} className="md:w-3.5 md:h-3.5" />
                           </div>
-                          <span className="font-bold text-gray-800">{page}</span>
+                          <span className="font-semibold md:font-bold text-sm md:text-base text-gray-800 truncate">{page}</span>
                        </div>
                        
-                       <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
+                       <div className={`w-5 h-5 md:w-6 md:h-6 rounded-full border-2 flex items-center justify-center shrink-0 ml-2 transition-all ${
                           (siteData.pages || []).includes(page) ? 'bg-[#E69419] border-[#E69419] text-white' : 'border-neutral-200'
                        }`}
                        >
-                          {(siteData.pages || []).includes(page) && <Check size={14} />}
+                          {(siteData.pages || []).includes(page) && <Check size={12} className="md:w-3.5 md:h-3.5" />}
                        </div>
                     </div>
                  ))}
@@ -281,17 +282,22 @@ export default function Home() {
             </div>
         )}
 
-        {/* Step 4: AI Design Generation (Replaces Design & Content Studio) */}
+        {/* Step 4: Design Studio (Manual Selection) */}
         {step === 4 && (
+             <DesignStudio />
+        )}
+
+        {/* Step 5: AI Content Generation */}
+        {step === 5 && (
             <div className="flex flex-col items-center justify-center text-center h-full animate-in fade-in duration-700">
                <div className="mb-8 relative">
                   <div className="absolute inset-0 bg-[#E69419] blur-2xl opacity-20 animate-pulse"></div>
                   <Sparkles size={64} className="text-[#E69419] relative z-10 animate-bounce" />
                </div>
                
-               <h2 className="text-4xl font-black tracking-tighter mb-4">Yapay Zeka Tasarlıyor</h2>
+               <h2 className="text-4xl font-black tracking-tighter mb-4">Yapay Zeka İçeriği Hazırlıyor</h2>
                <p className="text-lg text-neutral-500 max-w-md mx-auto mb-8">
-                  Sektörünüze ({SECTORS.find(s => s.id === siteData.sector)?.label || 'Genel'}) en uygun tasarım şablonları seçiliyor ve içerikleriniz oluşturuluyor...
+                  Seçtiğiniz tasarım şablonlarına ({SECTORS.find(s => s.id === siteData.sector)?.label || 'Genel'}) uygun profesyonel içerikler ve görseller oluşturuluyor...
                </p>
 
                <div className="w-64 h-2 bg-neutral-100 rounded-full overflow-hidden">
@@ -305,19 +311,19 @@ export default function Home() {
         <div className="flex justify-between mt-8 border-t border-neutral-100 pt-8">
            <Button 
              onClick={prevStep}
-             disabled={step === 1 || step === 4} // Disable back on AI step
+             disabled={step === 1 || step === 5} // Disable back on AI step
              variant="ghost"
              className={`${step === 1 ? 'opacity-0 pointer-events-none' : ''}`}
            >
              <ArrowLeft size={20} /> Geri
            </Button>
 
-           {step < 3 ? (
+           {step < 5 ? (
               <Button 
                 onClick={async () => {
                     if (step === 2) {
                         // User is moving to Step 3 (Pages). Trigger AI Suggestion.
-                        triggerLoading(2500); // Give it a bit more time visual
+                        triggerLoading(2500); 
                         try {
                             const response = await fetch('/api/suggest-pages', {
                                 method: 'POST',
@@ -339,72 +345,79 @@ export default function Home() {
                             console.error("Page suggestion failed:", e);
                         }
                         
-                        // Move next
                         handleStepChange(step + 1);
-                    } else {
+                    } 
+                    else if (step === 3) {
+                         // Moving to Step 4 (Design)
+                         // Apply defaults as a starting point, user can change them in Step 4
+                        const defaults = getSectorDefaults(siteData.sector);
+                        Object.entries(defaults.design).forEach(([section, componentId]) => {
+                             // Only set if not already set (optional, or just overwrite to ensure defaults match sector)
+                             // Overwriting is better here since user just defined/refined sector/pages
+                             updateSelection(section, componentId);
+                        });
+                        
+                        handleStepChange(step + 1);
+                    }
+                    else if (step === 4) {
+                         // Moving to Step 5 (Generation)
+                         setStep(5);
+                         
+                         // AI Generation Process (CONTENT ONLY)
+                         (async () => {
+                            try {
+                                const defaults = getSectorDefaults(siteData.sector);
+                                
+                                // 1. (Skipped) Design defaults are already handled in Step 4 and stored in siteData.selectedComponents
+
+                                // 2. Call API for Content
+                                const response = await fetch('/api/generate', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({
+                                        companyName: siteData.companyName,
+                                        sector: siteData.sector,
+                                        aboutText: siteData.aboutText,
+                                        pages: siteData.pages
+                                    })
+                                });
+
+                                if (!response.ok) {
+                                    const errData = await response.json();
+                                    throw new Error(errData.error || 'Generation failed');
+                                }
+
+                                const result = await response.json();
+                                
+                                // 3. Merge AI Content with Defaults
+                                const finalContent = { ...defaults.content, ...result.data };
+                                
+                                updateSiteData({ generatedContent: finalContent });
+
+                            } catch (error) {
+                                console.error("AI Generation Error:", error);
+                                // Fallback to manual defaults
+                                const defaults = getSectorDefaults(siteData.sector);
+                                updateSiteData({ generatedContent: defaults.content });
+                            } finally {
+                                // 4. Finish
+                                handleGenerate();
+                            }
+                       })();
+                    }
+                    else {
                         nextStep();
                     }
                 }}
                 variant="primary"
                 disabled={step === 1 && !siteData.sector}
               >
-                Devam Et <ArrowRight size={20} />
+                {step === 4 ? (
+                    <>Siteyi Oluştur! <Sparkles size={20} /></>
+                ) : (
+                    <>Devam Et <ArrowRight size={20} /></>
+                )}
               </Button>
-           ) : step === 3 ? (
-             <Button 
-               onClick={() => {
-                   setStep(4);
-                   // AI Generation Process
-                   (async () => {
-                        try {
-                            const defaults = getSectorDefaults(siteData.sector);
-                            
-                            // 1. Apply Design Defaults Immediately
-                            Object.entries(defaults.design).forEach(([section, componentId]) => {
-                                updateSelection(section, componentId);
-                            });
-
-                            // 2. Call API for Content
-                            const response = await fetch('/api/generate', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                    companyName: siteData.companyName,
-                                    sector: siteData.sector,
-                                    aboutText: siteData.aboutText,
-                                    pages: siteData.pages
-                                })
-                            });
-
-                            if (!response.ok) {
-                                const errData = await response.json();
-                                throw new Error(errData.error || 'Generation failed');
-                            }
-
-                            const result = await response.json();
-                            
-                            // 3. Merge AI Content with Defaults
-                            // We use defaults.content as a fallback if AI fails partial keys, 
-                            // but here we prioritize AI result
-                            const finalContent = { ...defaults.content, ...result.data };
-                            
-                            updateSiteData({ generatedContent: finalContent });
-
-                        } catch (error) {
-                            console.error("AI Generation Error:", error);
-                            // Fallback to manual defaults if API fails
-                            const defaults = getSectorDefaults(siteData.sector);
-                            updateSiteData({ generatedContent: defaults.content });
-                        } finally {
-                            // 4. Finish
-                            handleGenerate();
-                        }
-                   })();
-               }}
-               variant="primary"
-             >
-               Siteyi Oluştur! <Sparkles size={20} />
-             </Button>
            ) : null}
         </div>
       </div>

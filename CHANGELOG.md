@@ -1,5 +1,42 @@
 # Changelog
 
+## [1.2.2] - 2026-01-29
+
+### 🏗 Design Studio Redesign (Tasarım Stüdyosu Yenilendi)
+- **Split View Layout (Desktop):**
+  - Left panel: Organized accordion menu for component selection.
+  - Right panel: Live, scrollable full-page preview of selected components.
+- **Mobile Responsive (Mobil):**
+  - Added "Selection" vs "Preview" toggle buttons for better mobile experience.
+  - optimized for smaller screens.
+
+### 🔢 Usage Limits (Kullanım Limitleri)
+- **3-Site Limit:**
+  - Implemented `useSiteLimit` hook to track site creation.
+  - Limit: 3 free sites per 24 hours.
+  - **Limit Modal:** Shows "Limit Exceeded" warning with countdown timer until reset when user tries to preview a 4th site.
+
+### 🔧 Component Stability (Bileşen Kararlılığı)
+- **Removed External Dependencies (Dış Bağımlılıklar Kaldırıldı):**
+  - Replaced unreliable `source.unsplash.com` images with local `imageManager`.
+  - Replaced `i.pravatar.cc` with styled gradient initial avatars (safer & faster).
+  - Impacted Components: `About3`, `Blog1-3`, `Stats2`, `Team1-3`, `Contact2`, `Cta2`, `Projects1-3`.
+  
+---
+
+## [1.2.1] - 2026-01-29
+
+### 🛡️ Error Handling & UX (Hata Yönetimi)
+- **Global Error Pages:**
+  - Added `not-found.js` - Custom 404 page with brand styling and Turkish localization.
+  - Added `error.js` - Global error boundary with retry functionality.
+  - Added `loading.js` - Animated loading skeleton with Liliai branding.
+- **Admin Panel Error Handling:**
+  - Added `admin/error.js` - Compact error page for admin context.
+  - Added `admin/loading.js` - Skeleton UI matching admin panel layout.
+
+---
+
 ## [1.2.0] - 2026-01-28
 
 ### 🗄️ Database Migration (Veritabanı Taşıma)
@@ -30,7 +67,6 @@
 - **New Business Components (İş Bileşenleri):**
   - **Pricing:** `Pricing1` (Cards), `Pricing2` (Table), `Pricing3` (Toggle).
   - **Testimonials:** `Testimonials1` (Grid), `Testimonials2` (Slider).
-  - **Stats:** `Stats1` (Row), `Stats2` (Split Visual).
   - **Stats:** `Stats1` (Row), `Stats2` (Split Visual).
   - **CTA:** `Cta1` (Center), `Cta2` (Split).
 

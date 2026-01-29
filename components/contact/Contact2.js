@@ -1,19 +1,25 @@
 "use client";
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSite } from '@/app/context/SiteContext';
+import { getImagesForSector } from '@/utils/imageManager';
 
 const Contact2 = () => {
   const { siteData } = useSite();
   const { primaryColor } = siteData;
+
+  const bgImage = useMemo(() => {
+    const images = getImagesForSector(siteData.sector);
+    return images.hero?.[0] || images.about?.[0] || '/images/placeholder-contact.jpg';
+  }, [siteData.sector]);
 
   return (
     <section className="py-24 relative flex items-center justify-center min-h-[600px]">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
          <img 
-            src="https://source.unsplash.com/random/1920x1080/?office,meeting" 
+            src={bgImage}
+            alt="Arka plan"
             className="w-full h-full object-cover brightness-[0.25]"
-            onError={(e) => e.target.src='https://placehold.co/1920x1080/111/fff?text=Background'}
          />
       </div>
 

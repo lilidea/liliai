@@ -1,11 +1,18 @@
 "use client";
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSite } from '@/app/context/SiteContext';
 import { Calendar } from 'lucide-react';
+import { getImagesForSector } from '@/utils/imageManager';
 
 const Blog1 = () => {
   const { siteData } = useSite();
   const { primaryColor } = siteData;
+
+  // Get sector-based images
+  const blogImages = useMemo(() => {
+    const images = getImagesForSector(siteData.sector);
+    return images.blog || images.hero || [];
+  }, [siteData.sector]);
 
   // Determine content source
   const generatedBlog = siteData.generatedContent?.blog; // Array of posts from AI
@@ -53,9 +60,9 @@ const Blog1 = () => {
                 <div key={i} className="bg-white p-6 md:p-8 rounded-3xl border border-gray-100 hover:shadow-lg transition-shadow flex flex-col md:flex-row items-center gap-6 md:gap-8 group">
                    <div className="w-full md:w-48 h-32 bg-gray-200 rounded-2xl overflow-hidden shrink-0">
                       <img 
-                        src={`https://source.unsplash.com/random/400x300/?${encodeURIComponent('office ' + i)}`}
+                        src={blogImages[i % blogImages.length] || `/images/placeholder-blog.jpg`}
+                        alt={post.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        onError={(e) => e.target.src=`https://placehold.co/400x300/e5e7eb/gray?text=Blog+${i+1}`}
                       />
                    </div>
                    <div className="flex-1 text-center md:text-left space-y-2">

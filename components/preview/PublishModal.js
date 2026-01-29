@@ -31,8 +31,8 @@ export default function PublishModal({ isOpen, onClose }) {
             {/* Modal */}
             <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg relative z-10 overflow-hidden animate-in zoom-in-95 duration-300">
                 {step === 1 ? (
-                    <div className="flex flex-col h-full">
-                        <div className="p-8 pb-0 text-center">
+                    <div className="flex flex-col h-full max-h-[85vh] overflow-hidden">
+                        <div className="p-6 md:p-8 pb-0 text-center shrink-0">
                             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#E69419]/10 text-[#E69419] mb-4">
                                 <Send size={32} />
                             </div>
@@ -42,9 +42,9 @@ export default function PublishModal({ isOpen, onClose }) {
                             </p>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="p-8 space-y-4">
+                        <form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-4 overflow-y-auto flex-1">
                             {/* Company & Name */}
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-1">
                                     <label className="text-xs font-bold text-neutral-400 uppercase">Firma Adı</label>
                                     <Input 
@@ -66,7 +66,7 @@ export default function PublishModal({ isOpen, onClose }) {
                             </div>
 
                             {/* Contact Info */}
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-1">
                                     <label className="text-xs font-bold text-neutral-400 uppercase">E-posta</label>
                                     <Input 
@@ -90,7 +90,7 @@ export default function PublishModal({ isOpen, onClose }) {
                             </div>
 
                             {/* Project Details */}
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-1">
                                     <label className="text-xs font-bold text-neutral-400 uppercase">Bütçe Aralığı</label>
                                     <select 
@@ -139,7 +139,7 @@ export default function PublishModal({ isOpen, onClose }) {
                         </form>
                     </div>
                 ) : (
-                    <div className="p-12 text-center space-y-6">
+                    <div className="p-8 md:p-12 text-center space-y-6">
                         <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto animate-bounce">
                             <CheckCircle size={40} />
                         </div>

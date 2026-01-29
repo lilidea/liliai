@@ -1,11 +1,17 @@
 "use client";
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSite } from '@/app/context/SiteContext';
 import { Check } from 'lucide-react';
+import { getImagesForSector } from '@/utils/imageManager';
 
 const Cta2 = () => {
   const { siteData } = useSite();
   const { primaryColor } = siteData;
+
+  const ctaImage = useMemo(() => {
+    const images = getImagesForSector(siteData.sector);
+    return images.hero?.[0] || images.about?.[0] || '/images/placeholder-cta.jpg';
+  }, [siteData.sector]);
 
   return (
     <section className="py-24 bg-gray-50">
@@ -41,9 +47,9 @@ const Cta2 = () => {
            <div className="lg:w-1/2 w-full">
               <div className="relative aspect-video rounded-2xl overflow-hidden bg-gray-900 shadow-2xl border-4 border-gray-900">
                  <img 
-                    src="https://source.unsplash.com/random/800x600/?dashboard" 
+                    src={ctaImage}
+                    alt="Dashboard"
                     className="w-full h-full object-cover opacity-80"
-                    onError={(e) => e.target.src='https://placehold.co/800x600/222/fff?text=Dashboard'}
                  />
                  <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">

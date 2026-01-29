@@ -3,15 +3,23 @@ import React from 'react';
 import { useSite } from '@/app/context/SiteContext';
 import { Linkedin, Twitter, Mail } from 'lucide-react';
 
+// Avatar colors for team members
+const avatarColors = [
+  'from-orange-400 to-red-500',
+  'from-blue-400 to-purple-500',
+  'from-green-400 to-teal-500',
+  'from-pink-400 to-rose-500',
+];
+
 export default function Team1() {
   const { siteData } = useSite();
   const { primaryColor } = siteData;
 
   const team = [
-    { name: "Ahmet Yılmaz", role: "Kurucu & CEO", img: "https://i.pravatar.cc/150?u=ahmet" },
-    { name: "Ayşe Kaya", role: "Kreatif Direktör", img: "https://i.pravatar.cc/150?u=ayse" },
-    { name: "Mehmet Demir", role: "Yazılım Müdürü", img: "https://i.pravatar.cc/150?u=mehmet" },
-    { name: "Zeynep Çelik", role: "Pazarlama Uzmanı", img: "https://i.pravatar.cc/150?u=zeynep" },
+    { name: "Ahmet Yılmaz", role: "Kurucu & CEO" },
+    { name: "Ayşe Kaya", role: "Kreatif Direktör" },
+    { name: "Mehmet Demir", role: "Yazılım Müdürü" },
+    { name: "Zeynep Çelik", role: "Pazarlama Uzmanı" },
   ];
 
   return (
@@ -30,11 +38,9 @@ export default function Team1() {
             <div key={idx} className="bg-white rounded-3xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-2 group">
               <div className="relative w-32 h-32 mx-auto mb-6">
                 <div className="absolute inset-0 rounded-full blur-xl opacity-20 scale-90 group-hover:scale-110 transition-transform" style={{ backgroundColor: primaryColor }}></div>
-                <img 
-                  src={member.img} 
-                  alt={member.name}
-                  className="w-full h-full rounded-full object-cover border-4 border-white shadow-sm relative z-10"
-                />
+                <div className={`w-full h-full rounded-full bg-gradient-to-br ${avatarColors[idx % avatarColors.length]} flex items-center justify-center text-white text-4xl font-bold border-4 border-white shadow-sm relative z-10`}>
+                  {member.name.charAt(0)}
+                </div>
               </div>
               <h3 className="text-xl font-bold text-neutral-900">{member.name}</h3>
               <p className="text-sm font-medium uppercase tracking-wide text-neutral-400 mb-4">{member.role}</p>

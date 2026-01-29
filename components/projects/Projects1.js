@@ -1,11 +1,17 @@
 "use client";
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSite } from '@/app/context/SiteContext';
 import { ArrowUpRight } from 'lucide-react';
+import { getImagesForSector } from '@/utils/imageManager';
 
 const Projects1 = () => {
   const { siteData } = useSite();
   const { primaryColor } = siteData;
+
+  const projectImages = useMemo(() => {
+    const images = getImagesForSector(siteData.sector);
+    return [...(images.gallery || []), ...(images.hero || [])];
+  }, [siteData.sector]);
 
   const projects = [1, 2, 3, 4];
 
@@ -23,12 +29,11 @@ const Projects1 = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-             {projects.map((p) => (
+             {projects.map((p, i) => (
                 <div key={p} className="group relative rounded-3xl overflow-hidden aspect-[4/3] bg-gray-100">
                    <img 
-                     src={`https://source.unsplash.com/random/800x600/?${encodeURIComponent('modern minimalist architecture ' + p)}`} 
-                     // Fallback to a simpler placeholder if unsplash fails/is slow, but for 'Demo' looks nice.
-                     onError={(e) => e.target.src=`https://placehold.co/800x600/f3f4f6/black?text=Project+${p}`}
+                     src={projectImages[i % projectImages.length] || `/images/placeholder-project.jpg`}
+                     alt={`Proje ${p}`}
                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                    />
                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 p-8 flex flex-col justify-between opacity-0 group-hover:opacity-100">

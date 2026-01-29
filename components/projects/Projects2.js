@@ -1,11 +1,17 @@
 "use client";
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSite } from '@/app/context/SiteContext';
 import { Plus } from 'lucide-react';
+import { getImagesForSector } from '@/utils/imageManager';
 
 const Projects2 = () => {
   const { siteData } = useSite();
   const { primaryColor } = siteData;
+
+  const projectImages = useMemo(() => {
+    const images = getImagesForSector(siteData.sector);
+    return [...(images.gallery || []), ...(images.hero || []), ...(images.about || [])];
+  }, [siteData.sector]);
 
   const projects = [
     { id: 1, title: "Finans App", category: "Mobil", height: "h-64" },
@@ -24,11 +30,11 @@ const Projects2 = () => {
         </div>
 
         <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-           {projects.map((p) => (
+           {projects.map((p, i) => (
              <div key={p.id} className={`relative group rounded-2xl overflow-hidden break-inside-avoid bg-gray-100 ${p.height}`}>
                 <img 
-                   src={`https://source.unsplash.com/random/600x${p.height === "h-96" ? "800" : "600"}?${encodeURIComponent('design ' + p.category)}`}
-                   onError={(e) => e.target.src=`https://placehold.co/600x${p.height === "h-96" ? "800" : "600"}/e5e7eb/black?text=${p.title}`}
+                   src={projectImages[i % projectImages.length] || `/images/placeholder-project.jpg`}
+                   alt={p.title}
                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-center p-6">

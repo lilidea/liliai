@@ -1,10 +1,16 @@
 "use client";
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSite } from '@/app/context/SiteContext';
+import { getImagesForSector } from '@/utils/imageManager';
 
 const Stats2 = () => {
   const { siteData } = useSite();
   const { primaryColor, secondaryColor } = siteData;
+
+  const statsImage = useMemo(() => {
+    const images = getImagesForSector(siteData.sector);
+    return images.about?.[0] || images.hero?.[0] || '/images/placeholder-stats.jpg';
+  }, [siteData.sector]);
 
   return (
     <section className="py-24 bg-white">
@@ -36,9 +42,9 @@ const Stats2 = () => {
            {/* Visual Content */}
            <div className="md:w-1/2 relative min-h-[400px]">
               <img 
-                 src="https://source.unsplash.com/random/800x800/?analytics,graph"
+                 src={statsImage}
+                 alt="İstatistikler"
                  className="absolute inset-0 w-full h-full object-cover"
-                 onError={(e) => e.target.src='https://placehold.co/800x800/111/444?text=Stats'}
               />
               <div className="absolute inset-0 bg-gradient-to-l from-transparent to-gray-900/50"></div>
            </div>

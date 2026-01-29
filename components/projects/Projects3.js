@@ -1,12 +1,18 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { useSite } from '@/app/context/SiteContext';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { getImagesForSector } from '@/utils/imageManager';
 
 const Projects3 = () => {
   const { siteData } = useSite();
   const { primaryColor } = siteData;
   const scrollRef = useRef(null);
+
+  const projectImages = useMemo(() => {
+    const images = getImagesForSector(siteData.sector);
+    return [...(images.gallery || []), ...(images.hero || [])];
+  }, [siteData.sector]);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -40,11 +46,11 @@ const Projects3 = () => {
         className="flex gap-8 overflow-x-auto px-6 pb-12 snap-x snap-mandatory scrollbar-hide"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        {projects.map((p) => (
+        {projects.map((p, i) => (
            <div key={p} className="snap-center shrink-0 w-[85vw] md:w-[600px] h-[400px] bg-gray-800 rounded-2xl overflow-hidden relative group">
               <img 
-                 src={`https://source.unsplash.com/random/800x600/?${encodeURIComponent('website ' + p)}`}
-                 onError={(e) => e.target.src=`https://placehold.co/800x600/333/fff?text=Project+${p}`}
+                 src={projectImages[i % projectImages.length] || `/images/placeholder-project.jpg`}
+                 alt={`Proje ${p}`}
                  className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500"
               />
               <div className="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black/90 to-transparent">

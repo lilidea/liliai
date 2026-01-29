@@ -1,11 +1,16 @@
 "use client";
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSite } from '@/app/context/SiteContext';
 import { Award, Users, CheckCircle, ArrowRight } from 'lucide-react';
+import { getRandomImage } from '@/utils/imageManager';
 
 const About3 = () => {
   const { siteData } = useSite();
-  const { primaryColor, secondaryColor, aboutText, companyName } = siteData;
+  const { primaryColor, secondaryColor, aboutText, companyName, sector } = siteData;
+
+  const aboutImage = useMemo(() => {
+    return siteData.aboutImage || getRandomImage(sector, 'about');
+  }, [siteData.aboutImage, sector]);
 
   const stats = [
     { label: "Yıllık Tecrübe", value: "10+", icon: Award },
@@ -52,9 +57,11 @@ const About3 = () => {
           {/* Right: Visual */}
           <div className="lg:w-1/2 relative">
             <div className="aspect-[4/3] rounded-2xl bg-gray-100 relative overflow-hidden shadow-2xl">
-              <div className="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-200">
-                (Görsel Alanı)
-              </div>
+              <img 
+                src={aboutImage}
+                alt="Hakkımızda"
+                className="w-full h-full object-cover"
+              />
               
               {/* Floating Card */}
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl max-w-xs hidden md:block">

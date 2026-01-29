@@ -1,10 +1,16 @@
 "use client";
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSite } from '@/app/context/SiteContext';
+import { getImagesForSector } from '@/utils/imageManager';
 
 const Blog3 = () => {
   const { siteData } = useSite();
   const { primaryColor } = siteData;
+
+  const featuredImage = useMemo(() => {
+    const images = getImagesForSector(siteData.sector);
+    return images.hero?.[0] || images.about?.[0] || '/images/placeholder-blog.jpg';
+  }, [siteData.sector]);
 
   const sidebarPosts = [
     { title: "SEO Stratejileri 2024", date: "10 Oca" },
@@ -22,9 +28,9 @@ const Blog3 = () => {
            {/* Featured Post */}
            <div className="lg:col-span-2 relative h-[500px] rounded-3xl overflow-hidden group">
               <img 
-                 src="https://source.unsplash.com/random/1200x800/?workspace"
+                 src={featuredImage}
+                 alt="Öne çıkan yazı"
                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                 onError={(e) => e.target.src='https://placehold.co/1200x800/333/fff?text=Featured'}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-8 md:p-12 flex flex-col justify-end">
                  <span className="inline-block px-3 py-1 rounded bg-white/20 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider mb-4 w-fit">
@@ -34,7 +40,7 @@ const Blog3 = () => {
                     Dijital Markanızı Nasıl Bir Üst Seviyeye Taşırsınız?
                  </h3>
                  <div className="flex items-center gap-4 text-gray-300 text-sm">
-                    <img src="https://i.pravatar.cc/150?u=editor" className="w-8 h-8 rounded-full border border-white/30"/>
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white text-sm font-bold">Z</div>
                     <span>Zeynep Yılmaz</span>
                     <span>•</span>
                     <span>14 Ocak 2024</span>

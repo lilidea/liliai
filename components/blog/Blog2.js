@@ -1,11 +1,17 @@
 "use client";
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSite } from '@/app/context/SiteContext';
 import { ArrowRight } from 'lucide-react';
+import { getImagesForSector } from '@/utils/imageManager';
 
 const Blog2 = () => {
   const { siteData } = useSite();
   const { primaryColor } = siteData;
+
+  const blogImages = useMemo(() => {
+    const images = getImagesForSector(siteData.sector);
+    return images.blog || images.hero || [];
+  }, [siteData.sector]);
 
   const posts = [1, 2, 3];
 
@@ -22,9 +28,9 @@ const Blog2 = () => {
               <article key={i} className="group cursor-pointer">
                  <div className="relative overflow-hidden rounded-xl mb-4 aspect-[16/9]">
                     <img 
-                      src={`https://source.unsplash.com/random/800x600/?${encodeURIComponent('technology ' + i)}`}
+                      src={blogImages[i % blogImages.length] || `/images/placeholder-blog.jpg`}
+                      alt={`Blog post ${i + 1}`}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      onError={(e) => e.target.src=`https://placehold.co/800x600/eee/999?text=Post+${i+1}`}
                     />
                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">
                        Teknoloji
