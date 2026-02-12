@@ -45,7 +45,13 @@ export const metadata = {
   title: "liliai | AI Website Builder",
   description: "Web sitenizi saniyeler içinde oluşturun.",
   icons: {
-    icon: '/app_icon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/app_icon.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png' },
+    ],
   },
 };
 
