@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.3.0] - 2026-02-12
+
+### 🏗️ Infrastructure & Database (Altyapı ve Veritabanı)
+- **Local JSON -> Remote MySQL Migration:**
+  - Removed dependency on local `ip-tracking.json` file for security logs.
+  - Refactored `lib/security.js` and `api/admin/system/reset-security` to use Prisma/MySQL fully.
+  - Ensuring the application is stateless and ready for serverless deployment (Vercel).
+- **Environment Configuration:**
+  - Updated `.env` with remote MySQL connection string.
+  - Added support for Zhipu AI and verified Gemini AI keys.
+
+### 🧠 AI & Integration (Yapay Zeka)
+- **Gemini 2.0 Flash Integration:**
+  - Verified `gemini-2.0-flash` model connectivity.
+  - Validated API Key configuration (Note: Google API Rate Limits may apply to free keys).
+
+### 🐛 Fixes & Improvements
+- **Dependencies:**
+  - Fixed missing dependencies preventing `npm run dev` from starting.
+  - Cleaned up unused local data files.
+
+---
+
 ## [1.2.2] - 2026-01-29
 
 ### 🏗 Design Studio Redesign (Tasarım Stüdyosu Yenilendi)
