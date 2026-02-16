@@ -295,13 +295,17 @@ export default function Home() {
 
               <div className="space-y-2">
                 <label className="text-sm font-bold uppercase tracking-wide text-neutral-500">Sektör</label>
-                <Input
-                  type="text"
+                <select
                   name="sector"
                   value={siteData.sector}
                   onChange={handleChange}
-                  placeholder="Örn: Mimarlık Ofisi, Güzellik Merkezi..."
-                />
+                  className="w-full p-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#E69419] bg-white appearance-none"
+                >
+                  <option value="">Sektör Seçiniz...</option>
+                  {SECTORS.map((s) => (
+                    <option key={s.id} value={s.label}>{s.label}</option>
+                  ))}
+                </select>
               </div>
 
               <div className="space-y-2">
@@ -512,10 +516,11 @@ export default function Home() {
                       // 1. (Skipped) Design defaults are already handled in Step 4 and stored in siteData.selectedComponents
 
                       // 2. Call API for Content
-                      const response = await fetch('/api/generate', {
+                      const contentPromise = fetch('/api/generate', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
+                          type: 'full_site',
                           companyName: siteData.companyName,
                           sector: siteData.sector,
                           aboutText: siteData.aboutText,
@@ -523,17 +528,41 @@ export default function Home() {
                         })
                       });
 
-                      if (!response.ok) {
-                        const errData = await response.json();
-                        throw new Error(errData.error || 'Generation failed');
+                      // 3. Call API for Hero Image (Parallel)
+                      const imagePromise = fetch('/api/generate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                          type: 'generate_image',
+                          prompt: `A high quality, professional, 4k website banner for a ${siteData.sector} business named ${siteData.companyName}. Style: modern, impressive.`,
+                          style: 'vivid'
+                        })
+                      });
+
+                      const [contentRes, imageRes] = await Promise.all([contentPromise, imagePromise]);
+
+                      if (!contentRes.ok) throw new Error('Content generation failed');
+
+                      const contentResult = await contentRes.json();
+
+                      // Handle Image Result (Optional, don't break if fails)
+                      let heroImageUrl = null;
+                      if (imageRes.ok) {
+                        try {
+                          const imgData = await imageRes.json();
+                          if (imgData.success) heroImageUrl = imgData.data;
+                        } catch (e) { console.error("Image parsing failed", e); }
                       }
 
-                      const result = await response.json();
-
                       // 3. Merge AI Content with Defaults
-                      const finalContent = { ...defaults.content, ...result.data };
+                      const finalContent = contentResult.data.content || {};
 
-                      updateSiteData({ generatedContent: finalContent });
+                      updateSiteData({
+                        generatedContent: finalContent,
+                        heroImage: heroImageUrl, // Save DALL-E image directly to heroImage
+                        selectedComponents: contentResult.data.selections, // AI recommended sections
+                        ...contentResult.data.branding // AI recommended colors/fonts
+                      });
 
                       // 4. Log to Analytics (Internal Use)
                       try {

@@ -255,7 +255,7 @@ export default function CustomizationSidebar({ isOpen, onClose, activeSection, a
                     </button>
                 </div>
                 <div className="text-[10px] text-center text-neutral-400 mt-3 font-medium tracking-wide">
-                    Powered by Gemini • Liliai Intelligence v2.0
+                    Powered by OpenAI • Liliai Intelligence v2.0
                 </div>
             </div>
 

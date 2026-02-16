@@ -1,5 +1,5 @@
 
-import { model } from '@/lib/gemini';
+import { openai } from '@/lib/openai';
 import { NextResponse } from 'next/server';
 
 export async function POST(req) {
@@ -7,11 +7,11 @@ export async function POST(req) {
     const { companyName, sector, aboutText } = await req.json();
 
     const availablePages = [
-        'Hakkımızda', 'Hizmetler', 'İletişim', 'Blog', 
-        'SSS', 'Referanslar', 'Ekibimiz', 'Kariyer',
-        'Galeri', 'Projeler', 'Menü', 'Ürünler',
-        'Fiyat Listesi', 'Randevu', 'Kampanyalar', 'Sertifikalar',
-        'Tedaviler', 'Eğitimler', 'Uzmanlık Alanları', 'Yasal Uyarılar'
+      'Hakkımızda', 'Hizmetler', 'İletişim', 'Blog',
+      'SSS', 'Referanslar', 'Ekibimiz', 'Kariyer',
+      'Galeri', 'Projeler', 'Menü', 'Ürünler',
+      'Fiyat Listesi', 'Randevu', 'Kampanyalar', 'Sertifikalar',
+      'Tedaviler', 'Eğitimler', 'Uzmanlık Alanları', 'Yasal Uyarılar'
     ];
 
     const prompt = `
@@ -40,22 +40,35 @@ export async function POST(req) {
       Output:
     `;
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    let text = response.text();
-    
-    // Cleanup
-    text = text.replace(/```json/g, '').replace(/```/g, '').trim();
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [{ role: "user", content: prompt }],
+      response_format: { type: "json_object" }
+    });
 
     let selectedPages;
     try {
-        selectedPages = JSON.parse(text);
-        // Validate against available list
-        selectedPages = selectedPages.filter(p => availablePages.includes(p));
+      const content = completion.choices[0].message.content;
+      const parsed = JSON.parse(content);
+
+      // Handle various JSON structures OpenAI might return despite instructions
+      if (Array.isArray(parsed)) {
+        selectedPages = parsed;
+      } else if (parsed.pages && Array.isArray(parsed.pages)) {
+        selectedPages = parsed.pages;
+      } else {
+        // Fallback: look for values that are arrays
+        const values = Object.values(parsed);
+        const foundArray = values.find(v => Array.isArray(v));
+        selectedPages = foundArray || [];
+      }
+
+      // Validate against available list
+      selectedPages = selectedPages.filter(p => availablePages.includes(p));
     } catch (e) {
-        console.error("JSON Parse Error (Page Suggest):", e);
-        // Fallback to basic pages
-        selectedPages = ['Hakkımızda', 'Hizmetler', 'İletişim'];
+      console.error("JSON Parse Error (Page Suggest):", e);
+      // Fallback to basic pages
+      selectedPages = ['Hakkımızda', 'Hizmetler', 'İletişim'];
     }
 
     return NextResponse.json({ success: true, pages: selectedPages });

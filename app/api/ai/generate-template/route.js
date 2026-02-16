@@ -1,4 +1,4 @@
-import { model } from "@/lib/gemini";
+import { openai } from "@/lib/openai";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -44,26 +44,32 @@ export async function POST(req) {
       - Ensure text is in Turkish.
     `;
 
-    const result = await model.generateContent(systemPrompt);
-    const responseText = result.response.text();
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [
+        { role: "system", content: systemPrompt }
+      ],
+      response_format: { type: "json_object" }
+    });
+
+    const responseText = completion.choices[0].message.content;
 
     console.log("AI Template Gen:", responseText);
 
     let parsedJson;
     try {
-        const cleanJson = responseText.replace(/```json/g, "").replace(/```/g, "").trim();
-        parsedJson = JSON.parse(cleanJson);
+      parsedJson = JSON.parse(responseText);
     } catch (e) {
-        throw new Error("Failed to parse AI response as JSON");
+      throw new Error("Failed to parse AI response as JSON");
     }
 
     // Add metadata
     const templateData = {
-        name: `${category} - AI Generated`,
-        description: prompt.substring(0, 100) + "...",
-        category: category,
-        content: JSON.stringify(parsedJson),
-        thumbnail: parsedJson.hero?.imageUrl || "https://placehold.co/600x400?text=AI+Template"
+      name: `${category} - AI Generated`,
+      description: prompt.substring(0, 100) + "...",
+      category: category,
+      content: JSON.stringify(parsedJson),
+      thumbnail: parsedJson.hero?.imageUrl || "https://placehold.co/600x400?text=AI+Template"
     };
 
     return NextResponse.json(templateData);

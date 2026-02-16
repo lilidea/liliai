@@ -1,5 +1,35 @@
 # Changelog
 
+## [1.4.0] - 2026-02-16
+
+### 🧠 Full OpenAI Migration (Tam OpenAI Geçişi)
+- **OpenAI Integration:** All AI features migrated from Google Gemini to OpenAI (`gpt-4o` and `dall-e-3`).
+- **Unified AI Engine:**
+  - `app/api/generate/route.js`: Content and DALL-E image generation.
+  - `app/api/suggest-pages/route.js`: Page recommendation engine.
+  - `app/api/ai/chat/route.js`: Live Design Assistant (Chat).
+  - `app/api/ai/generate-template/route.js`: Template generation.
+- **Cleanup:** Removed `@google/generative-ai` package and deleted `lib/gemini.js`.
+- **DALL-E 3 Integration:** High-quality, professional hero images are now generated based on business sector and company name.
+
+### 🪄 Wizard Enhancements (Sihirbaz Geliştirmeleri)
+- **Sector Selection:** Replaced manual text input with a predefined, rich sector list (`utils/sectorMappings.js`).
+- **Full-Site AI Generation:** 
+  - AI now generates specific, realistic content for all site sections (Services, Blog, Team, FAQ, Menu, etc.).
+  - Content structure standardized to ensure seamless display in UI components.
+- **Parallel Generation:** Content and Hero images are generated in parallel for faster onboarding.
+
+### 🖱️ Preview Page & UX (Önizleme ve Kullanıcı Deneyimi)
+- **Drag & Drop Reordering:**
+  - Implemented `@dnd-kit` for section reordering.
+  - Users can now reorder site sections (Blog, Services, etc.) by dragging the handle in Edit Mode.
+  - Changes are automatically persisted to `SiteContext`.
+- **UI Branding Updates:** 
+  - Updated "Powered by" text across the application to reflect OpenAI integration.
+  - Standardized component content bindings for AI-generated data.
+
+---
+
 ## [1.3.0] - 2026-02-12
 
 ### 🏗️ Infrastructure & Database (Altyapı ve Veritabanı)

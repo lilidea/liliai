@@ -1,5 +1,4 @@
-
-import { model } from "@/lib/gemini";
+import { openai } from "@/lib/openai";
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
@@ -44,30 +43,23 @@ export async function POST(req) {
       }
     `;
 
-    const chat = model.startChat({
-      history: [
-        {
-          role: "user",
-          parts: [{ text: systemPrompt }]
-        },
-        {
-          role: "model",
-          parts: [{ text: JSON.stringify({ reply: "Liliai Tasarım Sistemi hazır. Sitenizi nasıl özelleştirebiliriz?" }) }]
-        },
-        ...messages.slice(0, -1).map(m => ({
-          role: m.role === 'user' ? 'user' : 'model',
-          parts: [{ text: m.content }]
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [
+        { role: "system", content: systemPrompt },
+        ...messages.map(m => ({
+          role: m.role === 'user' ? 'user' : 'assistant',
+          content: m.content
         }))
       ],
+      response_format: { type: "json_object" }
     });
 
-    const result = await chat.sendMessage(lastMessage.content);
-    const responseText = result.response.text();
+    const responseText = completion.choices[0].message.content;
 
     let parsedResponse;
     try {
-      const cleanJson = responseText.replace(/```json/g, "").replace(/```/g, "").trim();
-      parsedResponse = JSON.parse(cleanJson);
+      parsedResponse = JSON.parse(responseText);
     } catch (e) {
       console.warn("AI Response not JSON, wrapping in reply:", responseText);
       parsedResponse = {

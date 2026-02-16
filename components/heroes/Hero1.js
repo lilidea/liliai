@@ -9,16 +9,16 @@ const Hero1 = () => {
   const { companyName, aboutText, primaryColor, generatedContent, sector } = siteData;
   const content = generatedContent?.hero || {};
 
-  // Prioritize header image from data (Templates), otherwise random (Wizard)
+  // Prioritize header image: 1. AI Generated (heroImage), 2. Default siteData.heroImage, 3. Random
   const [heroImage, setHeroImage] = React.useState(siteData.heroImage);
 
   React.useEffect(() => {
-      if (siteData.heroImage) {
-          setHeroImage(siteData.heroImage);
-      } else {
-          // Client-side only random generation to prevent hydration mismatch
-          setHeroImage(getRandomImage(sector, 'hero'));
-      }
+    if (siteData.heroImage) {
+      setHeroImage(siteData.heroImage);
+    } else {
+      // Client-side only random generation to prevent hydration mismatch
+      setHeroImage(getRandomImage(sector, 'hero'));
+    }
   }, [siteData.heroImage, sector]);
 
   return (
@@ -26,36 +26,36 @@ const Hero1 = () => {
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 mb-10 md:mb-0 animate-in fade-in slide-in-from-left-8 duration-700">
           <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6 text-gray-900">
-             {content.title || (
-                 <span>
-                    İşiniz İçin <br/>
-                    <span 
-                        className="bg-clip-text text-transparent bg-gradient-to-r" 
-                        style={{ backgroundImage: `linear-gradient(to right, ${primaryColor}, ${siteData.secondaryColor || primaryColor})` }}
-                    >
-                        En İyisi
-                    </span>
-                 </span>
-             )}
+            {content.title || (
+              <span>
+                İşiniz İçin <br />
+                <span
+                  className="bg-clip-text text-transparent bg-gradient-to-r"
+                  style={{ backgroundImage: `linear-gradient(to right, ${primaryColor}, ${siteData.secondaryColor || primaryColor})` }}
+                >
+                  En İyisi
+                </span>
+              </span>
+            )}
           </h1>
           <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg">
             {content.subtitle || aboutText || "Firmanızın vizyonunu dijital dünyaya taşıyoruz. Modern tasarım ve güçlü altyapı ile rakiplerinizin önüne geçin."}
           </p>
           <div className="flex gap-4">
-            <button 
+            <button
               className="px-8 py-4 rounded-xl text-white font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-2"
-              style={{ 
-                  background: `linear-gradient(135deg, ${primaryColor}, ${siteData.secondaryColor || primaryColor})` 
+              style={{
+                background: `linear-gradient(135deg, ${primaryColor}, ${siteData.secondaryColor || primaryColor})`
               }}
             >
               Hemen Başla <ArrowRight size={20} />
             </button>
-            <button 
-                className="px-8 py-4 rounded-xl font-bold border-2 transition-all duration-300 hover:bg-gray-50 flex items-center gap-2"
-                style={{ 
-                    borderColor: siteData.secondaryColor || '#e5e7eb',
-                    color: siteData.secondaryColor || '#374151'
-                }}
+            <button
+              className="px-8 py-4 rounded-xl font-bold border-2 transition-all duration-300 hover:bg-gray-50 flex items-center gap-2"
+              style={{
+                borderColor: siteData.secondaryColor || '#e5e7eb',
+                color: siteData.secondaryColor || '#374151'
+              }}
             >
               <Info size={20} /> Daha Fazla
             </button>
@@ -63,11 +63,11 @@ const Hero1 = () => {
         </div>
         <div className="md:w-1/2 flex justify-center">
           <div className="w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl relative">
-             <img 
-               src={heroImage} 
-               className="w-full h-full object-cover"
-               alt="Hero Visual"
-             />
+            <img
+              src={heroImage}
+              className="w-full h-full object-cover"
+              alt="Hero Visual"
+            />
           </div>
         </div>
       </div>

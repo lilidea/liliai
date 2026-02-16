@@ -13,7 +13,7 @@ Bu dosya, **lilidea** projesinin teknik ve tasarım yapılandırmasını takip e
 - **Stil:** Tailwind CSS v4
 - **İkon Seti:** Lucide React
 - **Animasyon:** Tailwind Animate, CSS Keyframes (Aurora Background)
-- **Yapay Zeka:** Google Gemini API (gemini-2.5-flash)
+- **Yapay Zeka:** OpenAI API (gpt-4o)
 
 ## 3. Varsayılan Tasarım Değerleri
 Başlangıçta tanımlı olan renk ve stil ayarları:
@@ -32,7 +32,7 @@ Mevcut hazır bileşenler:
 
 ## 5. Ortam Değişkenleri (Environment Variables)
 `.env.local` dosyasında bulunması gerekenler:
-- `GEMINI_API_KEY`: AI içerik üretimi için gerekli API anahtarı.
+- `OPENAI_API_KEY`: AI içerik üretimi için gerekli API anahtarı (OpenAI).
 
 ## 6. Notlar ve Geliştirme Hedefleri
 - [x] Favicon `app_icon.png` olarak güncellendi.

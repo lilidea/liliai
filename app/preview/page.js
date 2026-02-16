@@ -1,18 +1,74 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSite } from '@/app/context/SiteContext';
 import { getComponent } from '@/components/registry';
 import { useRouter } from 'next/navigation';
-import { Edit3, Eye, ArrowLeft, Send, Menu, X, AlertTriangle, Clock } from 'lucide-react';
+import { Edit3, Eye, ArrowLeft, Send, Menu, X, GripVertical } from 'lucide-react';
 
 import EditableSection from '@/components/preview/EditableSection';
 import CustomizationSidebar from '@/components/preview/CustomizationSidebar';
 import PublishModal from '@/components/preview/PublishModal';
-import { useSiteLimit } from '@/hooks/useSiteLimit';
+
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+  useSortable
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+
+function SortableItem({ id, children, isEditMode, isActive, onClick }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging
+  } = useSortable({ id: id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+    zIndex: isDragging ? 50 : 'auto',
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} className="relative">
+      <EditableSection
+        isEditMode={isEditMode}
+        isActive={isActive}
+        onClick={onClick}
+      >
+        {isEditMode && (
+          <div
+            {...attributes}
+            {...listeners}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 bg-white/80 backdrop-blur shadow-sm border border-neutral-200 rounded-lg cursor-grab active:cursor-grabbing hover:bg-white text-neutral-400 hover:text-black transition-all"
+            title="Sıralamayı Değiştir"
+          >
+            <GripVertical size={20} />
+          </div>
+        )}
+        {children}
+      </EditableSection>
+    </div>
+  );
+}
 
 export default function PreviewPage() {
-  const { siteData } = useSite();
+  const { siteData, updateSiteData } = useSite();
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
 
@@ -22,12 +78,32 @@ export default function PreviewPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPublishModalOpen, setIsPublishModalOpen] = useState(false);
 
+  // Sensors for DND
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
   // Prevent hydration errors
   useEffect(() => {
     setIsClient(true);
   }, []);
 
   if (!isClient) return null;
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      const oldIndex = siteData.pages.indexOf(active.id);
+      const newIndex = siteData.pages.indexOf(over.id);
+
+      const newPages = arrayMove(siteData.pages, oldIndex, newIndex);
+      updateSiteData({ pages: newPages });
+    }
+  };
 
   // Component Category Mapping
   const pageCategoryMap = {
@@ -48,7 +124,7 @@ export default function PreviewPage() {
     'Sertifikalar': 'legal',
     'Uzmanlık Alanları': 'legal',
     'Randevu': 'appointment',
-    'Tedaviler': 'services' // Fallback to services for now
+    'Tedaviler': 'services'
   };
 
   // 1. Header
@@ -174,28 +250,39 @@ export default function PreviewPage() {
             {HeroComponent && <HeroComponent />}
           </EditableSection>
 
-          {/* Dynamic Pages */}
-          {(siteData.pages || []).map((page, index) => {
-            const category = pageCategoryMap[page];
-            if (!category) return null;
+          {/* Dynamic Pages with Reordering */}
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={siteData.pages || []}
+              strategy={verticalListSortingStrategy}
+            >
+              {(siteData.pages || []).map((page) => {
+                const category = pageCategoryMap[page];
+                if (!category) return null;
 
-            // Get user selection or fallback to '1'
-            const selectedStyle = siteData.selectedComponents[category] || `${category}1`;
-            const DynamicComponent = getComponent(category, selectedStyle);
+                const selectedStyle = siteData.selectedComponents[category] || `${category}1`;
+                const DynamicComponent = getComponent(category, selectedStyle);
 
-            if (!DynamicComponent) return null;
+                if (!DynamicComponent) return null;
 
-            return (
-              <EditableSection
-                key={index}
-                isEditMode={isEditMode}
-                isActive={activeSidebar?.id === page}
-                onClick={() => openSidebar(page, category)}
-              >
-                <DynamicComponent />
-              </EditableSection>
-            );
-          })}
+                return (
+                  <SortableItem
+                    key={page}
+                    id={page}
+                    isEditMode={isEditMode}
+                    isActive={activeSidebar?.id === page}
+                    onClick={() => openSidebar(page, category)}
+                  >
+                    <DynamicComponent />
+                  </SortableItem>
+                );
+              })}
+            </SortableContext>
+          </DndContext>
         </main>
 
         {/* Footer */}
@@ -206,9 +293,9 @@ export default function PreviewPage() {
         >
           {FooterComponent && <FooterComponent />}
         </EditableSection>
+
       </div>
 
-      {/* Sidebar */}
       <CustomizationSidebar
         isOpen={isEditMode}
         onClose={() => {
@@ -219,7 +306,6 @@ export default function PreviewPage() {
         activeCategory={activeSidebar?.category}
       />
 
-      {/* Publish Modal */}
       <PublishModal
         isOpen={isPublishModalOpen}
         onClose={() => setIsPublishModalOpen(false)}
