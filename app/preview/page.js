@@ -27,7 +27,7 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-function SortableItem({ id, children, isEditMode, isActive, onClick }) {
+function SortableItem({ id, children, isActive, isEditMode, onClick }) {
   const {
     attributes,
     listeners,
@@ -46,23 +46,46 @@ function SortableItem({ id, children, isEditMode, isActive, onClick }) {
 
   return (
     <div ref={setNodeRef} style={style} className="relative">
-      <EditableSection
-        isEditMode={isEditMode}
-        isActive={isActive}
+      <div
         onClick={onClick}
+        className={`relative group transition-all duration-300 rounded-xl overflow-hidden ${isActive && isEditMode
+          ? 'ring-2 ring-[#0073FF] ring-offset-4 ring-offset-white z-10'
+          : isEditMode ? 'hover:ring-2 hover:ring-[#0073FF]/50 hover:ring-offset-2 cursor-pointer' : ''
+          }`}
       >
         {isEditMode && (
-          <div
-            {...attributes}
-            {...listeners}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 bg-white/80 backdrop-blur shadow-sm border border-neutral-200 rounded-lg cursor-grab active:cursor-grabbing hover:bg-white text-neutral-400 hover:text-black transition-all"
-            title="Sıralamayı Değiştir"
-          >
-            <GripVertical size={20} />
-          </div>
+          <>
+            {/* Drag Handle */}
+            <div
+              {...attributes}
+              {...listeners}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-[100] p-2 bg-white shadow-xl border border-neutral-200 rounded-xl cursor-grab active:cursor-grabbing hover:bg-neutral-50 text-[#0073FF] transition-all transform hover:scale-110 active:scale-95"
+              onClick={(e) => e.stopPropagation()}
+              title="Sıralamayı Değiştir"
+            >
+              <GripVertical size={24} />
+            </div>
+
+            {/* Edit Badge */}
+            <div className={`
+                    absolute top-4 right-4 z-40 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg transition-all transform pointer-events-none
+                    ${isActive
+                ? 'bg-[#0073FF] text-white scale-100 opacity-100'
+                : 'bg-white text-neutral-800 opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100'
+              }
+                `}>
+              <Edit3 size={14} />
+              {isActive ? 'Düzenleniyor' : 'Düzenle'}
+            </div>
+
+            {/* Interaction Overlay */}
+            {!isActive && (
+              <div className="absolute inset-0 bg-transparent hover:bg-black/[0.02] z-30 transition-colors pointer-events-none"></div>
+            )}
+          </>
         )}
         {children}
-      </EditableSection>
+      </div>
     </div>
   );
 }
@@ -231,7 +254,7 @@ export default function PreviewPage() {
       )}
 
       <div className="pt-14 md:pt-16">
-        {/* Header */}
+        {/* Header - Fixed but Editable */}
         <EditableSection
           isEditMode={isEditMode}
           isActive={activeSidebar?.id === 'header'}
@@ -241,7 +264,7 @@ export default function PreviewPage() {
         </EditableSection>
 
         <main>
-          {/* Hero */}
+          {/* Hero - Editable and part of reordering if we add it to siteData.pages */}
           <EditableSection
             isEditMode={isEditMode}
             isActive={activeSidebar?.id === 'hero'}

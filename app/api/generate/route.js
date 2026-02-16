@@ -120,37 +120,61 @@ export async function POST(req) {
           },
           "content": {
             "hero": {
-              "title": "Etkileyici bir başlık",
-              "subtitle": "Kısa bir alt başlık"
+              "title": "Sektöre uygun etkileyici başlık",
+              "subtitle": "Etkileyici alt başlık"
             },
             "about": {
               "title": "Hakkımızda",
-              "text": "2 paragraflık profesyonel hakkımızda yazısı"
+              "text": "Firma ve sektörle ilgili 2-3 paragraflık özgün yazı"
             },
             "services": { 
               "title": "Hizmetlerimiz", 
-              "items": [ { "title": "Hizmet 1", "desc": "Açıklama" }, { "title": "Hizmet 2", "desc": "Açıklama" } ]
+              "items": [ { "title": "Sektörel Hizmet 1", "desc": "Detaylı açıklama" }, { "title": "Sektörel Hizmet 2", "desc": "Detaylı açıklama" } ]
             },
             "blog": [ 
-              { "title": "Blog 1", "date": "16 Şubat 2024", "excerpt": "Özet", "cat": "Kategori" } 
+              { "title": "Sektörel Blog Başlığı 1", "date": "Bugünün Tarihi", "excerpt": "Kısa özet", "cat": "Kategori" } 
             ],
+            "pricing": {
+              "title": "Fiyat Listesi / Paketler",
+              "items": [ { "name": "Paket/Oda/Seçenek 1", "price": "100 TL", "features": ["Özellik 1", "Özellik 2"] } ]
+            },
+            "gallery": {
+              "title": "Galeri",
+              "description": "Sektöre uygun galeri açıklaması"
+            },
+            "projects": {
+              "title": "Projelerimiz / Çalışmalarımız",
+              "items": [ { "title": "Gerçekçi Proje Adı 1", "desc": "Kategori/Detay" } ]
+            },
+            "testimonials": {
+              "title": "Müşteri/Misafir Yorumları",
+              "items": [ { "name": "Müşteri Adı", "role": "Ünvan", "text": "Sektöre özel gerçekçi yorum" } ]
+            },
+            "stats": {
+              "items": [ { "label": "İstatistik Başlığı (Örn: Mutlu Misafir)", "value": "1000+", "icon": "Users | Briefcase | Award | Globe" } ]
+            },
             "faq": {
               "title": "Sıkça Sorulan Sorular",
-              "items": [ { "question": "Soru?", "answer": "Cevap" } ]
+              "items": [ { "question": "Sektörel Soru?", "answer": "Cevap" } ]
             },
             "team": {
-              "title": "Uzman Kadromuz",
-              "items": [ { "name": "İsim", "role": "Ünvan" } ]
+              "title": "Ekibimiz / Kadromuz",
+              "items": [ { "name": "İsim Soyisim", "role": "Ünvan" } ]
             },
             "menu": {
-              "title": "Lezzetlerimiz",
-              "items": [ { "name": "Yemek 1", "price": "200 TL", "desc": "İçerik" } ]
+              "title": "Menü (Eğer restoransa)",
+              "items": [ { "name": "Yemek Adı", "price": "200 TL", "desc": "İçerik" } ]
             },
+            "products": [
+              { "name": "Ürün/Paket Adı", "price": "500 TL", "tag": "Yeni | Popüler" }
+            ],
             "pages": {
-               "SayfaAdı": { "title": "Sayfa Başlığı", "content": "Diğer sayfalar için genel içerik" }
+               "SayfaAdı": { "title": "Sayfa Başlığı", "content": "Diğer sayfalar için içerik" }
             }
           }
         }
+
+        ÖNEMLİ: Tüm içerikleri ${safeSector} sektörüne göre gerçekçi değerlerle doldur. Sektör "Otel" ise oda fiyatları ve spa hizmetleri olsun, "Güzellik Salonu" ise cilt bakımı fiyatları olsun. "pricing", "projects", "testimonials", "stats", "gallery" ve "products" alanlarını sakın boş bırakma!
       `;
 
       const completion = await openai.chat.completions.create({
