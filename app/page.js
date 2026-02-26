@@ -14,6 +14,7 @@ import { Textarea } from '@/components/Textarea';
 import { useSiteLimit } from '@/hooks/useSiteLimit';
 import SplashScreen from '@/components/SplashScreen';
 import { SECTORS, getSectorDefaults } from '@/utils/sectorMappings';
+import { SectorSelector } from '@/components/SectorSelector';
 import { Trash2, Edit2, Plus, ExternalLink, MoreVertical } from 'lucide-react';
 
 export default function Home() {
@@ -230,7 +231,7 @@ export default function Home() {
                     <h4 className="text-xl font-bold text-neutral-900 mb-1 truncate">{site.companyName || 'Adsız Proje'}</h4>
                     <p className="text-sm text-neutral-500 mb-6 flex items-center gap-1.5 font-medium">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E69419]"></span>
-                      {site.sector || 'Sektör Belirtilmedi'}
+                      {SECTORS.find(s => s.id === site.sector)?.label || site.sector || 'Sektör Belirtilmedi'}
                     </p>
 
                     <div className="flex items-center gap-2">
@@ -294,18 +295,23 @@ export default function Home() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-bold uppercase tracking-wide text-neutral-500">Sektör</label>
-                <select
-                  name="sector"
+                <label className="text-sm font-bold uppercase tracking-wide text-neutral-500">Ana Sektör</label>
+                <SectorSelector
                   value={siteData.sector}
                   onChange={handleChange}
-                  className="w-full p-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#E69419] bg-white appearance-none"
-                >
-                  <option value="">Sektör Seçiniz...</option>
-                  {SECTORS.map((s) => (
-                    <option key={s.id} value={s.label}>{s.label}</option>
-                  ))}
-                </select>
+                  placeholder="Genel bir sektör seçin..."
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-bold uppercase tracking-wide text-neutral-500">Branş / Alt Sektör / Hizmet</label>
+                <Input
+                  type="text"
+                  name="servicesText"
+                  value={siteData.servicesText || ''}
+                  onChange={handleChange}
+                  placeholder="Örn: Diş Hekimi, Avukat, Kafe, İnşaat Mimarı"
+                />
               </div>
 
               <div className="space-y-2">

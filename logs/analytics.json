@@ -60,5 +60,562 @@
       "componentCount": 9,
       "pageCount": 6
     }
+  },
+  {
+    "timestamp": "2026-02-26T12:55:57.117Z",
+    "id": "1772110475252",
+    "companyName": "Liliai Test",
+    "sector": "Yazılım & Bilişim",
+    "selectedComponents": {
+      "header": "header4",
+      "hero": "hero2",
+      "footer": "footer2",
+      "about": "about1",
+      "services": "services1",
+      "legal": "legal1",
+      "team": "team1",
+      "pricing": "pricing1",
+      "blog": "blog1"
+    },
+    "generatedContent": {
+      "hero": {
+        "title": "Yazılımın Geleceğini Şekillendiriyoruz",
+        "subtitle": "Liliai Test ile en gelişmiş bilişim çözümleri"
+      },
+      "about": {
+        "title": "Hakkımızda",
+        "text": "Liliai Test, ileri teknolojiler ve yenilikçi yazılım çözümleri sunan lider bir bilişim firmasıdır. Misyonumuz, müşterilerimizin teknolojiye dayalı iş operasyonlarını optimize etmelerine yardımcı olmaktır. 10 yılı aşkın sektör deneyimimizle, kapsamlı araştırma ve geliştirme faaliyetlerimizle biliniriz. Ekibimiz, müşterilerimize özelleştirilmiş yazılım çözümleri sağlayarak iş süreçlerini daha verimli hale getirmeyi amaçlar."
+      },
+      "services": {
+        "title": "Hizmetlerimiz",
+        "items": [
+          {
+            "title": "Özel Yazılım Geliştirme",
+            "desc": "İhtiyaçlarınıza uygun, yüksek kaliteli ve ölçeklenebilir yazılım çözümleri sunuyoruz."
+          },
+          {
+            "title": "Veri Analitiği",
+            "desc": "Büyük veri analizi ile işletme verimliliğinizi artırmanızı sağlıyoruz."
+          }
+        ]
+      },
+      "blog": [
+        {
+          "title": "Yazılım Trendleri: Gelecekte Bizi Neler Bekliyor?",
+          "date": "17 Ekim 2023",
+          "excerpt": "Zamanın ötesine geçen yazılım trendlerini keşfedin ve işletmenizi geleceğe hazırlayın.",
+          "cat": "Yazılım"
+        }
+      ],
+      "pricing": {
+        "title": "Fiyat Listesi / Paketler",
+        "items": [
+          {
+            "name": "Başlangıç Paketi",
+            "price": "5000 TL",
+            "features": [
+              "Standart Özelleştirme",
+              "E-posta Destek"
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title": "Galeri",
+        "description": "Projelerimizi ve başarı hikayelerimizi görsel olarak keşfedin."
+      },
+      "projects": {
+        "title": "Projelerimiz / Çalışmalarımız",
+        "items": [
+          {
+            "title": "Yapay Zeka Destekli ERP Sistemi",
+            "desc": "Kurumsal iş süreçlerini otomatikleştiren gelişmiş ERP çözümü."
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Müşteri/Misafir Yorumları",
+        "items": [
+          {
+            "name": "Ali Vural",
+            "role": "CTO, Tech Innovations",
+            "text": "Liliai Test ile çalışmak, teknolojik kapasitelerimizi önemli ölçüde artırdı. Özel çözümleri işimize büyük değer kattı."
+          }
+        ]
+      },
+      "stats": {
+        "items": [
+          {
+            "label": "Tamamlanan Projeler",
+            "value": "150+",
+            "icon": "Briefcase"
+          }
+        ]
+      },
+      "faq": {
+        "title": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Yazılım çözümleriniz hangi dilleri destekliyor?",
+            "answer": "Başlıca yazılım dillerini ve framework'lerini destekliyoruz, ör. Java, Python, React."
+          }
+        ]
+      },
+      "team": {
+        "title": "Ekibimiz / Kadromuz",
+        "items": [
+          {
+            "name": "Ayşe Kılıç",
+            "role": "Yazılım Mühendisi"
+          }
+        ]
+      },
+      "menu": {
+        "title": "Menü (Eğer restoransa)",
+        "items": []
+      },
+      "products": [
+        {
+          "name": "AI Destekli Veri Analiz Aracı",
+          "price": "10000 TL",
+          "tag": "Popüler"
+        }
+      ],
+      "pages": {
+        "Hizmetler": {
+          "title": "Hizmetlerimiz",
+          "content": "Özel yazılım çözümleri, veri analitiği, siber güvenlik ve daha fazlası."
+        }
+      }
+    },
+    "stats": {
+      "componentCount": 9,
+      "pageCount": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-26T13:14:34.838Z",
+    "id": "1772111512561",
+    "companyName": "Duman cafe ",
+    "sector": "food_catering",
+    "selectedComponents": {
+      "header": "header1",
+      "hero": "hero3",
+      "footer": "footer1",
+      "about": "about3",
+      "gallery": "gallery1",
+      "menu": "menu1",
+      "productgrid": "productgrid1",
+      "contact": "contact3",
+      "services": "services3",
+      "faq": "faq2"
+    },
+    "generatedContent": {
+      "hero": {
+        "title": "Zevkle Yudumla, Tadı Unutulmaz",
+        "subtitle": "En iyi lezzetleri keşfetmek için hemen gelin!"
+      },
+      "about": {
+        "title": "Hakkımızda",
+        "text": "Duman Cafe olarak, keyifli anlar ve eşsiz lezzetler sunmak amacıyla yola çıktık. Kaliteli hizmet anlayışımız ve güleryüzlü ekibimizle her müşterimiz için unutulmaz anılar biriktirmeye odaklanıyoruz. Geleneksel tatlarla modern dokunuşları bir araya getirerek, her damak zevkine uygun seçenekler sunuyoruz. Sizleri de sıcak atmosferimizde ağırlamaktan mutluluk duyarız."
+      },
+      "services": {
+        "title": "Hizmetlerimiz",
+        "items": [
+          {
+            "title": "Günlük Taze Ürünler",
+            "desc": "Her gün taze olarak hazırlanan pasta ve sandviçlerimiz."
+          },
+          {
+            "title": "Özel Etkinlikler",
+            "desc": "Doğum günü, toplantı gibi özel günler için rezervasyon."
+          }
+        ]
+      },
+      "blog": [
+        {
+          "title": "Sonbahar Lezzetleri Keşfi",
+          "date": "2023-10-01",
+          "excerpt": "Sonbaharın en güzel tatları ve sıcak içecekleri bu ay menümüzde.",
+          "cat": "Yeni Tatlar"
+        }
+      ],
+      "pricing": {
+        "title": "Fiyatlandırma",
+        "items": [
+          {
+            "name": "Kahve Keyfi",
+            "price": "20 TL",
+            "features": [
+              "Sıcak / Soğuk seçenek",
+              "Espresso bazlı içecekler"
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title": "Galeri",
+        "description": "Kafemizin sıcacık atmosferinden kareler ve lezzetli ürünlerimizin görüntüleri."
+      },
+      "projects": {
+        "title": "Projelerimiz / Portfolyo",
+        "items": [
+          {
+            "title": "Kapalı Grup Etkinliği",
+            "desc": "50 kişilik özel grup etkinliğini başarıyla gerçekleştirdik."
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Müşteri Yorumları",
+        "items": [
+          {
+            "name": "Ahmet Yılmaz",
+            "role": "Müşteri",
+            "text": "Duman Cafe'deki taze kahve gerçekten harika! Atmosferi çok sıcak ve samimi."
+          }
+        ]
+      },
+      "stats": {
+        "items": [
+          {
+            "label": "Mutlu Müşteri",
+            "value": "5000+",
+            "icon": "Users"
+          }
+        ]
+      },
+      "faq": {
+        "title": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Rezervasyon yapmalı mıyım?",
+            "answer": "Özel günlerde yerinizi önceden ayırtmanız önerilir."
+          }
+        ]
+      },
+      "team": {
+        "title": "Ekibimiz",
+        "items": [
+          {
+            "name": "Elif Demir",
+            "role": "Kafe Müdürü"
+          }
+        ]
+      },
+      "menu": {
+        "title": "Menü",
+        "items": [
+          {
+            "name": "Latte",
+            "price": "25 TL",
+            "desc": "Kremamsı süt ve nefis espresso karışımı."
+          }
+        ]
+      },
+      "products": [
+        {
+          "name": "Kahve Fincan Seti",
+          "price": "150 TL",
+          "tag": "Popüler"
+        }
+      ],
+      "pages": {
+        "extra1": {
+          "title": "Özel Teklifler",
+          "content": "Belirli günlerde özel indirim ve fırsatlar için bizi takip edin."
+        }
+      }
+    },
+    "stats": {
+      "componentCount": 10,
+      "pageCount": 6
+    }
+  },
+  {
+    "timestamp": "2026-02-26T14:49:49.435Z",
+    "id": "1772117278765",
+    "companyName": "Sakura Sushi",
+    "sector": "food",
+    "selectedComponents": {
+      "header": "header1",
+      "hero": "hero3",
+      "footer": "footer1",
+      "about": "about3",
+      "gallery": "gallery1",
+      "menu": "menu1",
+      "productgrid": "productgrid1"
+    },
+    "generatedContent": {
+      "hero": {
+        "title": "Bir Damağa Yolculuk Başlasın",
+        "subtitle": "Sakura Sushi ile lezzeti keşfedin!"
+      },
+      "about": {
+        "title": "Hakkımızda",
+        "text": "Sakura Sushi olarak, Japon mutfağının eşsiz tatlarını sizlerle buluşturuyoruz. Taze malzemeler ve geleneksel tarifler ile hazırladığımız sushi çeşitlerimizle misafirlerimize eşsiz bir deneyim sunuyoruz. İşimizi aşkla yapıyor, lezzet yolculuğumuzda sizleri de yanımızda görmek istiyoruz."
+      },
+      "services": {
+        "title": "Hizmetlerimiz",
+        "items": [
+          {
+            "title": "Lezzetli Sushi Çeşitleri",
+            "desc": "En taze malzemelerle hazırladığımız çeşitli sushi lezzetlerimiz."
+          },
+          {
+            "title": "Catering ve Özel Etkinlikler",
+            "desc": "Özel günlerinizde Japon mutfağının lezzetlerini sunuyoruz."
+          }
+        ]
+      },
+      "blog": [
+        {
+          "title": "Sushi Sanatının İncelikleri",
+          "date": "2023-10-10",
+          "excerpt": "Sushi hazırlamanın püf noktalarını keşfedin.",
+          "cat": "Gastronomi"
+        }
+      ],
+      "pricing": {
+        "title": "Fiyatlandırma",
+        "items": [
+          {
+            "name": "Lezzet Deneyimi Menü",
+            "price": "150 TL",
+            "features": [
+              "Çeşitli sushi tabağı",
+              "Geleneksel Japon içeceği"
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title": "Galeri",
+        "description": "Lezzetlerimizin ve mekanımızın fotoğrafları."
+      },
+      "projects": {
+        "title": "Projelerimiz / Portfolyo",
+        "items": [
+          {
+            "title": "Yerel Lezzet Festivali Katılımı",
+            "desc": "Japon mutfağının benzersiz tatlarını festivalde sergiledik."
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Müşteri Yorumları",
+        "items": [
+          {
+            "name": "Ahmet Yılmaz",
+            "role": "Gastronomi Tutkunu",
+            "text": "Sakura Sushi'de her zaman taze ve leziz ürünler buluyorum. Favorim nigiri çeşitleri!"
+          }
+        ]
+      },
+      "stats": {
+        "items": [
+          {
+            "label": "Mutlu Müşteri",
+            "value": "5000+",
+            "icon": "Users"
+          }
+        ]
+      },
+      "faq": {
+        "title": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Sushilerinizi nasıl taze tutuyorsunuz?",
+            "answer": "Günlük tedarik ettiğimiz malzemelerle her siparişi taze olarak hazırlıyoruz."
+          }
+        ]
+      },
+      "team": {
+        "title": "Ekibimiz",
+        "items": [
+          {
+            "name": "Hiro Tanaka",
+            "role": "Baş Şef"
+          }
+        ]
+      },
+      "menu": {
+        "title": "Ürün ve Lezzet Menümüz",
+        "items": [
+          {
+            "category": "Ana Yemekler",
+            "items": [
+              {
+                "name": "California Roll",
+                "price": "80 TL",
+                "desc": "Yengeç eti, avokado ve salatalık."
+              }
+            ]
+          }
+        ]
+      },
+      "products": [
+        {
+          "name": "Wasabi Sos",
+          "price": "25 TL",
+          "tag": "Popüler"
+        }
+      ],
+      "pages": {
+        "SayfaID": {
+          "title": "Özel Etkinlikler",
+          "content": "Özel günleriniz için catering hizmetlerimizle yanınızdayız."
+        }
+      }
+    },
+    "stats": {
+      "componentCount": 7,
+      "pageCount": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-26T15:24:10.188Z",
+    "id": "1772119383272",
+    "companyName": "Otantik Sushi",
+    "sector": "food",
+    "selectedComponents": {
+      "header": "header1",
+      "hero": "hero3",
+      "footer": "footer1",
+      "about": "about3",
+      "gallery": "gallery1",
+      "menu": "menu1",
+      "productgrid": "productgrid1"
+    },
+    "generatedContent": {
+      "hero": {
+        "title": "Otantik Japon Lezzetleri Sofranızda",
+        "subtitle": "Unutulmaz bir sushi deneyimi için rezervasyon yapın"
+      },
+      "about": {
+        "title": "Hakkımızda",
+        "text": "Otantik Sushi olarak, Japon mutfağının eşsiz lezzetlerini en taze ve kaliteli malzemelerle sofralarınıza taşıyoruz. Uzman şeflerimiz tarafından hazırlanan sushi ve diğer Japon yemekleri ile misafirlerimize gerçek bir gastronomi deneyimi sunmayı amaçlıyoruz. Sürdürülebilirlik ilkelerine bağlı kalarak misafir memnuniyetini her zaman ön planda tutuyoruz."
+      },
+      "services": {
+        "title": "Hizmetlerimiz",
+        "items": [
+          {
+            "title": "Yerinde Sushi Deneyimi",
+            "desc": "Restoranımızda eşsiz bir Japon mutfağı deneyimi sunuyoruz."
+          },
+          {
+            "title": "Paket Servis",
+            "desc": "Evinizde veya iş yerinizde, lezzetli sushi menülerimizi paket servisle sunmaktayız."
+          }
+        ]
+      },
+      "blog": [
+        {
+          "title": "Japon Mutfağının Sırları",
+          "date": "17 Ekim 2023",
+          "excerpt": "Japon mutfağını sırlarını ve sushi yapımının püf noktalarını bu yazımızda keşfedin.",
+          "cat": "Gastronomi"
+        }
+      ],
+      "pricing": {
+        "title": "Fiyatlandırma",
+        "items": [
+          {
+            "name": "Sushi Set Menü",
+            "price": "350 TL",
+            "features": [
+              "Çeşitli sushi türleri",
+              "Yanında soya sosu ve wasabi"
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title": "Galeri",
+        "description": "Menülerimiz ve mekanımızın görselleriyle Japonya'nın lezzetlerini görün."
+      },
+      "projects": {
+        "title": "Projelerimiz / Portfolyo",
+        "items": [
+          {
+            "title": "Tokyo Sushi Etkinliği",
+            "desc": "Japonya'dan uzman şeflerle düzenlenen, sushi ustalık sınıfı etkinliğimiz."
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Müşteri Yorumları",
+        "items": [
+          {
+            "name": "Ayşe Deniz",
+            "role": "Gastronomi Yazarı",
+            "text": "Otantik Sushi'nin lezzetleri beni Japonya sokaklarında hissettirdi. Muhteşem bir deneyimdi!"
+          }
+        ]
+      },
+      "stats": {
+        "items": [
+          {
+            "label": "Mutlu Müşteri",
+            "value": "1500+",
+            "icon": "Users"
+          }
+        ]
+      },
+      "faq": {
+        "title": "Sıkça Sorulan Sorular",
+        "items": [
+          {
+            "question": "Rezervasyon gerekli mi?",
+            "answer": "Evet, yoğun dönemlerde yer bulmak için rezervasyon yapmanızı öneririz."
+          },
+          {
+            "question": "Paket servis süresi nedir?",
+            "answer": "Paket servisimiz sipariş alımından itibaren ortalama 30-45 dakika arasında teslim edilmektedir."
+          }
+        ]
+      },
+      "team": {
+        "title": "Ekibimiz",
+        "items": [
+          {
+            "name": "Kenji Tanaka",
+            "role": "Baş Şef"
+          }
+        ]
+      },
+      "menu": {
+        "title": "Ürün ve Lezzet Menümüz",
+        "items": [
+          {
+            "category": "Başlangıçlar",
+            "items": [
+              {
+                "name": "Miso Çorbası",
+                "price": "80 TL",
+                "desc": "Geleneksel Japon miso çorbası"
+              }
+            ]
+          }
+        ]
+      },
+      "products": [
+        {
+          "name": "Otantik Sushi Seti",
+          "price": "450 TL",
+          "tag": "Popüler"
+        }
+      ],
+      "pages": {
+        "SayfaID": {
+          "title": "Özel Etkinlikler",
+          "content": "Özel günleriniz için en uygun Japon mutfağı catering hizmetleri."
+        }
+      }
+    },
+    "stats": {
+      "componentCount": 7,
+      "pageCount": 5
+    }
   }
 ]

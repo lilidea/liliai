@@ -8,7 +8,7 @@ const Header10 = () => {
     const { companyName, primaryColor } = siteData;
 
     return (
-        <header className="w-full bg-white border-b-2 border-black">
+        <header className="sticky top-0 z-[50] w-full bg-white border-b-2 border-black">
             <div className="container mx-auto px-6 h-32 flex items-center justify-between">
                 <div className="text-5xl font-black italic tracking-tighter select-none">
                     {companyName || "BOLD."}

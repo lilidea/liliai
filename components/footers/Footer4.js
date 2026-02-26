@@ -71,7 +71,7 @@ const Footer4 = () => {
                 </div>
 
                 <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-                    <p>© {new Date().getFullYear()} {companyName}. Tüm hakları saklıdır.</p>
+                    <p>© {new Date().getFullYear()} lilidea.com. Tüm hakları saklıdır.</p>
                     <div className="flex gap-8">
                         <a href="#" className="hover:text-white transition">Gizlilik Politikası</a>
                         <a href="#" className="hover:text-white transition">Kullanım Şartları</a>

@@ -11,7 +11,7 @@ async function testSuggest() {
     };
 
     try {
-        const response = await fetch('http://localhost:3001/api/suggest-pages', {
+        const response = await fetch('http://localhost:3003/api/suggest-pages', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)

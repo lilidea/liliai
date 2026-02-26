@@ -9,7 +9,7 @@ const Header3 = () => {
 
    /* Modern Floating Header with Glassmorphism */
    return (
-      <header className="absolute top-0 left-0 w-full z-50 p-4 md:p-8 font-sans">
+      <header className="sticky top-0 left-0 w-full z-[50] p-4 md:p-8 font-sans">
          <div className="mx-auto max-w-6xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-6 py-4 flex justify-between items-center shadow-2xl">
 
             {/* Logo Environment */}

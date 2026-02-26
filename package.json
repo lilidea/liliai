@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "mcp": "npx -y chrome-devtools-mcp"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -27,7 +30,9 @@
     "tsparticles-slim": "^2.12.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4",
+    "chrome-devtools-mcp": "^0.18.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.4",
     "tailwindcss": "^4"

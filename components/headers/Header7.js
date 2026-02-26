@@ -12,7 +12,7 @@ const Header7 = () => {
     const menuItems = pages || ['Kurumsal', 'Halkla İlişkiler', 'Sanat', 'Vizyon'];
 
     return (
-        <header className="absolute top-0 left-0 w-full z-50 py-10 px-8 flex justify-between items-center transition-all">
+        <header className="sticky top-0 left-0 w-full z-[50] py-10 px-8 flex justify-between items-center transition-all">
             <div className="flex items-center gap-12">
                 <div className="text-2xl font-black tracking-tighter uppercase whitespace-nowrap">
                     {companyName || "LILIAI"}

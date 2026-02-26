@@ -48,7 +48,7 @@ const Footer9 = () => {
                             {companyName || "LILIAI"}
                         </div>
                         <div className="text-white/20 text-[10px] font-black uppercase tracking-[0.5em]">
-                            DESIGNED BY LILIAI 2024
+                            © {new Date().getFullYear()} lilidea.com
                         </div>
                     </div>
                 </div>

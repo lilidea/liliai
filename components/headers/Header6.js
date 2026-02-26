@@ -22,7 +22,7 @@ const Header6 = () => {
 
     return (
         <header
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'py-3' : 'py-6'
+            className={`fixed top-0 left-0 w-full z-[50] transition-all duration-500 ${isScrolled ? 'py-3' : 'py-6'
                 }`}
         >
             <div className="container mx-auto px-6">

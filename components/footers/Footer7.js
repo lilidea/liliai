@@ -31,7 +31,7 @@ const Footer7 = () => {
                         </div>
                     </div>
                     <div className="text-right text-neutral-500 text-sm">
-                        İstanbul, Türkiye <br /> Modern Tasarım Atölyesi
+                        © {new Date().getFullYear()} lilidea.com <br /> Tüm hakları saklıdır.
                     </div>
                 </div>
 

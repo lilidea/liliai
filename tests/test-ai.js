@@ -1,0 +1,1 @@
+﻿console.log('Testing AI...'); fetch('http://localhost:3003/api/generate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: 'individual', companyName: 'Test Corp', sector: 'Software', aboutText: 'Testing AI', pages: ['Home'] }) }).then(r => r.json()).then(console.log).catch(console.error);

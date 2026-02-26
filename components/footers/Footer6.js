@@ -55,7 +55,7 @@ const Footer6 = () => {
                     </div>
                 </div>
                 <div className="mt-20 pt-8 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400 font-medium">
-                    <p>© 2024 {companyName}. Tüm hakları saklıdır.</p>
+                    <p>© {new Date().getFullYear()} lilidea.com. Tüm hakları saklıdır.</p>
                     <div className="flex gap-8">
                         <a href="#" className="hover:text-black transition">Destek</a>
                         <a href="#" className="hover:text-black transition">SSS</a>

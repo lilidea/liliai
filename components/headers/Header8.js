@@ -8,7 +8,7 @@ const Header8 = () => {
     const { companyName, primaryColor } = siteData;
 
     return (
-        <header className="w-full bg-white font-sans border-b border-gray-100">
+        <header className="sticky top-0 z-[50] w-full bg-white font-sans border-b border-gray-100">
             {/* Top Info Bar */}
             <div className="bg-neutral-900 text-white py-2 text-[10px] font-black uppercase tracking-[0.2em] text-center">
                 YENİ SEZON ÜRÜNLERİNDE %20 İNDİRİM FIRSATINI KAÇIRMAYIN

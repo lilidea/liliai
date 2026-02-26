@@ -48,13 +48,10 @@ const About7 = () => {
 
                     <div className="lg:w-1/2">
                         <div className="w-20 h-2 bg-black mb-10" style={{ backgroundColor: primaryColor }}></div>
-                        <h2 className="text-5xl md:text-7xl font-black text-gray-900 leading-[0.9] tracking-tighter mb-10">Biz Kimiz?</h2>
+                        <h2 className="text-5xl md:text-7xl font-black text-gray-900 leading-[0.9] tracking-tighter mb-10">{siteData.generatedContent?.about?.title || "Biz Kimiz?"}</h2>
                         <div className="space-y-6 text-xl text-gray-600 leading-relaxed font-medium">
                             <p>
-                                {aboutText || `${companyName}, her projenin merkezine insanı ve teknolojiyi koyan bir tasarım atölyesidir. Sizin için sadece iş değil, deneyim üretiyoruz.`}
-                            </p>
-                            <p className="border-l-4 border-gray-100 pl-6 italic">
-                                Sınırları zorlamayı seviyoruz. Geleneksel olanı modern bakış açısıyla yeniden yorumlayarak geleceği bugüne taşıyoruz.
+                                {siteData.generatedContent?.about?.text || aboutText || `${companyName}, alanında öncü, yenilikçi ve müşteri odaklı bir yapıya sahiptir. Sizin için sadece iş değil, deneyim üretiyoruz.`}
                             </p>
                         </div>
                     </div>

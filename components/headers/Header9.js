@@ -8,7 +8,7 @@ const Header9 = () => {
     const { companyName, primaryColor, secondaryColor } = siteData;
 
     return (
-        <header className="p-10 flex flex-col items-center gap-12 bg-[#F6F6F6]">
+        <header className="sticky top-0 z-[50] p-10 flex flex-col items-center gap-12 bg-[#F6F6F6]">
             {/* Unique Vertical Stacked Logo */}
             <div className="flex flex-col items-center group cursor-pointer">
                 {companyName?.split('').slice(0, 3).map((char, i) => (

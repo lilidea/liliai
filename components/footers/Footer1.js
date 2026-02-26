@@ -16,11 +16,10 @@ const Footer1 = () => {
             {companyName || "Firma Adı"}
           </h3>
           <p className="text-gray-400 text-sm mt-2">
-            © {year} Tüm hakları saklıdır. <br className="md:hidden"/>
+            © {year} lilidea.com. Tüm hakları saklıdır. <br className="md:hidden" />
             <span className="hidden md:inline"> | </span>
-            Powered by 
-            <a href="https://lilidea.com" target="_blank" className="text-white hover:text-blue-400 transition ml-1 inline-flex items-center gap-1">
-              <img src="/lilidea.svg" alt="Lilidea Logo" className="h-4 w-auto"/> lilidea.com
+            <a href="https://lilidea.com" target="_blank" className="text-white hover:text-blue-400 transition inline-flex items-center gap-1">
+              lilidea.com
             </a>
           </p>
         </div>

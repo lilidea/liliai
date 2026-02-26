@@ -66,7 +66,7 @@ const Footer8 = () => {
                 </div>
 
                 <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold uppercase tracking-widest opacity-40">
-                    <div>© 2024 {companyName}. All Rights Reserved.</div>
+                    <div>© {new Date().getFullYear()} lilidea.com. Tüm hakları saklıdır.</div>
                     <div className="flex gap-6">
                         <a href="#">Privacy</a>
                         <a href="#">Terms</a>

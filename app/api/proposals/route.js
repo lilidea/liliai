@@ -14,8 +14,8 @@ export async function POST(request) {
         const { formData, siteData } = body;
 
         // Validation
-        if (!formData.name || !formData.email || !formData.company) {
-            return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+        if (!formData.name || !formData.email || !formData.company || !formData.phone) {
+            return NextResponse.json({ error: 'Missing required fields (name, email, company, phone)' }, { status: 400 });
         }
 
         const proposal = await prisma.proposal.create({

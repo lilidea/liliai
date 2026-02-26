@@ -5,7 +5,8 @@ import { useSite } from '@/app/context/SiteContext';
 
 export default function About2() {
    const { siteData } = useSite();
-   const { primaryColor, companyName, aboutText } = siteData;
+   const { primaryColor, companyName, aboutText, generatedContent } = siteData;
+   const content = generatedContent?.about || {};
 
    return (
       <section className="py-24 bg-neutral-900 text-white overflow-hidden relative" id="about">
@@ -20,14 +21,11 @@ export default function About2() {
                      Hakkımızda
                   </div>
                   <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-tight">
-                     {companyName} <span style={{ color: primaryColor }}>Hikayesi.</span>
+                     {content.title || companyName} <span style={{ color: primaryColor }}>{content.title ? '' : 'Hikayesi.'}</span>
                   </h2>
                   <div className="space-y-6 text-neutral-400 text-lg leading-relaxed">
                      <p>
-                        {aboutText || `${companyName}, sektördeki yenilikçi yaklaşımıyla tanınan öncü bir kuruluştur. Müşterilerimize en iyi hizmeti sunmak için tutkuyla çalışıyoruz.`}
-                     </p>
-                     <p>
-                        Vizyonumuz, teknolojiyi ve tasarımı bir araya getirerek unutulmaz dijital deneyimler yaratmaktır. Her projede mükemmelliği hedefleriz.
+                        {content.text || aboutText || `${companyName}, sektördeki yenilikçi yaklaşımıyla tanınan öncü bir kuruluştur. Müşterilerimize en iyi hizmeti sunmak için tutkuyla çalışıyoruz.`}
                      </p>
                   </div>
                   <button
@@ -41,7 +39,6 @@ export default function About2() {
                <div className="flex-1 w-full relative">
                   <div className="relative aspect-square rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl">
                      <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent z-10"></div>
-                     {/* Fallback Image or dynamic if we had it */}
                      <img
                         src={`https://placehold.co/800x800/171717/FFF?text=${companyName.charAt(0)}`}
                         alt="About"

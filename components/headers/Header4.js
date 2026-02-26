@@ -8,7 +8,7 @@ const Header4 = () => {
   const { companyName, primaryColor, secondaryColor, accentColor, pages } = siteData;
 
   return (
-    <header className="w-full font-sans">
+    <header className="sticky top-0 z-[50] w-full font-sans">
       {/* Top Bar */}
       <div className="bg-neutral-900 text-white text-xs py-2 px-4 md:px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2 md:gap-0">

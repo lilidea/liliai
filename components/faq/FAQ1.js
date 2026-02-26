@@ -8,7 +8,8 @@ export default function FAQ1() {
   const { primaryColor } = siteData;
   const [openIndex, setOpenIndex] = useState(0);
 
-  const faqs = [
+  const content = siteData.generatedContent?.faq || {};
+  const faqs = content.items || [
     {
       question: "Hizmetleriniz garantili mi?",
       answer: "Evet, sunduğumuz tüm hizmetler müşteri memnuniyeti garantisi kapsamındadır. Herhangi bir sorunda 7/24 destek ekibimiz yanınızda."
@@ -16,14 +17,6 @@ export default function FAQ1() {
     {
       question: "Proje süreci nasıl işliyor?",
       answer: "İlk olarak ihtiyaçlarınızı analiz ediyoruz, ardından size özel bir plan sunuyoruz. Onayınızla birlikte tasarım ve geliştirme aşamasına geçiyoruz."
-    },
-    {
-      question: "Ödeme seçenekleri neler?",
-      answer: "Kredi kartı, havale/EFT ve kurumsal müşterilerimiz için vadeli ödeme seçenekleri sunmaktayız."
-    },
-    {
-      question: "Destek hizmetiniz var mı?",
-      answer: "Projeleriniz teslim edildikten sonra 1 yıl boyunca ücretsiz teknik destek ve bakım hizmeti sağlıyoruz."
     }
   ];
 
@@ -37,7 +30,7 @@ export default function FAQ1() {
 
         <div className="space-y-4">
           {faqs.map((faq, idx) => (
-            <div 
+            <div
               key={idx}
               className={`border border-neutral-200 rounded-2xl overflow-hidden transition-all duration-300 ${openIndex === idx ? 'bg-neutral-50 shadow-sm' : 'bg-white'}`}
             >
@@ -48,15 +41,15 @@ export default function FAQ1() {
                 <span className={`font-bold text-lg ${openIndex === idx ? 'text-neutral-900' : 'text-neutral-600'}`}>
                   {faq.question}
                 </span>
-                <span 
+                <span
                   className={`p-2 rounded-full transition-colors ${openIndex === idx ? 'text-white' : 'text-neutral-400 bg-neutral-100'}`}
                   style={openIndex === idx ? { backgroundColor: primaryColor } : {}}
                 >
                   {openIndex === idx ? <Minus size={16} /> : <Plus size={16} />}
                 </span>
               </button>
-              
-              <div 
+
+              <div
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === idx ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}
               >
                 <div className="p-6 pt-0 text-neutral-500 leading-relaxed">

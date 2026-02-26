@@ -1,0 +1,754 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - region "Notifications alt+T"
+  - banner [ref=e2]:
+    - navigation [ref=e4]:
+      - link "Zübeyde Dalbudak" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "Zübeyde Dalbudak" [ref=e6]
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "Anasayfa" [ref=e9] [cursor=pointer]:
+            - /url: /
+            - text: Anasayfa
+        - listitem [ref=e11]:
+          - link "Hakkımızda" [ref=e12] [cursor=pointer]:
+            - /url: /about
+        - listitem [ref=e13]:
+          - link "Hizmetler" [ref=e14] [cursor=pointer]:
+            - /url: /services
+        - listitem [ref=e15]:
+          - link "Galeri" [ref=e16] [cursor=pointer]:
+            - /url: /gallery
+        - listitem [ref=e17]:
+          - link "Blog" [ref=e18] [cursor=pointer]:
+            - /url: /blog
+        - listitem [ref=e19]:
+          - link "İletişim" [ref=e20] [cursor=pointer]:
+            - /url: /contact
+      - link "Giriş Yap" [ref=e22] [cursor=pointer]:
+        - /url: /login
+  - generic:
+    - generic:
+      - img "Logo"
+      - button:
+        - img
+    - generic:
+      - link "Anasayfa":
+        - /url: /
+        - generic: Anasayfa
+        - img
+      - link "Hakkımızda":
+        - /url: /about
+        - generic: Hakkımızda
+        - img
+      - link "Hizmetler":
+        - /url: /services
+        - generic: Hizmetler
+        - img
+      - link "Galeri":
+        - /url: /gallery
+        - generic: Galeri
+        - img
+      - link "Blog":
+        - /url: /blog
+        - generic: Blog
+        - img
+      - link "İletişim":
+        - /url: /contact
+        - generic: İletişim
+        - img
+    - generic:
+      - link "Giriş Yap / Kayıt Ol":
+        - /url: /login
+  - generic [ref=e23]:
+    - generic [ref=e24]:
+      - generic [ref=e34]:
+        - generic [ref=e35]: Yeni Stil
+        - heading "Canlı Renkler" [level=1] [ref=e36]
+        - paragraph [ref=e37]: Parlak, sağlıklı ve mükemmel görünen saçlara sahip olmayı mı hayal ediyorsunuz?
+        - link "Randevu Al" [ref=e39] [cursor=pointer]:
+          - /url: /appointment
+          - text: Randevu Al
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - generic [ref=e48]: Hoşgeldiniz
+          - heading "Salonumuz En Popüler, Temiz ve Önerilen Saç Tasarım Merkezidir" [level=2] [ref=e50]
+          - paragraph [ref=e51]: Hoşgeldiniz Salonumuz En Popüler, Temiz ve Önerilen Saç Tasarım Merkezidir Sağlıklı, dengeli ve güzel yaşamı destekleme tutkumuz var. Masaj, Cilt Bakımı ve daha fazlasını sunarak koruyucu bakım, stres yönetimi ve kişisel gelişime önem veriyoruz. Hizmetlerimizi Keşfedin
+          - generic [ref=e52]:
+            - link "Hizmetlerimizi Keşfedin" [ref=e53] [cursor=pointer]:
+              - /url: /services
+            - img "İmza" [ref=e55]
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - img "Salon Görünümü" [ref=e59]
+            - img "Detay" [ref=e62]
+            - img "Hizmet" [ref=e64]
+          - generic: ZÜBEYDE
+      - generic [ref=e67]:
+        - generic [ref=e69]:
+          - img "Video Önizleme" [ref=e70]
+          - link [ref=e72] [cursor=pointer]:
+            - /url: https://player.vimeo.com/video/34741214
+            - img [ref=e73]
+        - generic [ref=e78]:
+          - generic [ref=e79]:
+            - generic [ref=e81]: Sunumumuz
+            - heading "Güzelliğin Sanatla Buluştuğu Adres" [level=2] [ref=e83]
+            - paragraph [ref=e84]: Profesyonel stilistlerimiz imajınızı nasıl vurgulayacağınızı anlatıyor. Size en yüksek kalitede hizmet sunmayı garanti ediyoruz.
+          - generic [ref=e85]:
+            - generic [ref=e86]:
+              - generic [ref=e87]: "1500"
+              - generic [ref=e88]: Mutlu Müşteri
+            - generic [ref=e89]:
+              - generic [ref=e90]: "25"
+              - generic [ref=e91]: Profesyonel Ekip
+            - generic [ref=e92]:
+              - generic [ref=e93]: "10"
+              - generic [ref=e94]: Yıllık Deneyim
+            - generic [ref=e95]:
+              - generic [ref=e96]: "5000"
+              - generic [ref=e97]: Tamamlanan Hizmet
+      - generic [ref=e99]:
+        - generic [ref=e100]:
+          - generic [ref=e103]: En Popüler Hizmetlerimiz
+          - heading "Hizmetlerimiz" [level=2] [ref=e105]
+        - generic [ref=e106]:
+          - generic [ref=e108]:
+            - generic [ref=e110]:
+              - img "Bölgesel Ağda İşlemi" [ref=e112]
+              - generic [ref=e113]:
+                - generic [ref=e114]: "01"
+                - heading "Bölgesel Ağda İşlemi" [level=3] [ref=e115]
+                - link "Detayları Gör" [ref=e116] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e118]:
+              - img "Komple Ağda İşlemi" [ref=e120]
+              - generic [ref=e121]:
+                - generic [ref=e122]: "02"
+                - heading "Komple Ağda İşlemi" [level=3] [ref=e123]
+                - link "Detayları Gör" [ref=e124] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e126]:
+              - img "Keratin Botoks Bakımı" [ref=e128]
+              - generic [ref=e129]:
+                - generic [ref=e130]: "03"
+                - heading "Keratin Botoks Bakımı" [level=3] [ref=e131]
+                - link "Detayları Gör" [ref=e132] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e134]:
+              - img "Düz Fön Çekimi" [ref=e136]
+              - generic [ref=e137]:
+                - generic [ref=e138]: "04"
+                - heading "Düz Fön Çekimi" [level=3] [ref=e139]
+                - link "Detayları Gör" [ref=e140] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e142]:
+              - img "Kırık Fön Çekimi" [ref=e144]
+              - generic [ref=e145]:
+                - generic [ref=e146]: "05"
+                - heading "Kırık Fön Çekimi" [level=3] [ref=e147]
+                - link "Detayları Gör" [ref=e148] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e150]:
+              - img "Altın Oran Kaş Şekillendirme" [ref=e152]
+              - generic [ref=e153]:
+                - generic [ref=e154]: "06"
+                - heading "Altın Oran Kaş Şekillendirme" [level=3] [ref=e155]
+                - link "Detayları Gör" [ref=e156] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e158]:
+              - img "Arabia Lush Kirpik İşlemi" [ref=e160]
+              - generic [ref=e161]:
+                - generic [ref=e162]: "07"
+                - heading "Arabia Lush Kirpik İşlemi" [level=3] [ref=e163]
+                - link "Detayları Gör" [ref=e164] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e166]:
+              - img "Profesyonel Makyaj" [ref=e168]
+              - generic [ref=e169]:
+                - generic [ref=e170]: "08"
+                - heading "Profesyonel Makyaj" [level=3] [ref=e171]
+                - link "Detayları Gör" [ref=e172] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e174]:
+              - img "Standart Gelin Paketi" [ref=e176]
+              - generic [ref=e177]:
+                - generic [ref=e178]: "09"
+                - heading "Standart Gelin Paketi" [level=3] [ref=e179]
+                - link "Detayları Gör" [ref=e180] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e182]:
+              - img "Standart Nişan Paketi" [ref=e184]
+              - generic [ref=e185]:
+                - generic [ref=e186]: "10"
+                - heading "Standart Nişan Paketi" [level=3] [ref=e187]
+                - link "Detayları Gör" [ref=e188] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e190]:
+              - img "Dip Boya İşlemi" [ref=e192]
+              - generic [ref=e193]:
+                - generic [ref=e194]: "11"
+                - heading "Dip Boya İşlemi" [level=3] [ref=e195]
+                - link "Detayları Gör" [ref=e196] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e198]:
+              - img "Komple Açma & Boyama" [ref=e200]
+              - generic [ref=e201]:
+                - generic [ref=e202]: "12"
+                - heading "Komple Açma & Boyama" [level=3] [ref=e203]
+                - link "Detayları Gör" [ref=e204] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e206]:
+              - img "Komple Boyama İşlemi" [ref=e208]
+              - generic [ref=e209]:
+                - generic [ref=e210]: "13"
+                - heading "Komple Boyama İşlemi" [level=3] [ref=e211]
+                - link "Detayları Gör" [ref=e212] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e214]:
+              - img "Ombre İşlemi" [ref=e216]
+              - generic [ref=e217]:
+                - generic [ref=e218]: "14"
+                - heading "Ombre İşlemi" [level=3] [ref=e219]
+                - link "Detayları Gör" [ref=e220] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e222]:
+              - img "Röfle & Gölge İşlemi" [ref=e224]
+              - generic [ref=e225]:
+                - generic [ref=e226]: "15"
+                - heading "Röfle & Gölge İşlemi" [level=3] [ref=e227]
+                - link "Detayları Gör" [ref=e228] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e230]:
+              - img "Vizajizm Saç Kesimi" [ref=e232]
+              - generic [ref=e233]:
+                - generic [ref=e234]: "16"
+                - heading "Vizajizm Saç Kesimi" [level=3] [ref=e235]
+                - link "Detayları Gör" [ref=e236] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e238]:
+              - img "Çivi Maşa İşlemi" [ref=e240]
+              - generic [ref=e241]:
+                - generic [ref=e242]: "17"
+                - heading "Çivi Maşa İşlemi" [level=3] [ref=e243]
+                - link "Detayları Gör" [ref=e244] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e246]:
+              - img "Maşa İşlemi" [ref=e248]
+              - generic [ref=e249]:
+                - generic [ref=e250]: "18"
+                - heading "Maşa İşlemi" [level=3] [ref=e251]
+                - link "Detayları Gör" [ref=e252] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e254]:
+              - img "Örgü Çeşitleri" [ref=e256]
+              - generic [ref=e257]:
+                - generic [ref=e258]: "19"
+                - heading "Örgü Çeşitleri" [level=3] [ref=e259]
+                - link "Detayları Gör" [ref=e260] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e262]:
+              - img "Topuz İşlemi" [ref=e264]
+              - generic [ref=e265]:
+                - generic [ref=e266]: "20"
+                - heading "Topuz İşlemi" [level=3] [ref=e267]
+                - link "Detayları Gör" [ref=e268] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e270]:
+              - img "Manikür İşlemi" [ref=e272]
+              - generic [ref=e273]:
+                - generic [ref=e274]: "21"
+                - heading "Manikür İşlemi" [level=3] [ref=e275]
+                - link "Detayları Gör" [ref=e276] [cursor=pointer]:
+                  - /url: /services
+            - generic [ref=e278]:
+              - img "Pedikür İşlemi" [ref=e280]
+              - generic [ref=e281]:
+                - generic [ref=e282]: "22"
+                - heading "Pedikür İşlemi" [level=3] [ref=e283]
+                - link "Detayları Gör" [ref=e284] [cursor=pointer]:
+                  - /url: /services
+          - button [ref=e308]:
+            - img [ref=e309]
+          - button [ref=e311]:
+            - img [ref=e312]
+      - generic [ref=e315]:
+        - generic [ref=e316]:
+          - generic [ref=e319]: Kesim ve Şekillendirme
+          - heading "Fiyat Listemiz" [level=2] [ref=e321]
+        - generic [ref=e323]:
+          - list [ref=e325]:
+            - listitem [ref=e326]:
+              - generic [ref=e327]:
+                - generic [ref=e328]:
+                  - heading "Bölgesel Ağda İşlemi" [level=3] [ref=e329]
+                  - paragraph [ref=e330]: Profesyonel hizmet.
+                - generic [ref=e331]:
+                  - generic [ref=e332]: "550.00"
+                  - generic [ref=e333]: TL
+            - listitem [ref=e334]:
+              - generic [ref=e335]:
+                - generic [ref=e336]:
+                  - heading "Komple Ağda İşlemi" [level=3] [ref=e337]
+                  - paragraph [ref=e338]: Tüm bacak, özel bölge, kol altı.
+                - generic [ref=e339]:
+                  - generic [ref=e340]: "1200.00"
+                  - generic [ref=e341]: TL
+            - listitem [ref=e342]:
+              - generic [ref=e343]:
+                - generic [ref=e344]:
+                  - heading "Keratin Botoks Bakımı" [level=3] [ref=e345]
+                  - paragraph [ref=e346]: Yıpranmış ve mat saçlara yoğun keratin takviyesi.
+                - generic [ref=e347]:
+                  - generic [ref=e348]: "3500.00"
+                  - generic [ref=e349]: TL
+            - listitem [ref=e350]:
+              - generic [ref=e351]:
+                - generic [ref=e352]:
+                  - heading "Düz Fön Çekimi" [level=3] [ref=e353]
+                  - paragraph [ref=e354]: Profesyonel hizmet.
+                - generic [ref=e355]:
+                  - generic [ref=e356]: "400.00"
+                  - generic [ref=e357]: TL
+            - listitem [ref=e358]:
+              - generic [ref=e359]:
+                - generic [ref=e360]:
+                  - heading "Kırık Fön Çekimi" [level=3] [ref=e361]
+                  - paragraph [ref=e362]: Profesyonel hizmet.
+                - generic [ref=e363]:
+                  - generic [ref=e364]: "500.00"
+                  - generic [ref=e365]: TL
+            - listitem [ref=e366]:
+              - generic [ref=e367]:
+                - generic [ref=e368]:
+                  - heading "Altın Oran Kaş Şekillendirme" [level=3] [ref=e369]
+                  - paragraph [ref=e370]: Profesyonel hizmet.
+                - generic [ref=e371]:
+                  - generic [ref=e372]: "400.00"
+                  - generic [ref=e373]: TL
+            - listitem [ref=e374]:
+              - generic [ref=e375]:
+                - generic [ref=e376]:
+                  - heading "Arabia Lush Kirpik İşlemi" [level=3] [ref=e377]
+                  - paragraph [ref=e378]: Zarar vermeden 10 dakikada uygulanır, 10-30 gün kalıcılık.
+                - generic [ref=e379]:
+                  - generic [ref=e380]: "1200.00"
+                  - generic [ref=e381]: TL
+            - listitem [ref=e382]:
+              - generic [ref=e383]:
+                - generic [ref=e384]:
+                  - heading "Profesyonel Makyaj" [level=3] [ref=e385]
+                  - paragraph [ref=e386]: Kirpik dahil.
+                - generic [ref=e387]:
+                  - generic [ref=e388]: "2000.00"
+                  - generic [ref=e389]: TL
+            - listitem [ref=e390]:
+              - generic [ref=e391]:
+                - generic [ref=e392]:
+                  - heading "Standart Gelin Paketi" [level=3] [ref=e393]
+                  - paragraph [ref=e394]: Profesyonel saç, makyaj, altın oran kaş şekillendirme.
+                - generic [ref=e395]:
+                  - generic [ref=e396]: "15000.00"
+                  - generic [ref=e397]: TL
+            - listitem [ref=e398]:
+              - generic [ref=e399]:
+                - generic [ref=e400]:
+                  - heading "Standart Nişan Paketi" [level=3] [ref=e401]
+                  - paragraph [ref=e402]: Profesyonel saç, makyaj, altın oran kaş şekillendirme.
+                - generic [ref=e403]:
+                  - generic [ref=e404]: "10000.00"
+                  - generic [ref=e405]: TL
+            - listitem [ref=e406]:
+              - generic [ref=e407]:
+                - generic [ref=e408]:
+                  - heading "Dip Boya İşlemi" [level=3] [ref=e409]
+                  - paragraph [ref=e410]: Saç yoğunluğuna göre fiyat değişmektedir.
+                - generic [ref=e411]:
+                  - generic [ref=e412]: "1350.00"
+                  - generic [ref=e413]: TL
+          - list [ref=e415]:
+            - listitem [ref=e416]:
+              - generic [ref=e417]:
+                - generic [ref=e418]:
+                  - heading "Komple Açma & Boyama" [level=3] [ref=e419]
+                  - paragraph [ref=e420]: Saç uzunluğu ve yoğunluğuna göre fiyat değişmektedir.
+                - generic [ref=e421]:
+                  - generic [ref=e422]: "8000.00"
+                  - generic [ref=e423]: TL
+            - listitem [ref=e424]:
+              - generic [ref=e425]:
+                - generic [ref=e426]:
+                  - heading "Komple Boyama İşlemi" [level=3] [ref=e427]
+                  - paragraph [ref=e428]: Saç uzunluğu ve yoğunluğuna göre fiyat değişmektedir.
+                - generic [ref=e429]:
+                  - generic [ref=e430]: "3500.00"
+                  - generic [ref=e431]: TL
+            - listitem [ref=e432]:
+              - generic [ref=e433]:
+                - generic [ref=e434]:
+                  - heading "Ombre İşlemi" [level=3] [ref=e435]
+                  - paragraph [ref=e436]: Saç uzunluğu ve yoğunluğuna göre fiyat değişmektedir.
+                - generic [ref=e437]:
+                  - generic [ref=e438]: "8000.00"
+                  - generic [ref=e439]: TL
+            - listitem [ref=e440]:
+              - generic [ref=e441]:
+                - generic [ref=e442]:
+                  - heading "Röfle & Gölge İşlemi" [level=3] [ref=e443]
+                  - paragraph [ref=e444]: Saç uzunluğu ve yoğunluğuna göre fiyat değişmektedir.
+                - generic [ref=e445]:
+                  - generic [ref=e446]: "8000.00"
+                  - generic [ref=e447]: TL
+            - listitem [ref=e448]:
+              - generic [ref=e449]:
+                - generic [ref=e450]:
+                  - heading "Vizajizm Saç Kesimi" [level=3] [ref=e451]
+                  - paragraph [ref=e452]: Yüz hatları, baş formu ve kişisel stil analiz edilerek tasarlanan özel kesim tekniği.
+                - generic [ref=e453]:
+                  - generic [ref=e454]: "1200.00"
+                  - generic [ref=e455]: TL
+            - listitem [ref=e456]:
+              - generic [ref=e457]:
+                - generic [ref=e458]:
+                  - heading "Çivi Maşa İşlemi" [level=3] [ref=e459]
+                  - paragraph [ref=e460]: Profesyonel hizmet.
+                - generic [ref=e461]:
+                  - generic [ref=e462]: "1750.00"
+                  - generic [ref=e463]: TL
+            - listitem [ref=e464]:
+              - generic [ref=e465]:
+                - generic [ref=e466]:
+                  - heading "Maşa İşlemi" [level=3] [ref=e467]
+                  - paragraph [ref=e468]: Profesyonel hizmet.
+                - generic [ref=e469]:
+                  - generic [ref=e470]: "1250.00"
+                  - generic [ref=e471]: TL
+            - listitem [ref=e472]:
+              - generic [ref=e473]:
+                - generic [ref=e474]:
+                  - heading "Örgü Çeşitleri" [level=3] [ref=e475]
+                  - paragraph [ref=e476]: İstenilen örgü modeline göre fiyat değişmektedir.
+                - generic [ref=e477]:
+                  - generic [ref=e478]: "350.00"
+                  - generic [ref=e479]: TL
+            - listitem [ref=e480]:
+              - generic [ref=e481]:
+                - generic [ref=e482]:
+                  - heading "Topuz İşlemi" [level=3] [ref=e483]
+                  - paragraph [ref=e484]: Profesyonel hizmet.
+                - generic [ref=e485]:
+                  - generic [ref=e486]: "1500.00"
+                  - generic [ref=e487]: TL
+            - listitem [ref=e488]:
+              - generic [ref=e489]:
+                - generic [ref=e490]:
+                  - heading "Manikür İşlemi" [level=3] [ref=e491]
+                  - paragraph [ref=e492]: Profesyonel hizmet.
+                - generic [ref=e493]:
+                  - generic [ref=e494]: "900.00"
+                  - generic [ref=e495]: TL
+            - listitem [ref=e496]:
+              - generic [ref=e497]:
+                - generic [ref=e498]:
+                  - heading "Pedikür İşlemi" [level=3] [ref=e499]
+                  - paragraph [ref=e500]: Profesyonel hizmet.
+                - generic [ref=e501]:
+                  - generic [ref=e502]: "1250.00"
+                  - generic [ref=e503]: TL
+      - generic [ref=e507]:
+        - generic [ref=e508]:
+          - generic [ref=e509]:
+            - generic [ref=e512]: Özel Fırsat!
+            - heading "Hemen Randevu Al & %25 İndirim Kazan!" [level=2] [ref=e513]
+            - paragraph [ref=e514]: Parlayan ve sağlıklı bir görünüm bizim tutkumuzdur. Sınırlı süreli bu fırsatı kaçırmayın.
+            - link "Şimdi Yerini Ayırt" [ref=e516] [cursor=pointer]:
+              - /url: /appointment
+              - text: Şimdi Yerini Ayırt
+              - img [ref=e517]
+          - generic: İndirim
+        - img "Teklif Görseli" [ref=e520]
+      - generic [ref=e523]:
+        - generic [ref=e524]:
+          - generic [ref=e527]: Profesyonel Ekibimiz
+          - heading "Uzmanlarımızla Tanışın" [level=2] [ref=e529]
+        - generic [ref=e532]:
+          - generic [ref=e533]:
+            - img "Zübeyde Dalbudak" [ref=e534]
+            - link "Randevu Al" [ref=e537] [cursor=pointer]:
+              - /url: /appointment
+          - generic [ref=e538]:
+            - heading "Zübeyde Dalbudak" [level=3] [ref=e539]
+            - paragraph [ref=e540]: Uzman
+      - generic [ref=e542]:
+        - generic [ref=e543]:
+          - generic [ref=e544]:
+            - generic [ref=e546]: Bize Ulaşın
+            - heading "Güzellik Yolculuğuna Hazır Mısınız?" [level=2] [ref=e548]:
+              - text: Güzellik Yolculuğuna
+              - text: Hazır Mısınız?
+            - paragraph [ref=e549]: Sorularınız için bizimle iletişime geçin veya randevunuzu online olarak kolayca oluşturun.
+          - generic [ref=e550]:
+            - generic [ref=e551]:
+              - img [ref=e553]
+              - heading "Adres" [level=3] [ref=e556]
+              - paragraph [ref=e557]: Yahyakaptan Seymen Caddesi, Kahve Sk. No:7, 41100 İzmit/Kocaeli
+            - generic [ref=e558]:
+              - img [ref=e560]
+              - heading "İletişim" [level=3] [ref=e562]
+              - paragraph [ref=e563]:
+                - text: +90 542 686 64 94
+                - text: info@zubeydedalbudak.com
+        - generic [ref=e565]:
+          - iframe [ref=e566]
+          - link "Yol Tarifi Al" [ref=e567] [cursor=pointer]:
+            - /url: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.3757700327174!2d29.975206540870484!3d40.7757523338288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cb51fdce98f577%3A0x2efdaa394a67fe84!2sZ%C3%BCbeyde%20Dalbudak%20peak%20Hair%20Design%20Salon!5e0!3m2!1str!2str!4v1771837436841!5m2!1str!2str
+            - img [ref=e569]
+            - generic [ref=e571]: Yol Tarifi Al
+      - generic [ref=e572]:
+        - generic: “
+        - generic [ref=e573]:
+          - generic [ref=e576]: Müşteri Yorumları
+          - heading "Danışanlarımız Ne Diyor?" [level=2] [ref=e578]
+        - generic [ref=e581]:
+          - generic [ref=e583]:
+            - img "Google" [ref=e585]
+            - generic [ref=e590]:
+              - generic [ref=e591]: A
+              - generic [ref=e592]:
+                - heading "Ayşe K." [level=3] [ref=e593]
+                - paragraph [ref=e594]: 2 hafta önce
+            - generic [ref=e595]:
+              - img [ref=e596]
+              - img [ref=e598]
+              - img [ref=e600]
+              - img [ref=e602]
+              - img [ref=e604]
+            - paragraph [ref=e606]: “Zübeyde Hanım ve ekibi harika! Saç kesimim tam istediğim gibi oldu. Kesinlikle tavsiye ediyorum, çok profesyoneller.”
+          - generic [ref=e608]:
+            - img "Google" [ref=e610]
+            - generic [ref=e615]:
+              - generic [ref=e616]: F
+              - generic [ref=e617]:
+                - heading "Fatma Y." [level=3] [ref=e618]
+                - paragraph [ref=e619]: 1 ay önce
+            - generic [ref=e620]:
+              - img [ref=e621]
+              - img [ref=e623]
+              - img [ref=e625]
+              - img [ref=e627]
+              - img [ref=e629]
+            - paragraph [ref=e631]: “Güler yüzlü hizmet ve tertemiz bir mekan. Kaynak işleminden çok memnun kaldım, saçlarım doğal ve gür duruyor.”
+          - generic [ref=e633]:
+            - img "Google" [ref=e635]
+            - generic [ref=e640]:
+              - generic [ref=e641]: E
+              - generic [ref=e642]:
+                - heading "Elif B." [level=3] [ref=e643]
+                - paragraph [ref=e644]: 3 hafta önce
+            - generic [ref=e645]:
+              - img [ref=e646]
+              - img [ref=e648]
+              - img [ref=e650]
+              - img [ref=e652]
+              - img [ref=e654]
+            - paragraph [ref=e656]: “Gelinlik saçımı burada yaptırdım. Bütün gün bozulmadı ve herkes çok beğendi. Emeğinize sağlık!”
+          - generic [ref=e658]:
+            - img "Google" [ref=e660]
+            - generic [ref=e665]:
+              - generic [ref=e666]: M
+              - generic [ref=e667]:
+                - heading "Merve A." [level=3] [ref=e668]
+                - paragraph [ref=e669]: 2 ay önce
+            - generic [ref=e670]:
+              - img [ref=e671]
+              - img [ref=e673]
+              - img [ref=e675]
+              - img [ref=e677]
+              - img [ref=e679]
+            - paragraph [ref=e681]: “Röfle işlemi için gittim, renk tam istediğim ton tuttu. Saçım hiç yıpranmadı. Teşekkürler Zübeyde Hanım.”
+          - generic [ref=e683]:
+            - img "Google" [ref=e685]
+            - generic [ref=e690]:
+              - generic [ref=e691]: Z
+              - generic [ref=e692]:
+                - heading "Zeynep C." [level=3] [ref=e693]
+                - paragraph [ref=e694]: 1 hafta önce
+            - generic [ref=e695]:
+              - img [ref=e696]
+              - img [ref=e698]
+              - img [ref=e700]
+              - img [ref=e702]
+              - img [ref=e704]
+            - paragraph [ref=e706]: “Cilt bakımı harikaydı. Yüzümdeki tazeliği hemen hissettim. Kesinlikle tekrar geleceğim.”
+      - generic [ref=e711]:
+        - generic [ref=e712]:
+          - generic [ref=e715]: Blog Yazılarımız
+          - heading "Güzellik Sırları" [level=2] [ref=e717]
+        - generic [ref=e719]:
+          - generic [ref=e720]:
+            - generic [ref=e721]:
+              - img "Gelin Makyajı Sırları" [ref=e722]
+              - generic [ref=e723]: 20 Şub 2026
+            - generic [ref=e724]:
+              - heading "Gelin Makyajı Sırları" [level=3] [ref=e725]
+              - paragraph [ref=e726]: Özel gününüzde kusursuz görünmek için gelin makyajında dikkat edilmesi gerekenler.
+              - link "Hepsini Oku" [ref=e728] [cursor=pointer]:
+                - /url: /blog/gelin-makyaji-sirlari
+                - text: Hepsini Oku
+                - img [ref=e729]
+          - generic [ref=e731]:
+            - generic [ref=e732]:
+              - img "Saç Kesiminde 2026 Trendleri" [ref=e733]
+              - generic [ref=e734]: 20 Şub 2026
+            - generic [ref=e735]:
+              - heading "Saç Kesiminde 2026 Trendleri" [level=3] [ref=e736]
+              - paragraph [ref=e737]: Bu yılın en popüler saç kesim modelleri ve renk trendleri neler olacak?
+              - link "Hepsini Oku" [ref=e739] [cursor=pointer]:
+                - /url: /blog/sac-kesiminde-2026-trendleri
+                - text: Hepsini Oku
+                - img [ref=e740]
+          - generic [ref=e742]:
+            - generic [ref=e743]:
+              - img "Microblading ile İlgili Doğru Bilinen Yanlışlar" [ref=e744]
+              - generic [ref=e745]: 17 Şub 2026
+            - generic [ref=e746]:
+              - heading "Microblading ile İlgili Doğru Bilinen Yanlışlar" [level=3] [ref=e747]
+              - paragraph [ref=e748]: Kaş kontürü olarak da bilinen microblading hakkında merak edilenler ve şehir efsaneleri. İşlem öncesi ve sonrası dikkat edilmesi gerekenler.
+              - link "Hepsini Oku" [ref=e750] [cursor=pointer]:
+                - /url: /blog/microblading-hakkin-dogru-bilinen-yanlislar
+                - text: Hepsini Oku
+                - img [ref=e751]
+      - generic [ref=e754]:
+        - generic [ref=e755]:
+          - generic [ref=e757]: Bizi Takip Edin
+          - heading "Instagram @zubeyde_dalbudak_peak" [level=2] [ref=e759]:
+            - text: Instagram
+            - generic [ref=e760]: "@zubeyde_dalbudak_peak"
+          - paragraph [ref=e761]: Günlük ilham, güzellik ipuçları ve en yeni çalışmalarımız için bizi Instagram'da takip edin.
+          - link "Takip Et" [ref=e763] [cursor=pointer]:
+            - /url: https://instagram.com/zubeyde_dalbudak_peak
+            - text: Takip Et
+            - img [ref=e764]
+        - generic [ref=e767]:
+          - generic [ref=e768]:
+            - img "Instagram 1" [ref=e769]
+            - img [ref=e771]
+          - generic [ref=e773]:
+            - img "Instagram 2" [ref=e774]
+            - img [ref=e776]
+          - generic [ref=e778]:
+            - img "Instagram 3" [ref=e779]
+            - img [ref=e781]
+          - generic [ref=e783]:
+            - img "Instagram 4" [ref=e784]
+            - img [ref=e786]
+          - generic [ref=e788]:
+            - img "Instagram 5" [ref=e789]
+            - img [ref=e791]
+          - generic [ref=e793]:
+            - img "Instagram 6" [ref=e794]
+            - img [ref=e796]
+          - generic [ref=e798]:
+            - img "Instagram 7" [ref=e799]
+            - img [ref=e801]
+          - generic [ref=e803]:
+            - img "Instagram 8" [ref=e804]
+            - img [ref=e806]
+    - contentinfo [ref=e808]:
+      - generic [ref=e810]:
+        - generic [ref=e811]:
+          - generic [ref=e812]:
+            - link "Zübeyde Dalbudak" [ref=e813] [cursor=pointer]:
+              - /url: /
+              - img "Zübeyde Dalbudak" [ref=e814]
+            - paragraph [ref=e815]: Zübeyde Dalbudak Peak Hair & Make Up Studio olarak, güzellik ve bakım konusundaki tutkumuzu profesyonel dokunuşlarla birleştiriyoruz.
+            - generic [ref=e816]:
+              - link [ref=e817] [cursor=pointer]:
+                - /url: https://www.instagram.com/zubeyde_dalbudak_peak/
+                - img [ref=e818]
+              - link [ref=e821] [cursor=pointer]:
+                - /url: https://www.instagram.com/zubeyde_dalbudak_peak/
+                - img [ref=e822]
+          - generic [ref=e824]:
+            - heading "Hızlı Menü" [level=4] [ref=e825]: Hızlı Menü
+            - list [ref=e827]:
+              - listitem [ref=e828]:
+                - link "Hakkımızda" [ref=e829] [cursor=pointer]:
+                  - /url: /about
+                  - img [ref=e830]
+                  - text: Hakkımızda
+              - listitem [ref=e832]:
+                - link "Hizmetler" [ref=e833] [cursor=pointer]:
+                  - /url: /services
+                  - img [ref=e834]
+                  - text: Hizmetler
+              - listitem [ref=e836]:
+                - link "Fiyatlar" [ref=e837] [cursor=pointer]:
+                  - /url: /pricing
+                  - img [ref=e838]
+                  - text: Fiyatlar
+              - listitem [ref=e840]:
+                - link "Galeri" [ref=e841] [cursor=pointer]:
+                  - /url: /gallery
+                  - img [ref=e842]
+                  - text: Galeri
+              - listitem [ref=e844]:
+                - link "Blog" [ref=e845] [cursor=pointer]:
+                  - /url: /blog
+                  - img [ref=e846]
+                  - text: Blog
+              - listitem [ref=e848]:
+                - link "İletişim" [ref=e849] [cursor=pointer]:
+                  - /url: /contact
+                  - img [ref=e850]
+                  - text: İletişim
+          - generic [ref=e852]:
+            - heading "İletişim" [level=4] [ref=e853]: İletişim
+            - list [ref=e855]:
+              - listitem [ref=e856]:
+                - img [ref=e858]
+                - generic [ref=e861]:
+                  - paragraph [ref=e862]: Adres
+                  - paragraph [ref=e863]: Yahyakaptan Seymen Caddesi, Kahve Sk. No:7, 41100 İzmit/Kocaeli
+              - listitem [ref=e864]:
+                - img [ref=e866]
+                - generic [ref=e868]:
+                  - paragraph [ref=e869]: Telefon
+                  - link "+90 542 686 64 94" [ref=e870] [cursor=pointer]:
+                    - /url: tel:+905426866494
+              - listitem [ref=e871]:
+                - img [ref=e873]
+                - generic [ref=e876]:
+                  - paragraph [ref=e877]: E-posta
+                  - link "info@zubeydedalbudak.com" [ref=e878] [cursor=pointer]:
+                    - /url: mailto:info@zubeydedalbudak.com
+          - generic [ref=e881]:
+            - heading "Yerinizi Hemen Ayırtın" [level=4] [ref=e882]
+            - paragraph [ref=e883]: Size en uygun zamanı seçerek profesyonel hizmetlerimizden yararlanabilirsiniz.
+            - link "Randevu Al" [ref=e884] [cursor=pointer]:
+              - /url: /appointment
+        - generic [ref=e885]:
+          - paragraph [ref=e886]: Copyright © 2026 Zübeyde Peak Hair & Makeup. Tüm hakları saklıdır.
+          - list [ref=e887]:
+            - listitem [ref=e888]:
+              - link "Gizlilik Politikası" [ref=e889] [cursor=pointer]:
+                - /url: /privacy
+            - listitem [ref=e890]:
+              - link "Kullanım Şartları" [ref=e891] [cursor=pointer]:
+                - /url: /terms
+            - listitem [ref=e892]:
+              - link "KVKK" [ref=e893] [cursor=pointer]:
+                - /url: /kvkk
+          - generic [ref=e894]:
+            - text: Designed by
+            - link "Lilidea" [ref=e895] [cursor=pointer]:
+              - /url: https://www.lilidea.com/
+    - button "Yukarı Çık":
+      - img
+  - button "Open Next.js Dev Tools" [ref=e901] [cursor=pointer]:
+    - img [ref=e902]
+  - alert [ref=e905]
+```

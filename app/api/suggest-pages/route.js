@@ -4,7 +4,10 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req) {
   try {
-    const { companyName, sector, aboutText } = await req.json();
+    const body = await req.json();
+    const { companyName, sector, aboutText, servicesText } = body;
+
+    const safeServices = servicesText || "";
 
     const availablePages = [
       'Hakkımızda', 'Hizmetler', 'İletişim', 'Blog',
@@ -22,6 +25,7 @@ export async function POST(req) {
       - Company Name: ${companyName}
       - Sector: ${sector}
       - Description: ${aboutText}
+      - Services: ${safeServices}
 
       Allowed Pages List:
       ${availablePages.join(', ')}

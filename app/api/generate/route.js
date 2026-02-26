@@ -5,11 +5,12 @@ import { NextResponse } from 'next/server';
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { type, companyName, sector, aboutText, pages } = body;
+    const { type, companyName, sector, aboutText, servicesText, pages } = body;
 
     const safeCompany = companyName || "Şirketim";
     const safeSector = sector || "Genel";
     const safeDesc = aboutText || "Hizmet veriyoruz.";
+    const safeServices = servicesText || "";
     const safePages = Array.isArray(pages) && pages.length > 0 ? pages.join(', ') : "Hakkımızda, Hizmetler, İletişim";
 
     // Handle Rewrite Request
@@ -90,21 +91,15 @@ export async function POST(req) {
         Sistemimizde her kategori için 10'ar tane tasarım varyasyonu (1'den 10'a kadar) bulunmaktadır. 
         Sektöre ve firma tarzına en uygun varyasyonları seç.
 
-        Ayrıca, seçilen sektör için gerçekçi ve ilgi çekici içerikler oluştur.
-        Örneğin:
-        - Bir restoran ise, "Menü" kısmında gerçek yemek isimleri ve fiyatları olsun.
-        - Bir kuaför ise, "Hizmetler" kısmında Saç Kesimi, Boya vb. olsun.
-        - Bir blog ise, sektöre uygun 3 tane makale başlığı ve özeti olsun.
-
         JSON formatında şu yapıda dön (Sadece JSON):
         {
           "branding": {
-            "primaryColor": "Hex kodu (Örn: #E69419)",
-            "secondaryColor": "Hex kodu",
+            "primaryColor": "Hex kodu (Sektöre uygun: Gıda için sıcak iştah açıcı, Teknoloji için güven veren mavi/koyu, Sağlık için temiz beyaz/yeşil/mavi vb.)",
+            "secondaryColor": "Kontrast Hex kodu",
             "fontStyle": "modern | corporate | minimal | creative"
           },
           "selections": {
-            "header": "headerX", (X: 1-10)
+            "header": "headerX", (X: 1-10 arası sektöre uygun görsel yapı seç)
             "hero": "heroX",
             "about": "aboutX",
             "services": "servicesX",
@@ -120,61 +115,77 @@ export async function POST(req) {
           },
           "content": {
             "hero": {
-              "title": "Sektöre uygun etkileyici başlık",
-              "subtitle": "Etkileyici alt başlık"
+              "title": "Sektöre uygun, merak uyandıran 5-7 kelimelik başlık",
+              "subtitle": "Kullanıcıyı aksiyona davet eden alt başlık"
             },
             "about": {
               "title": "Hakkımızda",
-              "text": "Firma ve sektörle ilgili 2-3 paragraflık özgün yazı"
+              "text": "Firma ve sektörle ilgili, 'biz' dilini kullanan, güven verici 2-3 paragraflık özgün yazı"
             },
             "services": { 
               "title": "Hizmetlerimiz", 
-              "items": [ { "title": "Sektörel Hizmet 1", "desc": "Detaylı açıklama" }, { "title": "Sektörel Hizmet 2", "desc": "Detaylı açıklama" } ]
+              "items": [ { "title": "Sektörel Hizmet 1", "desc": "15-20 kelimelik açıklama" }, { "title": "Sektörel Hizmet 2", "desc": "15-20 kelimelik açıklama" } ]
             },
             "blog": [ 
-              { "title": "Sektörel Blog Başlığı 1", "date": "Bugünün Tarihi", "excerpt": "Kısa özet", "cat": "Kategori" } 
+              { "title": "Sektörle ilgili güncel blog başlığı", "date": "Bugünün Tarihi", "excerpt": "Kısa özet", "cat": "Kategori" } 
             ],
             "pricing": {
-              "title": "Fiyat Listesi / Paketler",
-              "items": [ { "name": "Paket/Oda/Seçenek 1", "price": "100 TL", "features": ["Özellik 1", "Özellik 2"] } ]
+              "title": "Fiyatlandırma",
+              "items": [ { "name": "Hizmet/Ürün Seviyesi", "price": "Fiyat (Sektörel gerçekçi)", "features": ["Özellik 1", "Özellik 2"] } ]
             },
             "gallery": {
               "title": "Galeri",
-              "description": "Sektöre uygun galeri açıklaması"
+              "description": "Portfolyo veya mekan görselleri için açıklama",
+              "images": ["Unsplash görsel URL'leri veya keywords formatında 6 adet görsel dönebilirsin"]
             },
             "projects": {
-              "title": "Projelerimiz / Çalışmalarımız",
-              "items": [ { "title": "Gerçekçi Proje Adı 1", "desc": "Kategori/Detay" } ]
+              "title": "Projelerimiz / Portfolyo",
+              "items": [ { "title": "Tamamlanmış İş/Proje Adı", "desc": "Detay" } ]
             },
             "testimonials": {
-              "title": "Müşteri/Misafir Yorumları",
-              "items": [ { "name": "Müşteri Adı", "role": "Ünvan", "text": "Sektöre özel gerçekçi yorum" } ]
+              "title": "Müşteri Yorumları",
+              "items": [ { "name": "Ad Soyad", "role": "Ünvan", "text": "Hizmetten duyulan memnuniyeti anlatan 1-2 cümlelik gerçekçi yorum" } ]
             },
             "stats": {
-              "items": [ { "label": "İstatistik Başlığı (Örn: Mutlu Misafir)", "value": "1000+", "icon": "Users | Briefcase | Award | Globe" } ]
+              "items": [ { "label": "Yıllık Tecrübe | Mutlu Müşteri | Proje Sayısı", "value": "Sayısal değer", "icon": "Users | Briefcase | Award | Globe" } ]
             },
             "faq": {
               "title": "Sıkça Sorulan Sorular",
-              "items": [ { "question": "Sektörel Soru?", "answer": "Cevap" } ]
+              "items": [ { "question": "Potansiyel müşterinin sorabileceği sektörel soru?", "answer": "Tatmin edici cevap" } ]
             },
             "team": {
-              "title": "Ekibimiz / Kadromuz",
-              "items": [ { "name": "İsim Soyisim", "role": "Ünvan" } ]
+              "title": "Ekibimiz",
+              "items": [ { "name": "Uzman İsim", "role": "Sektörel Ünvan (Örn: Başhekim, Kıdemli Yazılımcı, Şef Garson)" } ]
             },
             "menu": {
-              "title": "Menü (Eğer restoransa)",
-              "items": [ { "name": "Yemek Adı", "price": "200 TL", "desc": "İçerik" } ]
+              "title": "Ürün ve Lezzet Menümüz",
+              "items": [ 
+                { 
+                  "category": "Kategori Adı (Örn: Başlangıçlar, Ana Yemekler, İçecekler)", 
+                  "items": [ 
+                    { "name": "Yemek/Ürün Adı 1", "price": "100 TL", "desc": "İçerik açıklaması" },
+                    { "name": "Yemek/Ürün Adı 2", "price": "150 TL", "desc": "İçerik açıklaması" },
+                    { "name": "Yemek/Ürün Adı 3", "price": "200 TL", "desc": "İçerik açıklaması" }
+                   ] 
+                } 
+              ]
             },
             "products": [
-              { "name": "Ürün/Paket Adı", "price": "500 TL", "tag": "Yeni | Popüler" }
+              { "name": "Satışa Uygun Ürün", "price": "Fiyat", "tag": "Yeni | Popüler" }
             ],
             "pages": {
-               "SayfaAdı": { "title": "Sayfa Başlığı", "content": "Diğer sayfalar için içerik" }
+               "SayfaID": { "title": "Ek Sayfa Başlığı", "content": "Sayfa içeriği" }
             }
           }
         }
 
-        ÖNEMLİ: Tüm içerikleri ${safeSector} sektörüne göre gerçekçi değerlerle doldur. Sektör "Otel" ise oda fiyatları ve spa hizmetleri olsun, "Güzellik Salonu" ise cilt bakımı fiyatları olsun. "pricing", "projects", "testimonials", "stats", "gallery" ve "products" alanlarını sakın boş bırakma!
+        ÖNEMLİ KURALLAR:
+        1. DİL VE TON: Dil tamamen TÜRKÇE olmalı. Sektörel jargona (Örn: Gıda için iştah açıcı, Sağlık için güven verici, Teknoloji için yenilikçi) %100 sadık kalınmalıdır.
+        2. RENK PSİKOLOJİSİ: Renkler sektörün doğasına uygun seçilmelidir. Gıda/Restoran için #E69419 (Turuncu), #DC2626 (Kırmızı); Teknoloji için #0073FF (Mavi), #0F172A (Lacivert); Sağlık için #059669 (Zümrüt Yeşil); Lüks segment için #000000 ve Altın tonları tercih edilmelidir.
+        3. FİYATLANDIRMA: Fiyatlar ${safeSector} sektörü ve ${safeServices} nişi için REALİSTİK olmalıdır. Sushi için 80 TL çok ucuzdur, güncel piyasa koşullarına göre (Örn: 250-600 TL arası setler) mantıklı rakamlar kullanın.
+        4. JARGON YASAĞI (KRİTİK): Ana sektör "tech" (Teknoloji) DEĞİLSE, şu kelimeleri kullanmak KESİNLİKLE YASAKTIR: "Cloud", "SEO", "Otomasyon", "Dijital Çözümler", "Veri Analizi", "Stratejik Ortaklık", "Entegrasyon", "Vizyonumuz teknolojiyi tasarımla...". Bunların yerine sektöre özel insani ve samimi kavramlar kullanın.
+        5. FAQ VE FOOTER: SSS (FAQ) soruları tamamen sektörel olmalıdır. Bir restoran için "Cloud var mı?" diye sorulamaz. Onun yerine "Rezervasyon gerekli mi?", "Otopark var mı?", "Paket servis süresi nedir?" gibi gerçek sorular üretin. Footer quote (özlü söz) asla "Tasarım nasıl çalıştığıdır" olmamalı, sektöre uygun (Örn: Gıda için "Lezzet bir sanattır") bir söz seçin.
+        6. BAŞLIKLAR: Hero ve About başlıkları "Hoş Geldiniz" gibi jenerik olmamalı. Çok daha vurucu ve işe odaklı (Örn: Sakura Sushi için "Otantik Japon Lezzetleri Sofranızda") başlıklar seçin.
       `;
 
       const completion = await openai.chat.completions.create({
@@ -193,6 +204,7 @@ export async function POST(req) {
       Company Name: ${safeCompany}
       Sector: ${safeSector}
       Description: ${safeDesc}
+      Specific Services Provided: ${safeServices}
       Pages: ${safePages}
 
       Return ONLY a JSON object with the following structure:

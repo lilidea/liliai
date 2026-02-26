@@ -31,7 +31,7 @@ const Footer10 = () => {
                 </div>
 
                 <div className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">
-                    © 2024 {companyName} — Minimalist Deneyim
+                    © {new Date().getFullYear()} lilidea.com. Tüm hakları saklıdır.
                 </div>
             </div>
         </footer>
